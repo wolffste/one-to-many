@@ -10,10 +10,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_02_142644) do
+ActiveRecord::Schema.define(version: 2020_03_02_172612) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bands", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "name"
+    t.text "description"
+    t.string "category"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_bands_on_user_id"
+  end
+
+  create_table "bookings", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "band_id"
+    t.integer "total_fee"
+    t.date "startdate"
+    t.date "enddate"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["band_id"], name: "index_bookings_on_band_id"
+    t.index ["user_id"], name: "index_bookings_on_user_id"
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "musician_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["musician_id"], name: "index_favorites_on_musician_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -23,8 +54,21 @@ ActiveRecord::Schema.define(version: 2020_03_02_142644) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "username"
+    t.text "description"
+    t.integer "fee"
+    t.date "startdate"
+    t.date "enddate"
+    t.string "city"
+    t.date "birthday"
+    t.boolean "musician", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "bands", "users"
+  add_foreign_key "bookings", "bands"
+  add_foreign_key "bookings", "users"
+  add_foreign_key "favorites", "users"
+  add_foreign_key "favorites", "users", column: "musician_id"
 end

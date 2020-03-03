@@ -1,4 +1,5 @@
 <ul>
-  @musicians.each do |musician|
-    <li> <%= musician.name %></li>
+  <% @musicians.each do |musician| %>
+    <li> <%= musician.username %></li>
+  <% end %>
 </ul>

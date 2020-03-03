@@ -5,7 +5,8 @@ class MusiciansController < ApplicationController
   end
 
   def show
-    @musician = User.find(params[:id])
+    @musicians = User.where(musician: true)
+    @musician = @musicians.find(params[:id])
   end
 
 end

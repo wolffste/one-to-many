@@ -3,4 +3,10 @@ class PagesController < ApplicationController
 
   def home
   end
+
+  def show_dashboard
+    @user = current_user
+    @bands = @user.bands
+
+  end
 end

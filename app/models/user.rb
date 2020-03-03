@@ -5,5 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :bands
+  belongs_to :genre
   has_many :bookings, through: :bands
 end

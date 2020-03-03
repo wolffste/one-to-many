@@ -6,4 +6,5 @@ class User < ApplicationRecord
 
   has_many :bands
   has_many :bookings, through: :bands
+  has_many :favorites
 end

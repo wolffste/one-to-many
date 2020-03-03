@@ -1,0 +1,35 @@
+.musician-card {
+  width: 252px;
+  height: 352px;
+  border: 1px solid black;
+  border-radius: 7px;
+  padding: 15px;
+}
+
+.musician-pic {
+  background-color: red;
+  height: 230px;
+  width: 100%;
+  display: block;
+  border-radius: 3px;
+  margin-bottom: 20px;
+}
+
+.card-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+  margin: 0;
+}
+
+.no-margin {
+  margin: 0;
+  padding: 0;
+}
+
+.musician-card p {
+  margin: 5px;
+  font-family: sans;
+  font-size: 12px;
+
+}

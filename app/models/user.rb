@@ -7,4 +7,5 @@ class User < ApplicationRecord
   has_many :bands
   belongs_to :genre
   has_many :bookings, through: :bands
+  has_many :favorites
 end

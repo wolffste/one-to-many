@@ -1,5 +1,36 @@
-<ul>
-  <% @musicians.each do |musician| %>
-    <li> <%= musician.username %></li>
-  <% end %>
-</ul>
+<% @musicians.each do |musician| %>
+
+<div class="musician-card">
+
+  <% if musician.photo.attached? %>
+    <%= cl_image_tag band.photo.key %>
+  <% else %>
+    <%= cl_image_tag("a6fac407-95ce-4d45-b360-8330205ce210_l_svdjab") %>
+ <% end %>
+
+
+  </div>
+   <div class="card-row">
+    <p>nickname:</p>
+    <p><%= musician.username %></p>
+  </div>
+  <hr class="no-margin">
+  <div class="card-row">
+    <p>age:</p>
+    <p>musician.birthday</p>
+  </div>
+  <hr class="no-margin">
+  <div class="card-row">
+    <p>instruments:</p>
+    <p>drums, trumpet </p>
+  </div>
+  <hr class="no-margin">
+    <div class="card-row">
+    <p>city:</p>
+    <p>musician.city</p>
+  </div>
+
+</div>
+
+<% end %>
+

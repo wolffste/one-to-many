@@ -1,15 +1,19 @@
-
+<% @users.each do |user| %>
 
 <div class="musician-card">
-  <div class="musician-pic"></div>
+
+
+  <div class="musician-pic" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @user.photo.key, height: 230, crop: :fill %>')">
+
+  </div>
    <div class="card-row">
     <p>nickname:</p>
-    <p><%= band.name %></p>
+    <p><%= user.username %></p>
   </div>
   <hr class="no-margin">
   <div class="card-row">
     <p>age:</p>
-    <p>28</p>
+    <p>user.birthday</p>
   </div>
   <hr class="no-margin">
   <div class="card-row">
@@ -19,15 +23,10 @@
   <hr class="no-margin">
     <div class="card-row">
     <p>city:</p>
-    <p>Hamburg</p>
+    <p>user.city</p>
   </div>
 
 </div>
 
+<% end %>
 
-
-<ul>
-  <% @bands.each do |band| %>
-  <li><%= band.name %></li>
-  <% end %>
-</ul>

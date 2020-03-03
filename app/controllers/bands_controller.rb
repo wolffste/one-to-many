@@ -25,9 +25,17 @@ class BandsController < ApplicationController
   end
 
   def update
+    @band.update(band_params)
+    if @band.save!
+      redirect_to dashboard_path
+    else
+      render :new
+    end
   end
 
   def destroy
+    @band.destroy
+    redirect_to dashboard_path
   end
 
   private
@@ -37,6 +45,6 @@ class BandsController < ApplicationController
   end
 
   def band_params
-    params.require(:band).permit(:name, :description, :category)
+    params.require(:band).permit(:name, :description, :category, :genre_id)
   end
 end

@@ -2,16 +2,24 @@ class BookingsController < ApplicationController
   before_action :set_booking, only: []
 
   def new
-    @band = Band.find(params[:band_id])
+
+    @bands = current_user.bands
     @booking = Booking.new
+
   end
 
   def create
-    @band = Band.find(params[:band_id])
+    @band = Band.find(params[:booking][:band_id])
     @booking = Booking.new(booking_params)
     @booking.band = @band
     @booking.band.user = current_user
-    @booking.user = User.find(params[:user_id])
+    @booking.user = User.find(params[:musician_id]) #the booked musician
+
+    if @booking.save
+      redirect_to musician_path(@booking.user)
+    else
+      render :new
+    end
   end
 
 

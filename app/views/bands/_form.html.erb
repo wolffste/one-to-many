@@ -3,8 +3,7 @@
 <%= simple_form_for @band do |f| %>
   <%= f.input :name %>
   <%= f.input :description %>
-  <%= f.input :category %>
-   <%= f.association :genre, input_html: { class: "beautiful-dropdown" }, include_hidden: false, class: "form-group"  %>
-   <%= f.input :photo, as: :file %>
+  <%= f.association :genre, input_html: { class: "beautiful-dropdown" }, include_hidden: false, class: "form-group"  %>
+  <%= f.input :photo, as: :file %>
   <%= f.button :submit %>
 <% end %>

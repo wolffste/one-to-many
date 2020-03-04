@@ -10,6 +10,9 @@
       <h2><% @musician = User.find(favorite.musician_id) %></h2>
       <p><%= @musician.username %></p>
     </div>
+    <%= link_to favorites_path, method: :delete, data: { confirm: "Are you sure?" } do %>
+    <i class="fa fa-trash destroy_dose"></i></p>
+    <% end %>
   </div>
   <% end %>
 </div>

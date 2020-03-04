@@ -2,7 +2,7 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :bookings, only: [ :index]
-  resources :favorites, only: [ :index, :new, :show, :create ]
+  resources :favorites, only: [ :index, :new, :show, :create, :destroy ]
   resources :musicians do
     resources :bookings, only: [:new, :create]
   end

@@ -1,3 +1,4 @@
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 Rails.application.routes.draw do
   devise_for :users
   resources :musicians do
@@ -8,8 +9,6 @@ Rails.application.routes.draw do
     end
   end
   root to: 'pages#home'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :bands
-
-
+  get 'pages/show_dashboard', to: 'pages#show_dashboard', as: :dashboard
 end

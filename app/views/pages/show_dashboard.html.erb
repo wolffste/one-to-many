@@ -1,0 +1,17 @@
+<br>
+<br>
+<br>
+<h1><%= @user.username %></h1>
+<h1>Bands:</h1>
+<ol>
+<% @bands.each do |band| %>
+  <li> <%= band.name %> </li>
+  <% band.bookings.each do |booking| %>
+  <p> <%= booking.startdate %> </p>
+  <p> <% musician = User.find_by(id: booking.user_id) %> </p> <!-- selecting the booked musician -->
+
+  <p> <%= musician.username %> </p>
+  <% end %>
+
+<% end %>
+</ol>

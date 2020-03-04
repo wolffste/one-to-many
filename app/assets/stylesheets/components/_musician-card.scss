@@ -1,0 +1,76 @@
+.cards {
+  margin-top: 400px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 25px;
+}
+
+// Smallest device
+@media (min-width: 100px) and (max-width: 575px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+  .cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .cards {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .cards {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+.musician-card {
+  width: 252px;
+  height: 392px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 4px;
+  margin-bottom: 25px;
+}
+
+.musician-pic {
+  height: 230px;
+  width: 100%;
+  display: block;
+  margin-bottom: 20px;
+  border-radius:  4px 4px 0 0;
+}
+
+.card-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+  margin: 0;
+}
+
+.no-margin {
+  margin: 0;
+  padding: 0;
+}
+
+.musician-card p {
+  margin: 5px;
+  font-family: 'Heebo', sans-serif;
+  font-size: 14px;
+
+}

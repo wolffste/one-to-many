@@ -8,4 +8,5 @@ class User < ApplicationRecord
   belongs_to :genre, optional: true
   has_many :bookings, through: :bands
   has_many :favorites
+  has_one_attached :photo
 end

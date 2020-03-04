@@ -1,4 +1,5 @@
-class FavoritesController < ActionController::Base
+class FavoritesController < ApplicationController
+# class FavoritesController < ActionController::Base
 
   def index
     @favorites = current_user.favorites

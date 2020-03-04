@@ -1,8 +1,16 @@
-<h1>index page</h1>
-<ul>
-<%@favorites.each do |favorite| %>
-<% @musician = User.find(favorite.musician_id) %>
-<li><%= @musician.username %></li>
 
-<% end %>
-</ul>
+<div class="container">
+
+  <h1>My Favourites</h1>
+
+  <% @favorites.each do |favorite| %>
+  <div class="card-product favorite">
+    <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+    <div class="card-product-infos">
+      <h2><% @musician = User.find(favorite.musician_id) %></h2>
+      <p><%= @musician.username %></p>
+    </div>
+  </div>
+  <% end %>
+</div>
+

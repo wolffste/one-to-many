@@ -2,16 +2,13 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :users, only: [:edit, :update]
-  resources :favorites, only: [ :index, :new, :show, :create ]
+  resources :favorites, only: [:index, :new, :show, :create ]
   resources :musicians do
     resources :bookings, only: [:new, :create]
-    member do
-      post "bookmark"
-    end
   end
+  resources :bookings, except: [:new, :create]
   root to: 'pages#home'
   resources :bands
   get 'pages/show_dashboard', to: 'pages#show_dashboard', as: :dashboard
-  resources :bookings, except: [:new, :create]
 
 end

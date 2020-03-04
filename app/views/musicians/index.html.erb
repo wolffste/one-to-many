@@ -1,12 +1,18 @@
 <div class="container">
   <div class="cards">
     <% @musicians.each do |musician| %>
-      <%= link_to musician_path(musician), :action => 'go' do %>
+
+
         <div class="musician-card">
+          <%= link_to "edit", edit_musician_path(musician) %>
           <% if musician.photo.attached? %>
+          <%= link_to musician_path(musician), :action => 'go' do %>
             <div class="musician-pic" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path musician.photo.key, height: 230, crop: :fill %>')"></div>
+          <% end %>
           <% else %>
+          <%= link_to musician_path(musician), :action => 'go' do %>
             <div class="musician-pic" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.3)), url('<%= cl_image_path("a6fac407-95ce-4d45-b360-8330205ce210_l_svdjab", :height=>230, :gravity=>"west", :crop=>"fill") %>')"></div>
+          <% end %>
           <% end %>
           <div class="card-row">
             <p>nickname:</p>
@@ -28,7 +34,6 @@
             <p>musician.city</p>
           </div>
         </div>
-      <% end %>
     <% end %>
   </div>
 </div>

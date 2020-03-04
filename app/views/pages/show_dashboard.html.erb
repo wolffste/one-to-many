@@ -6,42 +6,74 @@
 
 <div class= "container">
   <div class="tabbed">
-     <input checked="checked" id="tab1" type="radio" name="tabs" />
-     <input id="tab2" type="radio" name="tabs" />
-     <input id="tab3" type="radio" name="tabs" />
+   <input checked="checked" id="tab1" type="radio" name="tabs" />
+   <input id="tab2" type="radio" name="tabs" />
+   <input id="tab3" type="radio" name="tabs" />
 
-     <nav>
-        <label for="tab1">Profile</label>
-        <label for="tab2">Bookings</label>
-        <label for="tab3">Bands</label>
-     </nav>
+   <nav>
+    <label for="tab1">Profile</label>
+    <label for="tab2">Bookings</label>
+    <label for="tab3">Bands</label>
+  </nav>
 
-     <figure>
-        <div class="tab1">
-          <td><%= @user.username %></td>
-        </div>
-        <div class="tab2">
-          <% @bookings.each do |booking| %>
-            <div class= "card mt-3 p-3">
+  <figure>
+    <div class="tab1 container">
+      <div class="row">
+
+
+        <div class= "col-md-4 col-md-6">
+          <% if @user.musician = true %>
+          <% @musician = @user %>
+
+          <% if @musician.photo.attached? %>
+          <div class="musician-pic" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path musician.photo.key, height: 230, crop: :fill %>')"></div>
+            <% else %>
+            <div class="musician-pic" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.3)), url('<%= cl_image_path("a6fac407-95ce-4d45-b360-8330205ce210_l_svdjab", :height=>230, :gravity=>"west", :crop=>"fill") %>')"></div>
+              <% end %>
+
+              <% else %>
+              <h1>picture</h1>
+              <% end %>
+            </div>
+            <div class= "col-md-4 col-md-6">
               <ul style="list-style-type: none;">
-                <li class= "mb-3">Booking from: <strong><%= booking.created_at %></strong></li>
-                <li>For: <strong><%= booking.band.name %></strong></li>
-                <li>Begin: <strong><%= booking.startdate %></strong></li>
-                <li>End: <strong><%= booking.enddate %></strong></li>
-                <% musician = User.find_by(id: booking.user_id) %>
-                <li><%= musician.username %></li>
+                <li>username: <strong><%= @user.username %></strong></li>
+                <li>e-mail: <strong><%= @user.email %></strong></li>
+                <li>city: <strong><%= @user.city %></strong></li>
+                <li>date of birth: <strong><%= @user.birthday %></strong></li>
+                <li>description: <strong><%= @user.description %></strong></li>
               </ul>
             </div>
+          </div>
+        </div>
+
+
+        <div class="tab2">
+          <% @bookings.each do |booking| %>
+          <div class= "card mt-3 p-3">
+            <ul style="list-style-type: none;">
+              <li class= "mb-3">Booking from: <strong><%= booking.created_at %></strong></li>
+              <li>For: <strong><%= booking.band.name %></strong></li>
+              <li>Begin: <strong><%= booking.startdate %></strong></li>
+              <li>End: <strong><%= booking.enddate %></strong></li>
+              <% musician = User.find_by(id: booking.user_id) %>
+              <li><%= musician.username %></li>
+            </ul>
+          </div>
           <% end %>
         </div>
+
         <div class="tab3">
           <% @bands.each do |band| %>
-            <div class="card mt-3 p-3">
-              <h3><%= band.name %></h3>
-            </div>
+          <div class="card mt-3 p-3">
+            <h3><%= band.name %></h3>
+          </div>
           <% end %>
-       </div>
-     </figure>
+        </div>
+
+
+      </div>
+    </figure>
   </div>
 </div>
 

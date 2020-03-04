@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   resources :bands
   get 'pages/show_dashboard', to: 'pages#show_dashboard', as: :dashboard
+  resources :bookings, except: [:new, :create]
+
 end

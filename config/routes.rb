@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   resources :musicians do
     resources :bookings, only: [:new, :create]
     resources :favorites, only: [ :index, :new, :show, :create ]
+    member do
+      post "bookmark"
+    end
   end
   root to: 'pages#home'
   resources :bands

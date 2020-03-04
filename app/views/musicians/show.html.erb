@@ -1,4 +1,17 @@
 <%= @musician.username %>
-<%= link_to new_musician_favorite_path do %>
-  <i class="far fa-star"></i></p>
-<% end %>
+
+
+  <% form_for([@musicians, @user]) do |f| %>
+  <%= f.submit "Love it", class: "btn btn-danger pic large", id:"button" %>
+  <% end %>
+
+
+
+
+
+
+
+
+
+
+

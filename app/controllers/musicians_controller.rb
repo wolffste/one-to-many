@@ -9,4 +9,10 @@ class MusiciansController < ApplicationController
     @musician = @musicians.find(params[:id])
   end
 
+  def bookmark
+     @musician = @musicians.find(params[:id])
+     @musician.bookmark(params[:musician_id])
+
+  end
+
 end

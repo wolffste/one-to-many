@@ -16,7 +16,6 @@ class FavoriteController < ActionController::Base
 
   def create
     @musician = User.find(params[:musician_id])
-    raise
     current_user.favorites.create(:musician_id => params[:musician_id])
     render :layout => false
   end

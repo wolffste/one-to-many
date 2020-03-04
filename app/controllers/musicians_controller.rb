@@ -7,6 +7,7 @@ class MusiciansController < ApplicationController
   def show
     @musicians = User.where(musician: true)
     @musician = @musicians.find(params[:id])
+    @favorite = Favorite.new
   end
 
   def bookmark

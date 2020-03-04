@@ -1,0 +1,8 @@
+<h1>index page</h1>
+<ul>
+<%@favorites.each do |favorite| %>
+<% @musician = User.find(favorite.musician_id) %>
+<li><%= @musician.username %></li>
+
+<% end %>
+</ul>

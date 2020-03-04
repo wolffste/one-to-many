@@ -1,9 +1,20 @@
 <%= @musician.username %>
 
-
-  <% form_for([@musicians, @user]) do |f| %>
-  <%= f.submit "Love it", class: "btn btn-danger pic large", id:"button" %>
+<% if !current_user %>
+  <%= form_for(@favorite) do |f| %>
+  <%= f.label :user %>
+  <%= f.text_field :user %>
+  <%= f.text_field :musician %>
+  <%= f.submit "Bookmark", class: "btn btn-danger pic large", id:"button" %>
   <% end %>
+<% else %>
+  <%= form_for(@favorite) do |f| %>
+    <%= f.label :user %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.hidden_field :musician_id, value: @musician.id %>
+  <%= f.submit "Bookmark", class: "btn btn-danger pic large", id:"button" %>
+  <% end %>
+<% end %>
 
 
 

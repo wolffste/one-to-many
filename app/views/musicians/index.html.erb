@@ -1,5 +1,7 @@
 <ul>
   <% @musicians.each do |musician| %>
     <li> <%= musician.username %></li>
+    <%= link_to "Show", musician_path(musician), class: "btn btn-primary" %>
   <% end %>
+
 </ul>

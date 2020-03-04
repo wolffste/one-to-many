@@ -18,22 +18,23 @@
 .tabbed figure>div {
   padding: 20px;
   width: 100%;
-  border: 1px solid silver;
+  // border: 1px solid silver;
   background: #fff;
   line-height: 1.5em;
   letter-spacing: 0.3px;
   color: #444;
+
 }
 nav label {
    float: left;
-   padding: 15px 15px;
-   border-top: 1px solid silver;
-   border-right: 1px solid silver;
+   padding: 7px 40px;
+   // border-top: 1px solid silver;
+   // border-right: 1px solid silver;
    background: hsl(210,50%,50%);
    color: #eee;
 }
 
-nav label:nth-child(1) { border-left: 1px solid silver; }
+nav label:nth-child(1) // { border-left: 1px solid silver; }
 nav label:hover { background: hsl(210,50%,40%); }
 nav label:active { background: #ffffff; }
 
@@ -59,3 +60,6 @@ nav label:active { background: #ffffff; }
   bottom: -1px;
 }
 
+.xxx {
+  margin-bottom: 0px;
+}

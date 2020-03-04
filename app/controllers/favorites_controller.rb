@@ -1,7 +1,7 @@
-class FavoriteController < ActionController::Base
+class FavoritesController < ActionController::Base
 
   def index
-    @favorites = @user.favorites
+    @favorites = current_user.favorites
   end
 
   def show
@@ -10,13 +10,21 @@ class FavoriteController < ActionController::Base
 
 
   def new
-    @musician = User.find(params[:musician_id])
     @favorite = Favorite.new
   end
 
   def create
-    @musician = User.find(params[:musician_id])
-    current_user.favorites.create(:musician_id => params[:musician_id])
-    render :layout => false
+  favorite_params
+   musician = User.find(favorite_params[:musician_id])
+   @favorite = Favorite.new(user: current_user, musician: musician)
+   @favorite.save
+    redirect_to favorites_path
+  end
+
+  private
+
+  def favorite_params
+    params.require(:favorite).permit(:user_id, :musician_id)
   end
 end
+

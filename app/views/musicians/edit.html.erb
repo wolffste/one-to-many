@@ -1,0 +1,14 @@
+<h3>Edit your profile, <%= @musician.username %></h3>
+
+<%= simple_form_for @musician, :url => musician_path, :method => :patch do |f| %>
+  <%= f.input :description %>
+  <%= f.input :fee %>
+  <%= f.input :startdate %>
+  <%= f.input :enddate %>
+  <%= f.input :city %>
+  <%= f.input :birthday %>
+  <%= f.input :musician %>
+  <%= f.association :genre, input_html: { class: "beautiful-dropdown" }, include_hidden: false, class: "form-group"  %>
+  <%= f.input :photo, as: :file %>
+  <%= f.button :submit %>
+<% end %>

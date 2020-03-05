@@ -15,94 +15,96 @@
     <label class= "mb-0" for="tab2">Bookings</label>
     <label class= "mb-0" for="tab3">Bands</label>
   </nav>
-
   <figure>
+    <div class="tab1 container">
+      <div class="row">
 
-<div class="tab1 container">
-  <div class="row">
-    <div class="col-xs-12 col-md-4 portfolio-item">
-      <div class="card-otm">
-        <img class="img-fluid" src="https://images.unsplash.com/photo-1559519529-0936e4058364?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80" alt="">
+        <div class="col-xs-12 col-md-4 portfolio-item">
+          <div class="card-otm">
+            <img class="img-fluid" src="https://images.unsplash.com/photo-1559519529-0936e4058364?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80" alt="">
+          </div>
+        </div>
+
+        <div class="col-xs-12 col-md-8">
+          <div class="card-otm h-100">
+            <ul style="list-style-type: none;">
+              <li>username: <strong><%= @user.username %></strong></li>
+              <li>e-mail: <strong><%= @user.email %></strong></li>
+              <li>city: <strong><%= @user.city %></strong></li>
+              <li>date of birth: <strong><%= @user.birthday %></strong></li>
+              <li>description: <strong><%= @user.description %></strong></li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+      <div class="row mt-4">
+        <div class="col-12">
+          <div class="card-otm">
+            <h1>dsfggd</h1>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="col-xs-12 col-md-8">
-      <div class="card-otm h-100">
-        <ul style="list-style-type: none;">
-            <li>username: <strong><%= @user.username %></strong></li>
-            <li>e-mail: <strong><%= @user.email %></strong></li>
-            <li>city: <strong><%= @user.city %></strong></li>
-            <li>date of birth: <strong><%= @user.birthday %></strong></li>
-            <li>description: <strong><%= @user.description %></strong></li>
-        </ul>
+    <div class="tab2">
+      <% @bookings.each do |booking| %>
+      <div class= "card-otm mt-3 p-3">
+        <div class= "row">
+          <div class= "col-xs-6 col-md-4" style="list-style-type: none;">
+            <% musician = User.find_by(id: booking.user_id) %>
+            <%# if @musician.photo.attached? %>
+            <div class="musician-pic" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1509973385458-f9609c21b528?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80')"></div>
+            <li><%= musician.username %></li>
+            <%# else %>
+            <%# end %>
+          </div>
+          <div class= "col-xs-12 col-md-8">
+            <div class="card-otm">
+              <ul style="list-style-type: none;">
+                <li class= "mb-3">you have booked <strong><%=musician.username%></strong> on the <strong><%= booking.created_at %></strong></li>
+                <li>For band: <strong><%= booking.band.name %></strong></li>
+                <li>Begin: <strong><%= booking.startdate %></strong></li>
+                <li>End: <strong><%= booking.enddate %></strong></li>
+                <td><%= link_to 'Delete', booking, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-warning"%></td>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
+      <% end %>
     </div>
+
+    <div class="tab3">
+      <% @bands.each do |band| %>
+      <div class= "card-otm mt-3 p-3">
+        <div class= "row">
+          <div class= "col-xs-6 col-md-4" style="list-style-type: none;">
+            <%# if @musician.photo.attached? %>
+            <div class="musician-pic" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1509973385458-f9609c21b528?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80')"></div>
+            <li><%= band.name %></li>
+            <%# else %>
+            <%# end %>
+          </div>
+          <div class= "col-xs-12 col-md-8">
+            <div class="card-otm">
+              <ul style="list-style-type: none;">
+              <!-- <li class= "mb-3">Booking from: <strong><%= band.created_at %></strong></li> -->
+              <li>For: <strong><%= band.name %></strong></li>
+              <li>to: <strong><%= band.description %></strong></li>
+              <li>to: <strong><%= band.genre %></strong></li>
+              <td><%= link_to 'Delete', band, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-warning"%></td>
+            </ul>
+           </div>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+
+
   </div>
-  <div class="row mt-4">
-    <div class="col-12">
-      <div class="card-otm">
-        <h1>dsfggd</h1>
-      </div>
-    </div>
-  </div>
+</figure>
 </div>
-
-
-        <div class="tab2">
-          <% @bookings.each do |booking| %>
-            <div class= "card mt-3 p-3">
-              <div class= "row">
-
-                <div class= "col-xs-6 col-md-4" style="list-style-type: none;">
-                  <% musician = User.find_by(id: booking.user_id) %>
-                  <%# if @musician.photo.attached? %>
-                    <div class="musician-pic" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1509973385458-f9609c21b528?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80')"></div>
-                    <li><%= musician.username %></li>
-                  <%# else %>
-                  <%# end %>
-                </div>
-                <div class= "col-xs-12 col-md-8">
-                  <ul style="list-style-type: none;">
-                    <li class= "mb-3">you have booked <strong><%=musician.username%></strong> on the <strong><%= booking.created_at %></strong></li>
-                    <li>For band: <strong><%= booking.band.name %></strong></li>
-                    <li>Begin: <strong><%= booking.startdate %></strong></li>
-                    <li>End: <strong><%= booking.enddate %></strong></li>
-                    <td><%= link_to 'Delete', booking, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-warning"%></td>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          <% end %>
-        </div>
-
-        <div class="tab3">
-          <% @bands.each do |band| %>
-            <div class= "card mt-3 p-3">
-              <div class= "row">
-                <div class= "col-xs-6 col-md-4" style="list-style-type: none;">
-                  <%# if @musician.photo.attached? %>
-                    <div class="musician-pic" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1509973385458-f9609c21b528?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80')"></div>
-                  <li><%= band.name %></li>
-                  <%# else %>
-                  <%# end %>
-                </div>
-                <div class= "col-xs-12 col-md-8">
-                  <ul style="list-style-type: none;">
-                    <!-- <li class= "mb-3">Booking from: <strong><%= band.created_at %></strong></li> -->
-                    <li>For: <strong><%= band.name %></strong></li>
-                    <li>to: <strong><%= band.description %></strong></li>
-                    <li>to: <strong><%= band.genre %></strong></li>
-                    <td><%= link_to 'Delete', band, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-warning"%></td>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          <% end %>
-        </div>
-
-
-      </div>
-    </figure>
-  </div>
 </div>
 
 

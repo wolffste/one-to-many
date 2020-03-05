@@ -11,7 +11,7 @@
         <% end %>
       </div>
     </div>
-    <div class="col-xs-12 col-md-8">
+    <div class="col-xs-12 col-md-8 favorite">
       <div class="card-product-infos">
         <% @musician = User.find(favorite.musician_id) %>
         <p><strong>Name: </strong><%= @musician.username %></p>
@@ -19,7 +19,7 @@
         <% age = Date.today.year - @musician.birthday.year %>
         <p><strong>Age: </strong> <%= age %></p>
         <% else %>
-        <% age = 99 %>
+        <p><strong>Age: </strong> 99 </p>
         <% end %>
         <p><strong>Description: </strong><%= @musician.description %></p>
         <p><strong>City: </strong><%= @musician.city %></p>

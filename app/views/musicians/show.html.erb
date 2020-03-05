@@ -1,26 +1,6 @@
-<%= @musician.username %>
-
-<% if !current_user %>
-  <%= form_for(@favorite) do |f| %>
-  <%= f.text_field :user %>
-  <%= f.text_field :musician %>
-  <%= button_tag( :class => "btn star") do %>
-    <i class="far fa-star"></i>
-  <% end %>
-  <% end %>
-<% else %>
-  <%= form_for(@favorite) do |f| %>
-  <%= f.hidden_field :user_id, value: current_user.id %>
-  <%= f.hidden_field :musician_id, value: @musician.id %>
-   <%= button_tag( :class => "btn star") do %>
-    <i class="far fa-star"></i>
-  <% end %>
-  <% end %>
-<% end %>
-
-
 <div class="container">
   <div class="row">
+
     <div class="col-xs-6 col-md-4 portfolio-item">
       <div class="card-otm h-100">
         <% if @musician.photo.attached? %>
@@ -38,9 +18,25 @@
           <li>city: <strong><%= @musician.city %></strong></li>
           <li>date of birth: <strong><%= @musician.birthday %></strong></li>
           <li>description: <strong><%= @musician.description %></strong></li>
+          <% if !current_user %>
+            <%= form_for(@favorite) do |f| %>
+              <%= f.text_field :user %>
+              <%= f.text_field :musician %>
+              <%= button_tag( :class => "btn star") do %>
+                <i class="far fa-star"></i> Mark as favorite
+              <% end %>
+            <% end %>
+          <% else %>
+            <%= form_for(@favorite) do |f| %>
+              <%= f.hidden_field :user_id, value: current_user.id %>
+              <%= f.hidden_field :musician_id, value: @musician.id %>
+              <%= button_tag( :class => "btn star") do %>
+                <i class="far fa-star"></i> Mark as favorite
+              <% end %>
+            <% end %>
+          <% end %>
           <li><%= link_to ' Edit', edit_musician_path(@musician), class: "btn btn-outline-warning" %></li>
           <li><%= link_to ' back', musicians_path, class: "btn btn-warning" %></li>
-
         </ul>
       </div>
     </div>

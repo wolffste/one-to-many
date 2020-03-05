@@ -1,19 +1,38 @@
-
-<div class="container">
-
-  <h1>My Favourites</h1>
-
-  <% @favorites.each do |favorite| %>
-  <div class="card-product favorite">
-    <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
-    <div class="card-product-infos">
-      <h2><% @musician = User.find(favorite.musician_id) %></h2>
-      <p><%= @musician.username %></p>
-    </div>
-    <%= link_to favorite_path(favorite), method: :delete, data: { confirm: "Are you sure?" } do %>
-    <i class="fa fa-trash destroy_dose"></i></p>
-    <% end %>
+<body>
+  <div class="start-banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://images.unsplash.com/photo-1508854710579-5cecc3a9ff17?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80)">
   </div>
-  <% end %>
-</div>
+  <br>
+
+
+
+  <div class="container">
+    <h1 class="banner-Headline"><strong>My Favourites</strong></h1>
+    <% @favorites.each do |favorite| %>
+    <div class="row favorite">
+      <div class="col-xs-12 col-md-4">
+        <div class="card-product favorite">
+          <% if favorite.musician.photo.attached? %>
+          <%= cl_image_tag favorite.musician.photo.key, height: 230 %>
+          <% else %>
+          <%= cl_image_tag("a6fac407-95ce-4d45-b360-8330205ce210_l_svdjab") %>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-8">
+        <div class="card-product-infos">
+          <% @musician = User.find(favorite.musician_id) %>
+          <p><strong>Name: </strong><%= @musician.username %></p>
+          <% age = Date.today.year - @musician.birthday.year %>
+          <p><strong>Age: </strong> <%= age %></p>
+          <p><strong>Description: </strong><%= @musician.description %></p>
+          <p><strong>City: </strong><%= @musician.city %></p>
+          <%= link_to "Back to overview", musicians_path, class: "btn btn-primary" %>
+          <%= link_to " 🗑 Delete from favorites", favorite_path(favorite), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-primary-outline" %>
+
+        </div>
+      </div>
+    </div>
+    <% end %>
+
+  </div>
 

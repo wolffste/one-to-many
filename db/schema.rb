@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_05_104646) do
+ActiveRecord::Schema.define(version: 2020_03_05_135800) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,16 +83,6 @@ ActiveRecord::Schema.define(version: 2020_03_05_104646) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "user_instruments", force: :cascade do |t|
-    t.integer "level"
-    t.bigint "user_id"
-    t.bigint "instrument_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["instrument_id"], name: "index_user_instruments_on_instrument_id"
-    t.index ["user_id"], name: "index_user_instruments_on_user_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -110,8 +100,11 @@ ActiveRecord::Schema.define(version: 2020_03_05_104646) do
     t.date "birthday"
     t.boolean "musician", default: false
     t.bigint "genre_id"
+    t.bigint "instrument_id"
+    t.integer "level"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["genre_id"], name: "index_users_on_genre_id"
+    t.index ["instrument_id"], name: "index_users_on_instrument_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
@@ -123,7 +116,6 @@ ActiveRecord::Schema.define(version: 2020_03_05_104646) do
   add_foreign_key "bookings", "users"
   add_foreign_key "favorites", "users"
   add_foreign_key "favorites", "users", column: "musician_id"
-  add_foreign_key "user_instruments", "instruments"
-  add_foreign_key "user_instruments", "users"
   add_foreign_key "users", "genres"
+  add_foreign_key "users", "instruments"
 end

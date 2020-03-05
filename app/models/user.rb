@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   has_many :bands
   belongs_to :genre, optional: true
-  has_many :instruments, through: :user_instruments
+  belongs_to :instrument, optional: true
   has_many :bookings, through: :bands
   has_many :favorites
   has_one_attached :photo

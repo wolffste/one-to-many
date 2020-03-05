@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_03_190028) do
+ActiveRecord::Schema.define(version: 2020_03_05_135800) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,7 +44,9 @@ ActiveRecord::Schema.define(version: 2020_03_03_190028) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "genre_id"
+    t.bigint "instrument_id"
     t.index ["genre_id"], name: "index_bands_on_genre_id"
+    t.index ["instrument_id"], name: "index_bands_on_instrument_id"
     t.index ["user_id"], name: "index_bands_on_user_id"
   end
 
@@ -75,6 +77,12 @@ ActiveRecord::Schema.define(version: 2020_03_03_190028) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "instruments", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -92,17 +100,22 @@ ActiveRecord::Schema.define(version: 2020_03_03_190028) do
     t.date "birthday"
     t.boolean "musician", default: false
     t.bigint "genre_id"
+    t.bigint "instrument_id"
+    t.integer "level"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["genre_id"], name: "index_users_on_genre_id"
+    t.index ["instrument_id"], name: "index_users_on_instrument_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "bands", "genres"
+  add_foreign_key "bands", "instruments"
   add_foreign_key "bands", "users"
   add_foreign_key "bookings", "bands"
   add_foreign_key "bookings", "users"
   add_foreign_key "favorites", "users"
   add_foreign_key "favorites", "users", column: "musician_id"
   add_foreign_key "users", "genres"
+  add_foreign_key "users", "instruments"
 end

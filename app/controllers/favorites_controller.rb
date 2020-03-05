@@ -1,3 +1,5 @@
+  require 'date'
+
 class FavoritesController < ApplicationController
 # class FavoritesController < ActionController::Base
 
@@ -26,6 +28,12 @@ class FavoritesController < ApplicationController
     @favorite = Favorite.find(params[:id])
     @favorite.destroy
     redirect_to favorites_path
+  end
+
+
+  def age(birthday)
+    now = Time.now.utc.to_date
+    now.year - birthday.year - ((now.month > birthday.month || (now.month == birthday.month && now.day >= birthday.day)) ? 0 : 1)
   end
 
   private

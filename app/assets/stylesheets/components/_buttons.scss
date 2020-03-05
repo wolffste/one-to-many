@@ -22,5 +22,22 @@
   &:focus {
     box-shadow: 0 0 0 0.2rem rgba(254, 209, 55,.5) !important;
   }
+
+  .outline{
+    background-color: white;
+    color: #8BBABB;
+  }
+
 }
+
+ .btn-primary-outline{
+    background-color: white;
+    color: #8BBABB;
+    border-color: darken(#8BBABB, 7.5%) !important;
+    &:hover{
+       color: darken(#8BBABB, 12%) !important;
+    }
+
+  }
+
 

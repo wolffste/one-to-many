@@ -8,7 +8,7 @@
   <div class="container">
     <h1 class="banner-Headline"><strong>My Favourites</strong></h1>
     <% @favorites.each do |favorite| %>
-    <div class="row">
+    <div class="row favorite">
       <div class="col-xs-12 col-md-4">
         <div class="card-product favorite">
           <% if favorite.musician.photo.attached? %>
@@ -20,16 +20,18 @@
       </div>
       <div class="col-xs-12 col-md-8">
         <div class="card-product-infos">
-          <h2><% @musician = User.find(favorite.musician_id) %></h2>
-          <p><%= @musician.username %></p>
+          <% @musician = User.find(favorite.musician_id) %>
+          <p><strong>Name: </strong><%= @musician.username %></p>
+          <% age = Date.today.year - @musician.birthday.year %>
+          <p><strong>Age: </strong> <%= age %></p>
+          <p><strong>Description: </strong><%= @musician.description %></p>
+          <p><strong>City: </strong><%= @musician.city %></p>
+          <%= link_to "Back to overview", musicians_path, class: "btn btn-primary" %>
+          <%= link_to " 🗑 Delete from favorites", favorite_path(favorite), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-primary-outline" %>
 
-        <%= link_to favorite_path(favorite), method: :delete, data: { confirm: "Are you sure?" } do %>
-        <i class="fa fa-trash destroy_dose"></i></p>
-        <% end %>
-            </div>
+        </div>
       </div>
     </div>
-
     <% end %>
 
   </div>

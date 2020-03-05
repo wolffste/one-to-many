@@ -20,11 +20,15 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-6 col-md-4 portfolio-item">
-      <div class="card-otm">
-        <img class="img-fluid" src="https://images.unsplash.com/photo-1559519529-0936e4058364?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80" alt="">
+      <div class="card-otm h-100">
+        <% if @musician.photo.attached? %>
+          <div class="musician-featured-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @musician.photo.key, height: 400, crop: :fill %>')"></div>
+        <% else %>
+          <div class="musician-featured-image" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.3)), url('<%= cl_image_path("a6fac407-95ce-4d45-b360-8330205ce210_l_svdjab", :height=>400, :gravity=>"west", :crop=>"fill") %>')"></div>
+        <% end %>
       </div>
     </div>
-    <div class="col-xs-12 col-md-8">
+    <div class="col-xs-12 col-md-8 ">
       <div class="card-otm h-100">
         <ul style="list-style-type: none;">
           <li>name: <strong><%= @musician.username %></strong></li>
@@ -32,6 +36,9 @@
           <li>city: <strong><%= @musician.city %></strong></li>
           <li>date of birth: <strong><%= @musician.birthday %></strong></li>
           <li>description: <strong><%= @musician.description %></strong></li>
+          <li><%= link_to ' Edit', edit_musician_path(@musician), class: "btn btn-outline-warning" %></li>
+          <li><%= link_to ' back', musicians_path, class: "btn btn-warning" %></li>
+
         </ul>
       </div>
     </div>

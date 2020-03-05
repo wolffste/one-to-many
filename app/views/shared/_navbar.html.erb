@@ -22,8 +22,16 @@
         </li>
         <li class="nav-item dropdown">
 
+          <% @musician = current_user %>
 
+          <% if @musician == nil || @musician.photo.attached? == false %>
           <%= image_tag "https://image.flaticon.com/icons/svg/53/53133.svg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <% else %>
+          <%= cl_image_tag @musician.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <% end %>
+
+
+
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <%= link_to "Edit Profile", edit_user_registration_path, class: "dropdown-item" %>
             <%= link_to "Another action", "#", class: "dropdown-item" %>

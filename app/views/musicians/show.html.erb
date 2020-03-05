@@ -1,31 +1,13 @@
-<%= @musician.username %>
-
-<% if !current_user %>
-  <%= form_for(@favorite) do |f| %>
-  <%= f.text_field :user %>
-  <%= f.text_field :musician %>
-  <%= button_tag( :class => "btn star") do %>
-    <i class="far fa-star"></i>
-  <% end %>
-  <% end %>
-<% else %>
-  <%= form_for(@favorite) do |f| %>
-  <%= f.hidden_field :user_id, value: current_user.id %>
-  <%= f.hidden_field :musician_id, value: @musician.id %>
-   <%= button_tag( :class => "btn star") do %>
-    <i class="far fa-star"></i>
-  <% end %>
-  <% end %>
-<% end %>
-
-
 <div class="container">
   <div class="row">
+
     <div class="col-xs-6 col-md-4 portfolio-item">
       <div class="card-otm">
         <img class="img-fluid" src="https://images.unsplash.com/photo-1559519529-0936e4058364?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80" alt="">
       </div>
     </div>
+
+
     <div class="col-xs-12 col-md-8">
       <div class="card-otm h-100">
         <ul style="list-style-type: none;">
@@ -34,10 +16,31 @@
           <li>city: <strong><%= @musician.city %></strong></li>
           <li>date of birth: <strong><%= @musician.birthday %></strong></li>
           <li>description: <strong><%= @musician.description %></strong></li>
+          <% if !current_user %>
+        <%= form_for(@favorite) do |f| %>
+        <%= f.text_field :user %>
+        <%= f.text_field :musician %>
+        <%= button_tag( :class => "btn star") do %>
+        <i class="far fa-star"></i> Mark as favorite
+        <% end %>
+        <% end %>
+        <% else %>
+        <%= form_for(@favorite) do |f| %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <%= f.hidden_field :musician_id, value: @musician.id %>
+        <%= button_tag( :class => "btn star") do %>
+        <i class="far fa-star"></i> Mark as favorite
+        <% end %>
+        <% end %>
+        <% end %>
         </ul>
+
+
       </div>
     </div>
   </div>
+
+
   <div class="row mt-4">
     <div class="col-12">
       <div class="card-otm">

@@ -19,19 +19,20 @@
   padding: 20px;
   width: 100%;
   // border: 1px solid silver;
-  background: #fff;
+  // background: #fff;
   line-height: 1.5em;
   letter-spacing: 0.3px;
   color: #444;
 
 }
 nav label {
-   float: left;
-   padding: 7px 40px;
+   float: center;
+   padding: 7px 155px;
    // border-top: 1px solid silver;
    // border-right: 1px solid silver;
-   background: hsl(210,50%,50%);
-   color: #eee;
+   // background: white;
+   // background: hsl(210,50%,50%);
+   color: black;
 }
 
 nav label:nth-child(1) // { border-left: 1px solid silver; }
@@ -41,8 +42,8 @@ nav label:active { background: #ffffff; }
 #tab1:checked ~ nav label[for="tab1"],
 #tab2:checked ~ nav label[for="tab2"],
 #tab3:checked ~ nav label[for="tab3"] {
-  background: white;
-  color: #111;
+  background: #8BBABB;
+  color: white;
   position: relative;
   border-bottom: none;
 }
@@ -61,5 +62,5 @@ nav label:active { background: #ffffff; }
 }
 
 .xxx {
-  margin-bottom: 0px;
+  margin-bottom: 20px;
 }

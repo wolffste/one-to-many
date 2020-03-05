@@ -2,7 +2,7 @@
   <div class="row">
 
     <div class="col-xs-6 col-md-4 portfolio-item">
-      <div class="card-otm h-100">
+      <div class="card-otm left h-100">
         <% if @musician.photo.attached? %>
           <div class="musician-featured-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @musician.photo.key, height: 400, crop: :fill %>')"></div>
         <% else %>
@@ -11,13 +11,19 @@
       </div>
     </div>
     <div class="col-xs-12 col-md-8 ">
-      <div class="card-otm h-100">
+      <div class="card-otm right h-100">
         <ul style="list-style-type: none;">
-          <li>name: <strong><%= @musician.username %></strong></li>
-          <li>e-mail: <strong><%= @musician.email %></strong></li>
-          <li>city: <strong><%= @musician.city %></strong></li>
-          <li>date of birth: <strong><%= @musician.birthday %></strong></li>
-          <li>description: <strong><%= @musician.description %></strong></li>
+          <li><strong>Name:</strong> <%= @musician.username %></li>
+            <% if @musician.birthday.present? %>
+              <% age = Date.today.year - @musician.birthday.year %>
+              <li><strong>Age: </strong> <%= age %></li>
+            <% else %>
+              </li><strong>Age: </strong> 99 </li>
+            <% end %>
+          <li><strong>Genre:</strong> </li>
+          <li><strong>Instrument:</strong> </li>
+          <li><strong>City:</strong> <%= @musician.city %></li>
+          <li><strong>Description: </strong><%= @musician.description %></li>
           <% if !current_user %>
             <%= form_for(@favorite) do |f| %>
               <%= f.text_field :user %>
@@ -35,9 +41,9 @@
               <% end %>
             <% end %>
           <% end %>
-          <li><%= link_to ' Edit', edit_musician_path(@musician), class: "btn btn-outline-warning" %></li>
-          <li><%= link_to ' back', musicians_path, class: "btn btn-warning" %></li>
-          <li><%= link_to ' book', new_musician_booking_path(@musician), class: "btn btn-warning" %></li>
+          <li><%= link_to ' Edit', edit_musician_path(@musician), class: "btn btn-primary-outline" %>  
+          <%= link_to ' back', musicians_path, class: "btn btn-primary" %>  
+          <%= link_to 'Book', new_musician_booking_path(@musician), class: "btn btn-primary" %></li>
         </ul>
       </div>
     </div>
@@ -45,7 +51,7 @@
   <div class="row mt-4">
     <div class="col-12">
       <div class="card-otm">
-        <h1>dsfggd</h1>
+        <h1>Media</h1>
       </div>
     </div>
   </div>

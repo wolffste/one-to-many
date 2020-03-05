@@ -1,11 +1,12 @@
 <div class="container mt-5">
   <div class="form-wrapper" style="width: 400px; margin: 0 auto;">
-    <h2>Book <strong><%= @musician.username %></strong> now!</h2>
+    <h1>Book now!</h1>
+    <br>
     <%= simple_form_for [@musician, @booking], url: :musician_bookings do |f| %>
       <%= f.input :startdate, as: :string, required: false, input_html: {class: "datepicker"}  %>
       <%= f.input :enddate, as: :string, required: false, input_html: {class: "datepicker"}  %>
       <%= f.association :band, collection: @bands%>
-      <%= f.submit class: "btn btn-warning"%>
+      <%= f.submit class: "btn btn-primary"%>
     <% end %>
   </div>
 </div>

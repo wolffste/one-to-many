@@ -1,6 +1,7 @@
 class Band < ApplicationRecord
   belongs_to :user
-  has_many :bookings
   belongs_to :genre
+  belongs_to :instrument
+  has_many :bookings
   has_one_attached :photo
 end

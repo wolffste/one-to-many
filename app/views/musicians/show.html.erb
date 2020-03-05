@@ -2,17 +2,19 @@
 
 <% if !current_user %>
   <%= form_for(@favorite) do |f| %>
-  <%= f.label :user %>
   <%= f.text_field :user %>
   <%= f.text_field :musician %>
-  <%= f.submit "Bookmark", class: "btn btn-danger pic large", id:"button" %>
+  <%= button_tag( :class => "btn star") do %>
+    <i class="far fa-star"></i>
+  <% end %>
   <% end %>
 <% else %>
   <%= form_for(@favorite) do |f| %>
-    <%= f.label :user %>
   <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.hidden_field :musician_id, value: @musician.id %>
-  <%= f.submit "Bookmark", class: "btn btn-danger pic large", id:"button" %>
+   <%= button_tag( :class => "btn star") do %>
+    <i class="far fa-star"></i>
+  <% end %>
   <% end %>
 <% end %>
 
@@ -51,9 +53,6 @@
     </div>
   </div>
 </div>
-
-
-
 
 
 

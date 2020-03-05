@@ -1,6 +1,7 @@
 <h3>Edit your profile, <%= @musician.username %></h3>
 
 <%= simple_form_for @musician, :url => musician_path, :method => :patch do |f| %>
+  <%= f.input :username %>
   <%= f.input :description %>
   <%= f.input :fee %>
   <%= f.input :startdate %>

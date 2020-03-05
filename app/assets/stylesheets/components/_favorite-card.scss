@@ -1,15 +1,14 @@
 .card-product {
   overflow: hidden;
-  height: 120px;
+  height: 250px;
   background: white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  display: flex;
   align-items: center;
+  border-radius: 4px;
 }
 
 .card-product img {
   height: 100%;
-  width: 120px;
+  width: 100%;
   object-fit: cover;
 }
 
@@ -31,6 +30,8 @@
   padding: 16px;
 }
 
-.card-product.favorite {
-  margin-bottom: 20px;
+.col-xs-12.col-md-8 {
+  background-color: white;
 }
+
+

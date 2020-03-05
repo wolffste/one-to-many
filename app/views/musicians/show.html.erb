@@ -2,7 +2,6 @@
 
 <% if !current_user %>
   <%= form_for(@favorite) do |f| %>
-  <%= f.label :user %>
   <%= f.text_field :user %>
   <%= f.text_field :musician %>
   <%= button_tag( :class => "btn star") do %>
@@ -11,7 +10,6 @@
   <% end %>
 <% else %>
   <%= form_for(@favorite) do |f| %>
-    <%= f.label :user %>
   <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.hidden_field :musician_id, value: @musician.id %>
    <%= button_tag( :class => "btn star") do %>
@@ -19,7 +17,6 @@
   <% end %>
   <% end %>
 <% end %>
-
 
 
 

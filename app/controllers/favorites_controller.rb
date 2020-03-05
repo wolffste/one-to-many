@@ -30,12 +30,6 @@ class FavoritesController < ApplicationController
     redirect_to favorites_path
   end
 
-
-  def age(birthday)
-    now = Time.now.utc.to_date
-    now.year - birthday.year - ((now.month > birthday.month || (now.month == birthday.month && now.day >= birthday.day)) ? 0 : 1)
-  end
-
   private
 
   def favorite_params

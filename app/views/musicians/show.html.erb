@@ -40,7 +40,7 @@
           <li>description: <strong><%= @musician.description %></strong></li>
           <li><%= link_to ' Edit', edit_musician_path(@musician), class: "btn btn-outline-warning" %></li>
           <li><%= link_to ' back', musicians_path, class: "btn btn-warning" %></li>
-
+          <li><%= link_to ' book', new_musician_booking_path(@musician), class: "btn btn-warning" %></li>
         </ul>
       </div>
     </div>

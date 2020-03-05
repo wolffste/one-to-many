@@ -1,5 +1,5 @@
 .cards {
-  margin-top: 400px;
+  margin-top: 20px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 25px;
@@ -83,4 +83,12 @@
     text-decoration: none;
   }
 
+}
+
+.musician-featured-image{
+  height: 400px;
+  width: 100%;
+  display: block;
+  background-size: cover;
+  background-position: center;
 }

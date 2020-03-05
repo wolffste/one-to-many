@@ -5,6 +5,7 @@ class BookingsController < ApplicationController
 
     @bands = current_user.bands
     @booking = Booking.new
+    @musician = User.find(params[:musician_id])
 
   end
 
@@ -16,7 +17,7 @@ class BookingsController < ApplicationController
     @booking.user = User.find(params[:musician_id]) #the booked musician
 
     if @booking.save
-      redirect_to musician_path(@booking.user)
+      redirect_to dashboard_path
     else
       render :new
     end

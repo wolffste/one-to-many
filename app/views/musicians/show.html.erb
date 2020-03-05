@@ -41,7 +41,9 @@
               <% end %>
             <% end %>
           <% end %>
-          <li><%= link_to ' Edit', edit_musician_path(@musician), class: "btn btn-primary-outline" %>  <%= link_to ' back', musicians_path, class: "btn btn-primary" %>  <%= link_to 'Book', new_musician_booking_path(@musician), class: "btn btn-primary" %></li>
+          <li><%= link_to ' Edit', edit_musician_path(@musician), class: "btn btn-primary-outline" %>  
+          <%= link_to ' back', musicians_path, class: "btn btn-primary" %>  
+          <%= link_to 'Book', new_musician_booking_path(@musician), class: "btn btn-primary" %></li>
         </ul>
       </div>
     </div>

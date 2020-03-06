@@ -5,6 +5,20 @@
   grid-gap: 25px;
 }
 
+.far.fa-star {
+    position: absolute;
+    left: -70px;
+    top: 19px;
+    width: 40px;
+    font-size: 30px
+}
+
+.card-otm {
+  &.left {
+    position: relative;
+  }
+}
+
 .card-otm {
   &.right {
     padding-top: 25px;
@@ -49,6 +63,14 @@
   .cards {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
+}
+
+li.musician-name{
+  font-size: 30px;
+}
+
+.col-xs-12.col-md-8.musician{
+  padding: 0;
 }
 
 .musician-card {
@@ -101,6 +123,7 @@
 }
 
 .musician-featured-image{
+  border-radius: 4px 0 0 4px;
   height: 400px;
   width: 100%;
   display: block;

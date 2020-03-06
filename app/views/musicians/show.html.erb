@@ -1,3 +1,10 @@
+  <div class="start-banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://images.unsplash.com/photo-1508854710579-5cecc3a9ff17?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80)">
+    <div class="text-center">
+        <h1>Let's introduce the great musician <span class="higlighted"> <%= @musician.username %> </span> </h1>
+    </div>
+  </div>
+  <br>
+
 <div class="container">
   <div class="row">
     <div class="col-xs-6 col-md-4 portfolio-item">
@@ -9,18 +16,18 @@
         <% end %>
       </div>
     </div>
-    <div class="col-xs-12 col-md-8 ">
+    <div class="col-xs-12 col-md-8 musician">
       <div class="card-otm right h-100">
         <ul style="list-style-type: none;">
-          <li><strong>Name:</strong> <%= @musician.username %></li>
+          <li class="musician-name"><strong><%= @musician.username %></strong>
             <% if @musician.birthday.present? %>
               <% age = Date.today.year - @musician.birthday.year %>
-              <li><strong>Age: </strong> <%= age %></li>
+             (<%= age %>)
             <% else %>
-              </li><strong>Age: </strong> 99 </li>
+              (99) </li>
             <% end %>
-          <li><strong>Genre:</strong> </li>
-          <li><strong>Instrument:</strong> </li>
+          <li><strong>Genre:</strong> <%= @musician.genre.name %></li>
+          <li><strong>Instrument:</strong> <%= @musician.instrument.name %></li>
           <li><strong>City:</strong> <%= @musician.city %></li>
           <li><strong>Description: </strong><%= @musician.description %></li>
           <% if !current_user %>
@@ -36,7 +43,7 @@
               <%= f.hidden_field :user_id, value: current_user.id %>
               <%= f.hidden_field :musician_id, value: @musician.id %>
               <%= button_tag( :class => "btn star") do %>
-                <i class="far fa-star"></i> Mark as favorite
+                <i class="far fa-star"></i>
               <% end %>
             <% end %>
           <% end %>

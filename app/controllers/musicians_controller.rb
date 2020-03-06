@@ -10,8 +10,13 @@ class MusiciansController < ApplicationController
 
 
 
-    if params[:search][:instrument].present? && params[:search][:genre].present?
-      @musicians = User.where("instrument_id = ? and genre_id= ? ", "#{params[:search][:instrument]}", "#{params[:search][:genre]}")
+    startdate = params[:search][:startdate].split("to")[0].strip
+    enddate = params[:search][:startdate].split("to")[1].strip
+
+
+
+    if params[:search][:instrument].present? && params[:search][:genre].present? && params[:search][:startdate]
+      @musicians = User.where("instrument_id = ? and genre_id = ? and startdate >= ? and enddate <= ? ", "#{params[:search][:instrument]}", "#{params[:search][:genre]}", "#{startdate}", "#{enddate}")
       @message = "Your search result"
     elsif
       params[:search][:instrument].present? && params[:search][:genre] == ""

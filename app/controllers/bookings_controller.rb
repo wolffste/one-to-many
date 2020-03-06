@@ -11,11 +11,12 @@ class BookingsController < ApplicationController
 
   def create
     @band = Band.find(params[:booking][:band_id])
+    enddate = params[:booking][:startdate].split("to")[1].strip
     @booking = Booking.new(booking_params)
     @booking.band = @band
     @booking.band.user = current_user
     @booking.user = User.find(params[:musician_id]) #the booked musician
-
+    @booking.enddate = enddate
     if @booking.save
       redirect_to dashboard_path
     else

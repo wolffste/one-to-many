@@ -35,10 +35,10 @@
             </div>
           </div>
 
-          <div class="col-xs-12 col-md-8">
+          <div class="col-xs-12 col-md-8 dashboard">
             <div class="card-otm h-100">
               <ul style="list-style-type: none;">
-                <li>username: <strong><%= @user.username %></strong></li>
+                <li class="musician-name"><strong><%= @user.username %></strong></li>
                 <li>e-mail: <strong><%= @user.email %></strong></li>
                 <li>city: <strong><%= @user.city %></strong></li>
                 <li>date of birth: <strong><%= @user.birthday %></strong></li>
@@ -52,7 +52,11 @@
         <div class="row mt-4">
           <div class="col-12">
             <div class="card-otm">
-              <h1>dsfggd</h1>
+             <h1>Media</h1>
+                <%= image_tag("/assets/music", :alt => "music", width:"80%") %>
+                  <br>
+                  <br>
+                  <%= image_tag("/assets/video", :alt => "video", width:"80%") %>
             </div>
           </div>
         </div>
@@ -89,7 +93,7 @@
                   <li>For band: <strong><%= booking.band.name %></strong></li>
                   <li>Begin: <strong><%= booking.startdate %></strong></li>
                   <li>End: <strong><%= booking.enddate %></strong></li>
-                  <td><%= link_to 'Delete', booking, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-warning"%></td>
+                  <td><%= link_to 'Delete', booking, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary-outline"%></td>
                 </ul>
               </div>
             </div>
@@ -119,8 +123,8 @@
                 <ul style="list-style-type: none;">
                   <li>For: <strong><%= band.name %></strong></li>
                   <li>to: <strong><%= band.description %></strong></li>
-                  <li>to: <strong><%= band.genre %></strong></li>
-                  <td><%= link_to 'Delete', band, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-warning"%></td>
+                  <li>to: <strong><%= band.genre.name %></strong></li>
+                  <td><%= link_to 'Delete', band, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary-outline"%></td>
                 </ul>
               </div>
             </div>

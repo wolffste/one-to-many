@@ -42,7 +42,7 @@ nav label:active { background: #ffffff; }
 #tab1:checked ~ nav label[for="tab1"],
 #tab2:checked ~ nav label[for="tab2"],
 #tab3:checked ~ nav label[for="tab3"] {
-  background: #8BBABB;
+  background: #5762D5;
   color: white;
   position: relative;
   border-bottom: none;
@@ -70,6 +70,12 @@ nav label:active { background: #ffffff; }
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+
+.col-xs-12.col-md-8.dashboard{
+  padding-top: 20px;
+}
+
 
 
 .dashboard-pic {

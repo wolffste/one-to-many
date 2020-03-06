@@ -9,7 +9,7 @@ genres = ["Blues","Classic Rock","Country","Dance","Disco","Funk","Grunge",
 "Hip-Hop","Jazz","Metal","New Age","Oldies","Other","Pop","R&B",
 "Rap","Reggae","Rock","Alternative","Ska"]
 
-instruments = ["bass", "drums", "guitar", "keyboard", "singer", "strings" "brass", "woodwind"]
+instruments = ["bass", "drums", "guitar", "keyboard", "singer", "strings", "brass", "woodwind"]
 
 cities = ["Hamburg", "München", "Berlin", "Bremen", "Frankfurt", "Dortmund", "Köln"]
 

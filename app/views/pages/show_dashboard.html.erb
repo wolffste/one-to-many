@@ -3,25 +3,19 @@
     <input checked="checked" id="tab1" type="radio" name="tabs" />
     <input id="tab2" type="radio" name="tabs" />
     <input id="tab3" type="radio" name="tabs" />
-
     <nav>
       <label class= "mb-0" for="tab1">Profile</label>
       <label class= "mb-0" for="tab2">Bookings</label>
       <label class= "mb-0" for="tab3">Bands</label>
     </nav>
     <figure>
-
-
       <div class="tab1 container">
-
         <div class="row">
-
           <div class="col-xs-12 col-md-4">
             <div class="card-otm">
               <img class="img-fluid" src="https://images.unsplash.com/photo-1559519529-0936e4058364?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80" alt="">
             </div>
           </div>
-
           <div class="col-xs-12 col-md-8">
             <div class="card-otm h-100">
               <ul style="list-style-type: none;">
@@ -33,9 +27,7 @@
               </ul>
             </div>
           </div>
-
         </div>
-
         <div class="row mt-4">
           <div class="col-12">
             <div class="card-otm">
@@ -44,30 +36,21 @@
           </div>
         </div>
       </div>
-
       <div class="tab2">
         <% @bookings.each do |booking| %>
-
         <div class= "card-otm mt-3 p-3">
           <div class= "row">
-
             <div class= "col-xs-6 col-md-4" style="list-style-type: none;">
               <% musician = User.find_by(id: booking.user_id) %>
-
               <% if musician.photo.attached? %>
-
               <%= link_to musician_path(musician), :action => 'go' do %>
               <div class="musician-pic" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path musician.photo.key, height: 230, crop: :fill %>')"></div>
               <% end %>
-
               <% else %>
               <%= link_to musician_path(musician), :action => 'go' do %>
               <div class="musician-pic" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.3)), url('<%= cl_image_path("a6fac407-95ce-4d45-b360-8330205ce210_l_svdjab", :height=>230, :gravity=>"west", :crop=>"fill") %>')"></div>
               <% end %>
               <% end %>
-
-
-
             </div>
             <div class= "col-xs-12 col-md-8">
               <div class="card-otm">
@@ -76,23 +59,25 @@
                   <li>For band: <strong><%= booking.band.name %></strong></li>
                   <li>Begin: <strong><%= booking.startdate %></strong></li>
                   <li>End: <strong><%= booking.enddate %></strong></li>
+                  <% if booking.status == 1 %>
+                    <li>Comfirmation-status: <strong style= "color:orange;">pending</strong></li>
+                    <% elsif booking.status == 2 %>%>
+                    <li>Comfirmation-status: <strong style= "color:green;">booked</strong></li>
+                    <% elsif booking.status == 3 %>%>
+                    <li>Comfirmation-status: <strong style= "color:red;">declined</strong></li>
+                  <% end %>
                   <td><%= link_to 'Delete', booking, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-warning"%></td>
                 </ul>
               </div>
             </div>
-
           </div>
         </div>
-
         <% end %>
       </div>
-
       <div class="tab3">
         <% @bands.each do |band| %>
-
         <div class= "card-otm mt-3 p-3">
           <div class= "row">
-
             <div class= "col-xs-6 col-md-4" style="list-style-type: none;">
               <%if band.photo.attached? %>
                 <div class="musician-pic" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path musician.photo.key, height: 230, crop: :fill %>')"></div>
@@ -100,7 +85,6 @@
                 <div class="musician-pic" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.3)), url('<%= cl_image_path("a6fac407-95ce-4d45-b360-8330205ce210_l_svdjab", :height=>230, :gravity=>"west", :crop=>"fill") %>')"></div>
               <%end%>
             </div>
-
             <div class= "col-xs-12 col-md-8">
               <div class="card-otm">
                 <ul style="list-style-type: none;">
@@ -111,14 +95,10 @@
                 </ul>
               </div>
             </div>
-
-
           </div>
         </div>
-
         <%end%>
       </div>
-
     </figure>
   </div>
 </div>

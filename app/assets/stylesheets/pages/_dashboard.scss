@@ -1,4 +1,11 @@
 /* Tabs mit radio-Buttons */
+.col-12{
+  padding: 0;
+}
+
+.col-xs-12{
+  padding-left: 0;
+}
 
 #tab1:checked ~ figure .tab1,
 #tab2:checked ~ figure .tab2,
@@ -8,7 +15,7 @@
 .tabbed figure {
    display: block;
    margin-left: 0;
-   border-bottom: 1px solid silver;
+   // border-bottom: 1px solid silver;
    clear: both;
 }
 
@@ -27,16 +34,16 @@
 }
 nav label {
    float: center;
-   padding: 7px 155px;
+   padding: 7px 153px;
    // border-top: 1px solid silver;
    // border-right: 1px solid silver;
    // background: white;
-   // background: hsl(210,50%,50%);
+   //background: hsl(210,50%,50%);
    color: black;
 }
 
-nav label:nth-child(1) // { border-left: 1px solid silver; }
-nav label:hover { background: hsl(210,50%,40%); }
+nav label:nth-child(1) { border-left: 0 solid silver; }
+nav label:hover { background: white; } //hover, works just with line 45...?
 nav label:active { background: #ffffff; }
 
 #tab1:checked ~ nav label[for="tab1"],
@@ -52,7 +59,7 @@ nav label:active { background: #ffffff; }
 #tab2:checked ~ nav label[for="tab2"]:after,
 #tab3:checked ~ nav label[for="tab3"]:after {
 
-  display: block;
+ display: block;
   position: absolute;
   height: 2px;
   width: 100%;

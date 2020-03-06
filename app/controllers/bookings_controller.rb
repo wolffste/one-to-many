@@ -12,6 +12,7 @@ class BookingsController < ApplicationController
   def create
     @band = Band.find(params[:booking][:band_id])
     @booking = Booking.new(booking_params)
+    @booking.status = 1 # pending
     @booking.band = @band
     @booking.band.user = current_user
     @booking.user = User.find(params[:musician_id]) #the booked musician

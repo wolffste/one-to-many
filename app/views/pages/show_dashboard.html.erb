@@ -18,7 +18,13 @@
 
           <div class="col-xs-12 col-md-4">
             <div class="card-otm">
-              <img class="img-fluid" src="https://images.unsplash.com/photo-1559519529-0936e4058364?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80" alt="">
+              <% if current_user.photo.attached? %>
+                <div class="dashboard-pic" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path current_user.photo.key, height: 230, crop: :fill %>')">
+                </div>
+              <% else %>
+                <div class="dashboard-pic" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.3)), url('<%= cl_image_path("a6fac407-95ce-4d45-b360-8330205ce210_l_svdjab", :height=>230, :gravity=>"west", :crop=>"fill") %>')">
+                </div>
+              <% end %>
             </div>
           </div>
 
@@ -95,7 +101,7 @@
 
             <div class= "col-xs-6 col-md-4" style="list-style-type: none;">
               <%if band.photo.attached? %>
-                <div class="musician-pic" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path musician.photo.key, height: 230, crop: :fill %>')"></div>
+                <div class="musician-pic" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path band.photo.key, height: 230, crop: :fill %>')"></div>
               <%else%>
                 <div class="musician-pic" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.3)), url('<%= cl_image_path("a6fac407-95ce-4d45-b360-8330205ce210_l_svdjab", :height=>230, :gravity=>"west", :crop=>"fill") %>')"></div>
               <%end%>

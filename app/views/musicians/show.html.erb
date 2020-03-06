@@ -29,7 +29,8 @@
           <li><strong>Genre:</strong> <%= @musician.genre.name %></li>
           <li><strong>Instrument:</strong> <%= @musician.instrument.name %></li>
           <li><strong>City:</strong> <%= @musician.city %></li>
-          <li><strong>Description: </strong><%= @musician.description %></li>
+          <li><strong>Description: </strong></li>
+          <li><%= @musician.description %></li>
           <% if !current_user %>
             <%= form_for(@favorite) do |f| %>
               <%= f.text_field :user %>
@@ -47,9 +48,10 @@
               <% end %>
             <% end %>
           <% end %>
-          <li><%= link_to ' Edit', edit_musician_path(@musician), class: "btn btn-primary-outline" %>
-          <%= link_to ' back', musicians_path, class: "btn btn-primary" %>
-          <%= link_to 'Book', new_musician_booking_path(@musician), class: "btn btn-primary" %></li>
+          <li>
+            <%= link_to 'Book', new_musician_booking_path(@musician), class: "btn btn-primary" %>
+            <%= link_to ' back', musicians_path, class: "btn btn-primary-outline" %>
+        </li>
         </ul>
       </div>
     </div>

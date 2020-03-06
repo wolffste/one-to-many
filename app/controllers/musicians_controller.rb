@@ -3,27 +3,28 @@ class MusiciansController < ApplicationController
 
 
   def index
-    if params[:search].present? == false
-      @message = "Here are all our artists"
-      return @musicians = User.where(musician: true)
-    end
+    @musicians = User.where(musician: true)
+    @message = "Here are all our artists"
 
 
+    if params[:search].present?
+      @message = "Your search result"
 
-    if params[:search][:instrument].present? && params[:search][:genre].present?
-      @musicians = User.where("instrument_id = ? and genre_id= ? ", "#{params[:search][:instrument]}", "#{params[:search][:genre]}")
-      @message = "Your search result"
-    elsif
-      params[:search][:instrument].present? && params[:search][:genre] == ""
-      @musicians = User.where("instrument_id = ? ", "#{params[:search][:instrument]}")
-      @message = "Your search result"
-    elsif
-      params[:search][:instrument] == "" && params[:search][:genre].present?
-      @musicians = User.where("genre_id = ? ", "#{params[:search][:genre]}")
-      @message = "Your search result"
-    else
-      @message = "Check out all our artists"
-      @musicians = User.where(musician: true)
+      if params[:search][:instrument].present?
+        @musicians = @musicians.where("instrument_id = ? ", params[:search][:instrument])
+      end
+
+      if params[:search][:genre].present?
+        @musicians = @musicians.where("genre_id = ? ", params[:search][:genre])
+      end
+
+      if params[:search][:startdate].present?
+        startdate = Date.parse(params[:search][:startdate].split("to")[0].strip)
+        @musicians = @musicians.where("startdate <= ?", startdate)
+
+        enddate = Date.parse(params[:search][:startdate].split("to")[1].strip)
+        @musicians = @musicians.where("enddate >= ?", enddate)
+      end
     end
   end
 
@@ -42,6 +43,8 @@ class MusiciansController < ApplicationController
   def update
     @musician = User.find(params[:id])
     @musician.update(musician_params)
+    @musician.startdate = Date.parse(musician_params[:startdate].split("to")[0].strip)
+    @musician.enddate = Date.parse(musician_params[:startdate].split("to")[1].strip)
     if @musician.save
       redirect_to musician_path(@musician)
     else

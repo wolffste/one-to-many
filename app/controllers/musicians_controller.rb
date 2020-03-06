@@ -15,7 +15,7 @@ class MusiciansController < ApplicationController
       end
 
       if params[:search][:genre].present?
-        musicians = @musicians.where("genre_id = ? ", params[:search][:genre])
+        @musicians = @musicians.where("genre_id = ? ", params[:search][:genre])
       end
 
       if params[:search][:startdate].present?

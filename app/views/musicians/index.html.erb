@@ -9,8 +9,6 @@
   </div>
   <br>
 
-
-
 <div class="container filter">
   <%= simple_form_for :search, url: musicians_path, method: 'get' do |f| %>
     <div class="row row d-flex align-items-end mb-4">
@@ -80,7 +78,7 @@
             <p class="card-field">Genre:</p>
             <p><%= musician.genre.name %></p>
           </div>
-          <%= link_to "edit", edit_musician_path(musician) %>
+          <%#= link_to "edit", edit_musician_path(musician) %>
         </div>
     <% end %>
   </div>

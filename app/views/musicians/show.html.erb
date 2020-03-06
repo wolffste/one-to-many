@@ -1,6 +1,5 @@
 <div class="container">
   <div class="row">
-
     <div class="col-xs-6 col-md-4 portfolio-item">
       <div class="card-otm left h-100">
         <% if @musician.photo.attached? %>
@@ -41,8 +40,8 @@
               <% end %>
             <% end %>
           <% end %>
-          <li><%= link_to ' Edit', edit_musician_path(@musician), class: "btn btn-primary-outline" %>  
-          <%= link_to ' back', musicians_path, class: "btn btn-primary" %>  
+          <li><%= link_to ' Edit', edit_musician_path(@musician), class: "btn btn-primary-outline" %>
+          <%= link_to ' back', musicians_path, class: "btn btn-primary" %>
           <%= link_to 'Book', new_musician_booking_path(@musician), class: "btn btn-primary" %></li>
         </ul>
       </div>

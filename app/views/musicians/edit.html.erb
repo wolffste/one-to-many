@@ -1,3 +1,5 @@
+<div class="container">
+
 <h3>Edit your profile, <%= @musician.username %></h3>
 
 <%= simple_form_for @musician, :url => musician_path, :method => :patch do |f| %>
@@ -12,5 +14,7 @@
   <%= f.association :genre, input_html: { class: "beautiful-dropdown" }, include_hidden: false, class: "form-group"  %>
   <%= f.association :instrument, input_html: { class: "beautiful-dropdown" }, include_hidden: false, class: "form-group"  %>
   <%= f.input :photo, as: :file %>
-  <%= f.button :submit %>
+  <%= f.button :submit, class: "btn btn-primary" %>
 <% end %>
+  <br>
+</div>

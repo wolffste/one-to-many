@@ -12,7 +12,6 @@
   </head>
   <body>
     <%= render 'shared/navbar' %>
-    <%= render 'shared/startbanner' unless (params[:controller] == 'pages' && params[:action] == 'home') %>
     <%= render 'shared/flashes' %>
 
     <%= yield %>

@@ -52,12 +52,17 @@
 }
 
 .musician-card {
-  width: 252px;
-  height: 392px;
+  width: 100%;
+  min-height: 373px;
   border-radius: 4px;
   margin-bottom: 25px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   background: white;
+}
+
+.card-field {
+  color: #5762d5;
+  font-weight: bolder;
 }
 
 .musician-pic {
@@ -87,7 +92,6 @@
   font-family: 'Heebo', sans-serif;
   font-size: 16px;
   text-decoration: none;
-  color: black;
 
       &:hover {
     color: red;

@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only: [:destroy]
+  before_action :set_booking, only: [:destroy, :update]
 
   def new
 
@@ -23,6 +23,17 @@ class BookingsController < ApplicationController
       render :new
     end
   end
+
+  def update
+    if params[:status] == "confirm"
+      @booking.status = 2
+    elsif params[:status] == "decline"
+      @booking.status = 3
+    end
+    @booking.save
+    redirect_to dashboard_path
+  end
+
 
   def destroy
     @booking.destroy

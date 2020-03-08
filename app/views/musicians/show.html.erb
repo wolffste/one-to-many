@@ -50,7 +50,8 @@
           <% end %>
           <li>
             <%= link_to 'Book', new_musician_booking_path(@musician), class: "btn btn-primary" %>
-            <%= link_to ' back', musicians_path, class: "btn btn-primary-outline" %>
+            <a class="btn btn-primary-outline" href="#" onclick="history.go(-1)">Go Back</a>
+            <%#= link_to ' back', musicians_path, class: "btn btn-primary-outline" %> <!-- alte Version -->
         </li>
         </ul>
       </div>

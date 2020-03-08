@@ -7,13 +7,23 @@
 <div class="container mt-5">
   <br>
     <% if @bands.present? %>
-      <div class="form-wrapper" style="width: 400px; margin: 0 auto;">
-        <%= simple_form_for [@musician, @booking], url: :musician_bookings do |f| %>
-          <%= f.input :startdate, as: :string, required: false, input_html: {class: "booking-input"}  %>
-          <%= f.association :band, collection: @bands%>
-          <%= f.submit class: "btn btn-primary"%>
-        <% end %>
-      </div>
+      <% if @bands.count == 1 %>
+        <div class="form-wrapper form-login" style="width: 400px; margin: 0 auto;">
+          <%= simple_form_for [@musician, @booking], url: :musician_bookings do |f| %>
+            <%= f.input :startdate, label:"When do you need #{@musician.username}", as: :string, required: true, input_html: {class: "booking-input"}  %>
+            <p>for your band <%= @bands[0].name %>? </p>
+            <%= f.submit class: "btn btn-primary"%>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="form-wrapper form-login" style="width: 400px; margin: 0 auto;">
+          <%= simple_form_for [@musician, @booking], url: :musician_bookings do |f| %>
+            <%= f.input :startdate, label:"When do you need #{@musician.username}?", as: :string, required: true, input_html: {class: "booking-input"}  %>
+            <%= f.association :band, label:"For which band?", collection: @bands%>
+            <%= f.submit class: "btn btn-primary"%>
+          <% end %>
+        </div>
+      <% end %>
     <% else %>
       <h3 style="width: 600px; margin: 0 auto; text-align: center;">If you want to book a musician for your band, you have to <%= link_to "add a band", new_band_path %> to your profile first.</h3>
     <% end %>

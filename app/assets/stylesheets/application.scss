@@ -12,6 +12,21 @@
 @import "components/index";
 @import "pages/index";
 
-// .test {
-//   color: red !important;
-// }
+
+
+html, body {
+ height: 100%;
+}
+
+.site {
+ height: auto;
+ min-height: 100%;
+}
+
+.main {
+ padding-bottom:80px; /* Höhe des Footers */
+ padding-top: 70px; /* Höhe der Navbar */
+}
+
+
+

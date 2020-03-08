@@ -45,6 +45,6 @@ class BandsController < ApplicationController
   end
 
   def band_params
-    params.require(:band).permit(:name, :description, :instrument_id, :genre_id, :photo)
+    params.require(:band).permit(:name, :description, :instrument_id, :genre_id, photos: [])
   end
 end

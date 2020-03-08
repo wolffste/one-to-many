@@ -111,10 +111,14 @@
           <div class= "row">
 
             <div class= "col-xs-6 col-md-4" style="list-style-type: none;">
-              <%if band.photo.attached? %>
-                <div class="musician-pic" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path band.photo.key, height: 230, crop: :fill %>')"></div>
+              <%if band.photos.attached? %>
+                <%= link_to band_path(band), :action => 'go' do %>
+                  <div class="musician-pic" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path band.photos[0].key, height: 230, crop: :fill %>')"></div>
+                <% end %>
               <%else%>
-                <div class="musician-pic" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.3)), url('<%= cl_image_path("a6fac407-95ce-4d45-b360-8330205ce210_l_svdjab", :height=>230, :gravity=>"west", :crop=>"fill") %>')"></div>
+                <%= link_to band_path(band), :action => 'go' do %>
+                  <div class="musician-pic" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.3)), url('<%= cl_image_path("a6fac407-95ce-4d45-b360-8330205ce210_l_svdjab", :height=>230, :gravity=>"west", :crop=>"fill") %>')"></div>
+                <% end %>
               <%end%>
             </div>
 

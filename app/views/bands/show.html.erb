@@ -7,7 +7,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-xs-6 col-md-4 portfolio-item">
+    <div class="col-xs-6 col-md-6 portfolio-item">
       <div class="card-otm left h-100">
         <% if @band.photo.attached? %>
           <div class="musician-featured-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @band.photo.key, height: 400, crop: :fill %>')"></div>
@@ -16,7 +16,7 @@
         <% end %>
       </div>
     </div>
-    <div class="col-xs-12 col-md-8 musician">
+    <div class="col-xs-12 col-md-6 musician">
       <div class="card-otm right h-100">
         <ul style="list-style-type: none;">
           <li class="musician-name"><strong><%= @band.name %></strong>

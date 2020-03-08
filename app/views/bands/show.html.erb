@@ -1,1 +1,48 @@
-<%= @band.name %>
+  <div class="start-banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://images.unsplash.com/photo-1508854710579-5cecc3a9ff17?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80)">
+    <div class="text-center">
+        <h1 class="higlighted"> <%= @band.name %> </h1>
+    </div>
+  </div>
+  <br>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6 col-md-6 portfolio-item">
+      <div class="card-otm left h-100">
+        <% if @band.photo.attached? %>
+          <div class="musician-featured-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @band.photo.key, height: 400, crop: :fill %>')"></div>
+        <% else %>
+          <div class="musician-featured-image" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.3)), url('<%= cl_image_path("a6fac407-95ce-4d45-b360-8330205ce210_l_svdjab", :height=>400, :gravity=>"west", :crop=>"fill") %>')"></div>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-6 musician">
+      <div class="card-otm right h-100">
+        <ul style="list-style-type: none;">
+          <li class="musician-name"><strong><%= @band.name %></strong>
+          <li><strong>Genre:</strong> <%= @band.genre.name %></li>
+          <li><strong>needed Instrument:</strong> <%= @band.instrument.name %></li>
+          <li><strong>Description: </strong></li>
+          <li><%= @band.description %></li>
+          <li>
+            <%= link_to 'see all bands', bands_path(@bands), class: "btn btn-primary" %>
+        </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-12">
+      <div class="card-otm below">
+        <h1>Media</h1>
+        <%= image_tag("music.png", :alt => "music", width:"80%") %>
+        <br>
+        <br>
+        <%= image_tag("video.png", :alt => "video", width:"80%") %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

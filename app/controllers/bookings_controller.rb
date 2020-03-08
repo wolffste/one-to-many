@@ -19,6 +19,7 @@ class BookingsController < ApplicationController
 
     if @booking.save
       redirect_to dashboard_path
+
     else
       render :new
     end
@@ -30,8 +31,12 @@ class BookingsController < ApplicationController
     elsif params[:status] == "decline"
       @booking.status = 3
     end
-    @booking.save
-    redirect_to dashboard_path
+    if @booking.save
+      respond_to do |format|
+        format.html { redirect_to dashboard_path }
+        format.js  # <-- will render `app/views/reviews/create.js.erb`
+      end
+    end
   end
 
 

@@ -57,5 +57,4 @@ class BookingsController < ApplicationController
     params.require(:booking).permit(:startdate, :enddate, :total_fee, :band_id)
 
   end
-
 end

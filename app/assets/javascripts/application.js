@@ -2,6 +2,14 @@
 //= require_tree .
 
 
+
+(function() {
+  const star = document.getElementById('star');
+  star.addEventListener('click', function() {
+    star.classList.toggle('yellow');
+  });
+})();
+
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
 
@@ -57,38 +65,3 @@ $(document).ready(function(){
     jQuery("#change").text(a.concat(b));
   });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

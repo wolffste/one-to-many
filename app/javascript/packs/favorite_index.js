@@ -3,7 +3,7 @@ const favorite_index = () => {
   if (stars){
     stars.forEach((star) => {
       star.addEventListener('click', () => {
-        event.target.classList.toggle("yellow");
+        event.target.classList.toggle("purple");
       });
     });
   }

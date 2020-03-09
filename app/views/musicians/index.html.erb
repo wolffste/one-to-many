@@ -91,8 +91,14 @@
       <%= form_for(@favorite) do |f| %>
       <%= f.hidden_field :user_id, value: current_user.id %>
       <%= f.hidden_field :musician_id, value: musician.id %>
-      <%= button_tag( :class => "btn star") do %>
-      <i class="far fa-star starindex" id="starindex"></i>
+      <% if  (current_user.favorites.any? {|favorite| favorite.musician == musician })%>
+        <%= button_tag( class: "btn star") do %>
+          <i class="far fa-star starindex purple" id="starindex"></i>
+        <% end %>
+      <% else %>
+        <%= button_tag( :class => "btn star") do %>
+          <i class="far fa-star starindex" id="starindex"></i>
+        <% end %>
 
       <% end %>
 

@@ -32,6 +32,7 @@ class FavoritesController < ApplicationController
     @favorite = Favorite.find(params[:id])
     @favorite.destroy
     redirect_to favorites_path
+
   end
 
   private

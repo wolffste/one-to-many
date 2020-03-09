@@ -13,7 +13,7 @@
   <%= f.input :musician %>
   <%= f.association :genre, input_html: { class: "beautiful-dropdown" }, include_hidden: false, class: "form-group"  %>
   <%= f.association :instrument, input_html: { class: "beautiful-dropdown" }, include_hidden: false, class: "form-group"  %>
-  <%= f.input :photo, as: :file %>
+  <%= f.input :photos, as: :file, input_html: { multiple: true } %>
   <%= f.button :submit, class: "btn btn-primary" %>
 <% end %>
   <br>

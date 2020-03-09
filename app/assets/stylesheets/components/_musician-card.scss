@@ -6,24 +6,36 @@
 }
 
 .far.fa-star {
+  font-size: 30px;
+  color: #5762d5;
+
+
+  &.show{
   position: absolute;
   left: -86px;
   top: 15px;
   width: 40px;
-  font-size: 20px;
-  color: #5762d5;
+
+  }
+
+  &.starindex{
+     position: absolute;
+     top: 37px;
+     right: 10px;
+     width: 40px;
+  }
 }
+
 
 #star{
-  color: rgba(247,179,43, 0.9);
-  font-size: 20px;
+  color: #5762d5;
+  font-size: 30px;
 }
 
-#star.yellow {
-  color: rgb(247,179,43);
+.purple {
+  color: #5762d5;
   font-weight:bold;
 }
-
 
 .card-otm {
   &.left {
@@ -94,6 +106,7 @@ li.musician-name{
 }
 
 .musician-card {
+  position: relative;
   width: 100%;
   min-height: 373px;
   border-radius: 4px;

@@ -2,7 +2,6 @@
 //= require_tree .
 // Get the element with id="defaultOpen" and click on it
 
-
 document.getElementById("defaultOpen").click();
 
     function openTag(evt, tagName) {
@@ -53,9 +52,6 @@ document.getElementById("defaultOpen").click();
 // }
 
 
-
-
-
 // $(document).ready(function(){
 //   // get instance from server
 //   // set status to variable
@@ -95,21 +91,4 @@ document.getElementById("defaultOpen").click();
 //     star.classList.toggle('yellow');
 //   });
 // })();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

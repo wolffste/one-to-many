@@ -1,10 +1,22 @@
 <div class="navbar navbar-expand-sm navbar-light fixed-top navbar-lewagon">
+
   <%= link_to root_path, class: "navbar-brand" do %>
     <%= image_tag "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.shareicon.net%2Fdata%2F512x512%2F2016%2F02%2F23%2F723345_festival_512x512.png&f=1&nofb=1" %>
     <% end %>
   <div class="flex-item title">
     <h1 class="uvp">OneToMany</h1>
-  </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -24,10 +36,10 @@
 
           <% @musician = current_user %>
 
-          <% if @musician == nil || @musician.photo.attached? == false %>
+          <% if @musician == nil || @musician.photos.attached? == false %>
           <%= image_tag "https://image.flaticon.com/icons/svg/53/53133.svg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <% else %>
-          <%= cl_image_tag @musician.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <%= cl_image_tag @musician.photos[0].key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <% end %>
 
 

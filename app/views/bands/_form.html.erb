@@ -1,10 +1,19 @@
+<div class="row  d-flex justify-content-center">
+  <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-4 form-login">
 
-
-<%= simple_form_for @band do |f| %>
-  <%= f.input :name %>
-  <%= f.input :description %>
-  <%= f.association :genre, input_html: { class: "beautiful-dropdown" }, include_hidden: false, class: "form-group"  %>
-  <%= f.association :instrument, input_html: { class: "beautiful-dropdown" }, include_hidden: false, class: "form-group"  %>
-  <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-  <%= f.button :submit %>
-<% end %>
+    <%= simple_form_for @band do |f| %>
+      <div class="form-inputs">
+        <%= f.input :name %>
+        <%= f.input :description %>
+        <%= f.association :genre, input_html: { class: "beautiful-dropdown" }, include_hidden: false, class: "form-group"  %>
+        <%= f.association :instrument, input_html: { class: "beautiful-dropdown" }, include_hidden: false, class: "form-group"  %>
+        <%= f.input :videolink, label: "Please add a link to a Youtube-Video of your band. (code from Embed)" %>
+        <%= f.input :soundcloudlink, label: "Please add a link to your Soundcloud-Playlist. (code from Embed)" %>
+        <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+      </div>
+      <div class="form-actions">
+        <%= f.button :submit, class:"btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>

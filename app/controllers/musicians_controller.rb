@@ -5,6 +5,7 @@ class MusiciansController < ApplicationController
   def index
     @musicians = User.where(musician: true)
     @message = "Here are all our artists"
+    @favorite = Favorite.new
 
 
     if params[:search].present?
@@ -60,7 +61,7 @@ class MusiciansController < ApplicationController
  private
 
   def musician_params
-    params.require(:user).permit(:username, :description, :fee, :startdate, :enddate, :city, :birthday, :musician, :genre_id, :instrument_id, :photo)
+    params.require(:user).permit(:username, :description, :fee, :startdate, :enddate, :city, :birthday, :musician, :genre_id, :instrument_id, photos: [])
   end
 
 end

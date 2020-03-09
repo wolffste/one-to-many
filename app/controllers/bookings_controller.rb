@@ -20,7 +20,6 @@ class BookingsController < ApplicationController
     @booking.enddate = enddate
     if @booking.save
       redirect_to dashboard_path('bookings')
-
     else
       render :new
     end

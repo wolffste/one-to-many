@@ -8,9 +8,3 @@ const favorite = () => {
 };
 
 export {favorite};
-// (function() {
-//   const star = document.getElementById('star');
-//   star.addEventListener('click', function() {
-//     star.classList.toggle('yellow');
-//   });
-// })();

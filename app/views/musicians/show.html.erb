@@ -36,7 +36,7 @@
               <%= f.text_field :user %>
               <%= f.text_field :musician %>
               <%= button_tag( :class => "btn star") do %>
-                <i class="far fa-star" id="star"></i> Mark as favorite
+                <i class="far fa-star show" id="star"></i>
               <% end %>
             <% end %>
           <% else %>
@@ -44,7 +44,7 @@
               <%= f.hidden_field :user_id, value: current_user.id %>
               <%= f.hidden_field :musician_id, value: @musician.id %>
               <%= button_tag( :class => "btn star") do %>
-                <i class="far fa-star" id="star"></i>
+                <i class="far fa-star show" id="star"></i>
               <% end %>
             <% end %>
           <% end %>

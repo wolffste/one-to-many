@@ -5,6 +5,7 @@ class MusiciansController < ApplicationController
   def index
     @musicians = User.where(musician: true)
     @message = "Here are all our artists"
+    @favorite = Favorite.new
 
 
     if params[:search].present?

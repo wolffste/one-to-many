@@ -3,12 +3,7 @@
 
 
 
-(function() {
-  const star = document.getElementById('star');
-  star.addEventListener('click', function() {
-    star.classList.toggle('yellow');
-  });
-})();
+
 
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
@@ -31,6 +26,27 @@ document.getElementById("defaultOpen").click();
     if (element) {
       element.addEventListener('click', myFunction, false);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     function addLi() {
 var node = document.createElement("LI");                 // Create a <li> node

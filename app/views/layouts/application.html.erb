@@ -11,15 +11,16 @@
     <%= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
   </head>
   <body>
-    <%= render 'shared/navbar' %>
-    <%= render 'shared/startbanner' unless (params[:controller] == 'pages' && params[:action] == 'home') %>
-    <%= render 'shared/flashes' %>
-
-    <%= yield %>
+    <div class="site">
+      <%= render 'shared/navbar' %>
+      <%= render 'shared/flashes' %>
+        <div class="main">
+          <%= yield %>
+        </div>
+      </div>
+    <%= render 'shared/footer' %>
     <%= javascript_include_tag 'application' %>
-
     <%= javascript_pack_tag 'application' %>
-
   </body>
 </html>
 

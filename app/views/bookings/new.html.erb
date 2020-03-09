@@ -1,12 +1,30 @@
-<div class="container mt-5">
-  <div class="form-wrapper" style="width: 400px; margin: 0 auto;">
-    <h1>Book now!</h1>
-    <br>
-    <%= simple_form_for [@musician, @booking], url: :musician_bookings do |f| %>
-      <%= f.input :startdate, as: :string, required: false, input_html: {class: "datepicker"}  %>
-      <%= f.input :enddate, as: :string, required: false, input_html: {class: "datepicker"}  %>
-      <%= f.association :band, collection: @bands%>
-      <%= f.submit class: "btn btn-primary book"%>
-    <% end %>
+<div class="start-banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://images.unsplash.com/photo-1508854710579-5cecc3a9ff17?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80)">
+  <div class="text-center">
+    <h1>Book <span class="higlighted"> <%= @musician.username %></span> now!</h1>
   </div>
+</div>
+<br>
+<div class="container mt-5">
+  <br>
+    <% if @bands.present? %>
+      <% if @bands.count == 1 %>
+        <div class="form-wrapper form-login" style="width: 400px; margin: 0 auto;">
+          <%= simple_form_for [@musician, @booking], url: :musician_bookings do |f| %>
+            <%= f.input :startdate, label:"When do you need #{@musician.username}", as: :string, required: true, input_html: {class: "booking-input"}  %>
+            <p>for your band <%= @bands[0].name %>? </p>
+            <%= f.submit class: "btn btn-primary"%>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="form-wrapper form-login" style="width: 400px; margin: 0 auto;">
+          <%= simple_form_for [@musician, @booking], url: :musician_bookings do |f| %>
+            <%= f.input :startdate, label:"When do you need #{@musician.username}?", as: :string, required: true, input_html: {class: "booking-input"}  %>
+            <%= f.association :band, label:"For which band?", collection: @bands%>
+            <%= f.submit class: "btn btn-primary"%>
+          <% end %>
+        </div>
+      <% end %>
+    <% else %>
+      <h3 style="width: 600px; margin: 0 auto; text-align: center;">If you want to book a musician for your band, you have to <%= link_to "add a band", new_band_path %> to your profile first.</h3>
+    <% end %>
 </div>

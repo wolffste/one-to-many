@@ -11,7 +11,6 @@ class FavoritesController < ApplicationController
     @favorite = Favorite.find(params[:id])
   end
 
-
   def new
     @favorite = Favorite.new
   end

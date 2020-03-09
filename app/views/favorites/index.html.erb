@@ -9,10 +9,10 @@
   <div class="row favorite">
     <div class="col-xs-12 col-md-4">
       <div class="card-product favorite">
-        <% if favorite.musician.photo.attached? %>
-        <%= cl_image_tag favorite.musician.photo.key, height: 230 %>
+        <% if favorite.musician.photos.attached? %>
+          <%= cl_image_tag favorite.musician.photos[0].key, height: 230 %>
         <% else %>
-        <%= cl_image_tag("a6fac407-95ce-4d45-b360-8330205ce210_l_svdjab") %>
+          <%= cl_image_tag("a6fac407-95ce-4d45-b360-8330205ce210_l_svdjab") %>
         <% end %>
       </div>
     </div>

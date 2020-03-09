@@ -46,9 +46,9 @@
       <% @musicians.each do |musician| %>
       <div class="musician-card">
         <%= link_to "edit", edit_musician_path(musician) %>
-        <% if musician.photo.attached? %>
+        <% if musician.photos.attached? %>
         <%= link_to musician_path(musician), :action => 'go' do %>
-        <div class="musician-pic" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path musician.photo.key, height: 230, crop: :fill %>')">
+        <div class="musician-pic" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path musician.photos[0].key, height: 230, crop: :fill %>')">
         </div>
         <% end %>
         <% else %>

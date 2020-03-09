@@ -79,6 +79,7 @@
         </div>
         <%#= link_to "edit", edit_musician_path(musician) %>
 
+    <!-- Favorite Star -->
       <% if !current_user %>
       <%= form_for(@favorite) do |f| %>
       <%= f.text_field :user %>
@@ -99,9 +100,8 @@
         <%= button_tag( :class => "btn star") do %>
           <i class="far fa-star starindex" id="starindex"></i>
         <% end %>
-
       <% end %>
-
+    <!-- Favorite Star End -->
       <% end %>
       <% end %>
       </div>

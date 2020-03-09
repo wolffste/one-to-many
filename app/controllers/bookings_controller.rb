@@ -19,7 +19,7 @@ class BookingsController < ApplicationController
     @booking.user = User.find(params[:musician_id]) #the booked musician
     @booking.enddate = enddate
     if @booking.save
-      redirect_to dashboard_path
+      redirect_to dashboard_path('bookings')
 
     else
       render :new

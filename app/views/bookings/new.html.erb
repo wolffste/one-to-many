@@ -11,8 +11,10 @@
         <div class="form-wrapper form-login" style="width: 400px; margin: 0 auto;">
           <%= simple_form_for [@musician, @booking], url: :musician_bookings do |f| %>
             <%= f.input :startdate, label:"When do you need #{@musician.username}", as: :string, required: true, input_html: {class: "booking-input"}  %>
+            <%= f.input :band_id, as: :hidden, input_html: {value: @bands[0].id} %>
             <p>for your band <%= @bands[0].name %>? </p>
             <%= f.submit class: "btn btn-primary"%>
+
           <% end %>
         </div>
       <% else %>

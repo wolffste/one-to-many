@@ -7,8 +7,8 @@
         <%= f.input :description %>
         <%= f.association :genre, input_html: { class: "beautiful-dropdown" }, include_hidden: false, class: "form-group"  %>
         <%= f.association :instrument, input_html: { class: "beautiful-dropdown" }, include_hidden: false, class: "form-group"  %>
-        <%= f.input :videolink, label: "Please add a link to a Youtube-Video of your band." %>
-        <%= f.input :soundcloudlink, label: "Please add a link to your Soundcloud-Playlist." %>
+        <%= f.input :videolink, label: "Please add a link to a Youtube-Video of your band. (code from Embed)" %>
+        <%= f.input :soundcloudlink, label: "Please add a link to your Soundcloud-Playlist. (code from Embed)" %>
         <%= f.input :photos, as: :file, input_html: { multiple: true } %>
       </div>
       <div class="form-actions">

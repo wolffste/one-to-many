@@ -6,14 +6,23 @@
 }
 
 .far.fa-star {
-    position: absolute;
-    left: -70px;
-    top: 19px;
-    width: 40px;
-    font-size: 30px;
-    color: #5762d5;
+  position: absolute;
+  left: -86px;
+  top: 15px;
+  width: 40px;
+  font-size: 20px;
+  color: #5762d5;
 }
 
+#star{
+  color: rgba(247,179,43, 0.9);
+  font-size: 20px;
+}
+
+#star.yellow {
+  color: rgb(247,179,43);
+  font-weight:bold;
+}
 
 
 .card-otm {
@@ -126,8 +135,8 @@ li.musician-name{
   font-size: 14px;
   text-decoration: none;
 
-    &:hover {
-      text-decoration: none;
+  &:hover {
+    text-decoration: none;
   }
 
 }

@@ -21,7 +21,7 @@ class FavoritesController < ApplicationController
    musician = User.find(favorite_params[:musician_id])
    @favorite = Favorite.new(user: current_user, musician: musician)
    @favorite.save
-   redirect_to favorites_path
+   #redirect_to musician_path(@favorite.musician_id)
   end
 
   def destroy

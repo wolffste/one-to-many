@@ -1,11 +1,10 @@
-  <div class="start-banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://images.unsplash.com/photo-1508854710579-5cecc3a9ff17?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80)">
-    <div class="text-center">
-        <h1> <span class="banner-Headline higlighted">My Favorites </span> </h1>
-    </div>
+<div class="start-banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://images.unsplash.com/photo-1508854710579-5cecc3a9ff17?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80)">
+  <div class="text-center">
+    <h1> <span class="banner-Headline higlighted">My Favorites </span> </h1>
   </div>
-  <br>
-
- <div class="container">
+</div>
+<br>
+<div class="container">
   <% @favorites.each do |favorite| %>
   <div class="row favorite">
     <div class="col-xs-12 col-md-4">
@@ -31,11 +30,8 @@
         <p><strong>City: </strong><%= @musician.city %></p>
         <%= link_to "Back to overview", musicians_path, class: "btn btn-primary" %>
         <%= link_to " 🗑 Delete from favorites", favorite_path(favorite), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-primary-outline" %>
-
       </div>
     </div>
   </div>
   <% end %>
-
-
-
+</div>

@@ -1,148 +1,156 @@
-  <div class="start-banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://images.unsplash.com/photo-1508854710579-5cecc3a9ff17?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80)">
-    <div class="text-center">
-        <h1> <span class="higlighted">My Overview</span> </h1>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+<div Class="container">
+  <div class="tab">
+    <button class="tablinks" onclick="openTag(event, 'Profile')">Profile</button>
+    <button class="tablinks" onclick="openTag(event, 'Bookings')" id="defaultOpen">Bookings</button>
+    <button class="tablinks" onclick="openTag(event, 'Bands')">Bands</button>
+  </div>
+  <div id="Profile" class="tabcontent">
+    <div class="row">
+      <div class="col-xs-12 col-md-4">
+        <div class="card-otm">
+          <img class="img-fluid" src="https://images.unsplash.com/photo-1559519529-0936e4058364?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80" alt="">
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-8">
+        <div class="card-otm h-100">
+          <ul style="list-style-type: none;">
+            <li>username: <strong><%= @user.username %></strong></li>
+            <li>e-mail: <strong><%= @user.email %></strong></li>
+            <li>city: <strong><%= @user.city %></strong></li>
+            <li>date of birth: <strong><%= @user.birthday %></strong></li>
+            <li>description: <strong><%= @user.description %></strong></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-12">
+        <div class="card-otm">
+          <h1>dsfggd</h1>
+        </div>
+      </div>
     </div>
   </div>
-  <br>
+  <div id="Bookings" class="tabcontent">
 
-<div class= "container">
-  <div class="tabbed">
-    <input checked="checked" id="tab1" type="radio" name="tabs" />
-    <input id="tab2" type="radio" name="tabs" />
-    <input id="tab3" type="radio" name="tabs" />
+    <% if  @bookings.count >= 1 %>
+      <h1 class="mt-4">I booked other musicians ACTIVE</h1>
+    <% end %>
 
-    <nav>
-      <label class= "mb-0" for="tab1">Profile</label>
-      <label class= "mb-0" for="tab2">Bookings</label>
-      <label class= "mb-0" for="tab3">Bands</label>
-    </nav>
-    <figure>
-
-
-      <div class="tab1 container">
-
-        <div class="row">
-
-          <div class="col-xs-12 col-md-4">
-            <div class="card-otm">
-              <% if current_user.photo.attached? %>
-                <div class="dashboard-pic" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path current_user.photo.key, height: 230, crop: :fill %>')">
-                </div>
-              <% else %>
-                <div class="dashboard-pic" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.3)), url('<%= cl_image_path("a6fac407-95ce-4d45-b360-8330205ce210_l_svdjab", :height=>230, :gravity=>"west", :crop=>"fill") %>')">
-                </div>
-              <% end %>
-            </div>
-          </div>
-
-          <div class="col-xs-12 col-md-8 dashboard">
-            <div class="card-otm h-100">
-              <ul style="list-style-type: none;">
-                <li class="musician-name"><strong><%= @user.username %></strong></li>
-                <li>e-mail: <strong><%= @user.email %></strong></li>
-                <li>city: <strong><%= @user.city %></strong></li>
-                <li>date of birth: <strong><%= @user.birthday %></strong></li>
-                <li>description: <strong><%= @user.description %></strong></li>
-              </ul>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="row mt-4">
-          <div class="col-12">
-            <div class="card-otm below">
-             <h1>Media</h1>
-                <%= image_tag("music.png", :alt => "music", width:"80%") %>
-                  <br>
-                  <br>
-                  <%= image_tag("video.png", :alt => "video", width:"80%") %>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="tab2">
-        <% @bookings.each do |booking| %>
-
-        <div class= "card-otm mt-3 p-3">
-          <div class= "row">
-
-            <div class= "col-xs-6 col-md-4" style="list-style-type: none;">
-              <% musician = User.find_by(id: booking.user_id) %>
-
-              <% if musician.photo.attached? %>
-
-              <%= link_to musician_path(musician), :action => 'go' do %>
+    <% @bookings.each do |booking| %>
+      <div class= "card-otm mb-3 p-3">
+      <div class= "row">
+        <div class= "col-xs-6 col-md-4" style="list-style-type: none;">
+          <% musician = User.find_by(id: booking.user_id) %>
+          <% if musician.photo.attached? %>
+            <%= link_to musician_path(musician), :action => 'go' do %>
               <div class="musician-pic" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path musician.photo.key, height: 230, crop: :fill %>')"></div>
-              <% end %>
-
-              <% else %>
-              <%= link_to musician_path(musician), :action => 'go' do %>
+          <% end %>
+          <% else %>
+            <%= link_to musician_path(musician), :action => 'go' do %>
               <div class="musician-pic" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.3)), url('<%= cl_image_path("a6fac407-95ce-4d45-b360-8330205ce210_l_svdjab", :height=>230, :gravity=>"west", :crop=>"fill") %>')"></div>
+            <% end %>
+          <% end %>
+        </div>
+        <div class= "col-xs-12 col-md-8">
+          <div class="card-otm">
+            <ul style="list-style-type: none;">
+              <% if booking.status == 1 %>
+              <li class= "mb-3">booking request for: <strong><%=musician.username%></strong></li>
               <% end %>
+              <% if booking.status == 2 %>
+              <li class= "mb-3">booked Artist: <strong><%=musician.username%></strong></li>
               <% end %>
-
-
-
-            </div>
-            <div class= "col-xs-12 col-md-8">
-              <div class="card-otm">
-                <ul style="list-style-type: none;">
-                  <li class= "mb-3">you have booked <strong><%=musician.username%></strong> on the <strong><%= booking.created_at %></strong></li>
-                  <li>For band: <strong><%= booking.band.name %></strong></li>
-                  <li>Begin: <strong><%= booking.startdate %></strong></li>
-                  <li>End: <strong><%= booking.enddate %></strong></li>
-                  <td><%= link_to 'Delete', booking, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary-outline"%></td>
-                </ul>
-              </div>
-            </div>
-
+              <li>For band: <strong><%= booking.band.name %></strong></li>
+              <li>Begin: <strong><%= booking.startdate %></strong></li>
+              <li>End: <strong><%= booking.enddate %></strong></li>
+              <% if booking.status == 1 %>
+              <li>Comfirmation-status: pending</li>
+              <li><%#= link_to 'cancel', booking, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-warning"%></li>
+              <% elsif booking.status == 2 %>
+              <li>Comfirmation-status: booked</li>
+              <% elsif booking.status == 3 %>
+              <li>Comfirmation-status: declined</li>
+              <li><%= link_to 'delete', booking, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-warning"%></li>
+              <% end %>
+            </ul>
           </div>
         </div>
-
-        <% end %>
       </div>
+      </div>
+    <%end%>
+    <!-- PASSIVE BOOKINGS -->
+    <% if @bookings_passive.count >= 1 %>
+      <h1 class="mt-4">i'am booked by other bands PASSIVE</h1>
+    <% end %>
+    <% @bookings_passive.each do |booking| %>
+      <div class= "card-otm mb-3 p-3">
+        <div class= "row">
+          <div class= "col-xs-6 col-md-4" style="list-style-type: none;">.
+          <% musician = User.find_by(id: booking.user_id) %>
+          <% if booking.band.photos.attached? %>
+            <div class="musician-pic" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path booking.band.photo.key, height: 230, crop: :fill %>')"></div>
+          <% else %>
+            <div class="musician-pic" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.3)), url('<%= cl_image_path("a6fac407-95ce-4d45-b360-8330205ce210_l_svdjab", :height=>230, :gravity=>"west", :crop=>"fill") %>')"></div>
+          <%end%>
+          </div>
+          <div class= "col-xs-12 col-md-8">
+          <div class="card-otm">
+            <ul id="myList" class="booking-details" style="list-style-type: none;">
+              <%if booking.status == 1%>
+                <li class= "mb-3">booking request from: <strong><%=booking.band.name%></strong></li>
+              <% end %>
+              <%if booking.status == 2%>
+                <li class= "mb-3">you are booked for: <strong><%=booking.band.name%></strong></li>
+              <% end %>
+              <li>Begin: <strong><%= booking.startdate %></strong></li>
+              <li>End: <strong><%= booking.enddate %></strong></li>
 
-      <div class="tab3">
-        <% @bands.each do |band| %>
 
-        <div class= "card-otm mt-3 p-3">
-          <div class= "row">
+              <% if booking.status == 1 %>
+                <li id="change">confirmation status: Pending</li>
+                <li class="hideConfirm hide"><%= link_to 'confirm', booking_path(booking, status: :confirm), method: :patch, remote: true, class: "btn btn-warning"%></li><li class="hideDecline hide"><%= link_to 'decline', booking_path(booking, status: :decline), method: :patch, remote: true, class: "btn btn-warning"%></li>
 
-            <div class= "col-xs-6 col-md-4" style="list-style-type: none;">
-              <%if band.photos.attached? %>
-                <%= link_to band_path(band), :action => 'go' do %>
-                  <div class="musician-pic" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path band.photos[0].key, height: 230, crop: :fill %>')"></div>
-                <% end %>
-              <%else%>
-                <%= link_to band_path(band), :action => 'go' do %>
-                  <div class="musician-pic" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.3)), url('<%= cl_image_path("a6fac407-95ce-4d45-b360-8330205ce210_l_svdjab", :height=>230, :gravity=>"west", :crop=>"fill") %>')"></div>
-                <% end %>
+              <% elsif booking.status == 2 %>
+                <li class="hide">Comfirmation-status: booked</li>
+              <% elsif booking.status == 3 %>
+                <li>Comfirmation-status: declined</li>
               <%end%>
-            </div>
 
-            <div class= "col-xs-12 col-md-8">
-              <div class="card-otm">
-                <ul style="list-style-type: none;">
-                  <li>For: <strong><%= band.name %></strong></li>
-                  <li>to: <strong><%= band.description %></strong></li>
-                  <li>to: <strong><%= band.genre.name %></strong></li>
-                  <td><%= link_to 'Delete', band, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary-outline"%></td>
-                </ul>
-              </div>
-            </div>
-
-
+            </ul>
+          </div>
           </div>
         </div>
-
-        <%end%>
       </div>
-
-    </figure>
+    <%end%>
+  </div>
+  <div id="Bands" class="tabcontent">
+    <% @bands.each do |band| %>
+    <div class= "card-otm mt-3 p-3">
+      <div class= "row">
+        <div class= "col-xs-6 col-md-4" style="list-style-type: none;">
+          <%if band.photos.attached? %>
+          <div class="musician-pic" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path band.photos[0].key, height: 230, crop: :fill %>')"></div>
+          <%else%>
+          <div class="musician-pic" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.3)), url('<%= cl_image_path("a6fac407-95ce-4d45-b360-8330205ce210_l_svdjab", :height=>230, :gravity=>"west", :crop=>"fill") %>')"></div>
+          <%end%>
+        </div>
+        <div class= "col-xs-12 col-md-8">
+          <div class="card-otm">
+            <ul style="list-style-type: none;">
+              <li>For: <strong><%= band.name %></strong></li>
+              <li>to: <strong><%= band.description %></strong></li>
+              <li>to: <strong><%= band.genre %></strong></li>
+              <td><%= link_to 'Delete', band, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-warning"%></td>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%end%>
   </div>
 </div>
-
-
-

@@ -1,25 +1,6 @@
 //= require rails-ujs
 //= require_tree .
-function addLi() {
-var node = document.createElement("LI");                 // Create a <li> node
-var textnode = document.createTextNode("Water");         // Create a text node
-node.appendChild(textnode);                              // Append the text to <li>
-document.getElementById("myList").appendChild(node);     // Append <li> to <ul> with id="myList"
-}
 
-
-function delLi() {
-  var list = document.getElementById("myList");
-  list.removeChild(list.childNodes[0]);
-}
-
-var myFunction = function() {
-  document.getElementsByClassName("test")[0].innerText("hallo");
-}
-// var myFunction = function() {
-//     var attribute = this.getAttribute("data-myattribute");
-//     alert(attribute);
-// };
 
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
@@ -59,9 +40,23 @@ $("#reload").click(function() {
 });
 
 
+$(document).ready(function(){
+  $(".hideConfirm").click(function(){
+    $(".hide").hide();
+    var a = "Comfirmation-status:"
+    var b = "booked"
+    jQuery("#change").text(a.concat(b));
+  });
+});
 
-
-
+$(document).ready(function(){
+  $(".hideDecline").click(function(){
+    $(".hide").hide();
+    var a = "Comfirmation-status:"
+    var b = "declined"
+    jQuery("#change").text(a.concat(b));
+  });
+});
 
 
 

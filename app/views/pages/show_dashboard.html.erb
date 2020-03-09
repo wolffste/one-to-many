@@ -62,17 +62,20 @@
               <% if booking.status == 1 %>
               <li class= "mb-3">booking request for: <strong><%=musician.username%></strong></li>
               <% end %>
+              <% if booking.status == 2 %>
+              <li class= "mb-3">booked Artist: <strong><%=musician.username%></strong></li>
+              <% end %>
               <li>For band: <strong><%= booking.band.name %></strong></li>
               <li>Begin: <strong><%= booking.startdate %></strong></li>
               <li>End: <strong><%= booking.enddate %></strong></li>
               <% if booking.status == 1 %>
-              <li>Comfirmation-status: <strong style= "color:orange;">pending</strong></li>
-              <td><%= link_to 'cancel', booking, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-warning"%></td>
+              <li>Comfirmation-status: pending</li>
+              <li><%#= link_to 'cancel', booking, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-warning"%></li>
               <% elsif booking.status == 2 %>
-              <li>Comfirmation-status: <strong style= "color:green;">booked</strong></li>
+              <li>Comfirmation-status: booked</li>
               <% elsif booking.status == 3 %>
-              <li>Comfirmation-status: <strong style= "color:red;">declined</strong></li>
-              <td><%= link_to 'delete', booking, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-warning"%></td>
+              <li>Comfirmation-status: declined</li>
+              <li><%= link_to 'delete', booking, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-warning"%></li>
               <% end %>
             </ul>
           </div>
@@ -98,29 +101,26 @@
           <div class= "col-xs-12 col-md-8">
           <div class="card-otm">
             <ul id="myList" class="booking-details" style="list-style-type: none;">
-              <button id="reload">reloader</button>
-              <button onclick="addLi()">add</button>
-              <button onclick="delLi()">delete</button>
-              <li>1</li>
-              <li>2</li>
-              <li>3</li>
-              <li>4</li>
               <%if booking.status == 1%>
                 <li class= "mb-3">booking request from: <strong><%=booking.band.name%></strong></li>
               <% end %>
+              <%if booking.status == 2%>
+                <li class= "mb-3">you are booked for: <strong><%=booking.band.name%></strong></li>
+              <% end %>
               <li>Begin: <strong><%= booking.startdate %></strong></li>
               <li>End: <strong><%= booking.enddate %></strong></li>
-              <td><%= link_to 'confirm', booking_path(booking, status: :confirm), method: :patch, remote: true, class: "btn btn-warning"%></td>
-              <td><%= link_to 'decline', booking_path(booking, status: :decline), method: :patch, remote: true, class: "btn btn-warning"%></td>
-              <div id="here" class="booking-status">
-                <% if booking.status == 1 %>
-                  <td>Confirmation-status: <strong style= "color:orange;">pending</strong></li>
-                <% elsif booking.status == 2 %>
-                  <li>Comfirmation-status: <strong style= "color:green;">booked</strong></li>
-                <% elsif booking.status == 3 %>
-                  <li>Comfirmation-status: <strong style= "color:red;">declined</strong></li>
-                <%end%>
-              </div>
+
+
+              <% if booking.status == 1 %>
+                <li id="change">confirmation status: Pending</li>
+                <li class="hideConfirm hide"><%= link_to 'confirm', booking_path(booking, status: :confirm), method: :patch, remote: true, class: "btn btn-warning"%></li><li class="hideDecline hide"><%= link_to 'decline', booking_path(booking, status: :decline), method: :patch, remote: true, class: "btn btn-warning"%></li>
+
+              <% elsif booking.status == 2 %>
+                <li class="hide">Comfirmation-status: booked</li>
+              <% elsif booking.status == 3 %>
+                <li>Comfirmation-status: declined</li>
+              <%end%>
+
             </ul>
           </div>
           </div>

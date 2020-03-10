@@ -10,5 +10,6 @@ class User < ApplicationRecord
   has_many :bookings, through: :bands
   has_many :favorites
   has_one_attached :photo
+  has_many :messages, dependent: :destroy
 
 end

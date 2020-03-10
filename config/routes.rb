@@ -1,9 +1,14 @@
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 Rails.application.routes.draw do
   devise_for :users
+
+  resources :favorites, only: [ :index, :new, :show, :create, :destroy ]
   resources :favorites, only: [ :index, :new, :show, :create, :destroy ]
   resources :users, only: [:edit, :update]
   resources :favorites, only: [:index, :new, :show, :create ]
+  resources :chat_rooms, only: [:show, :new ] do
+    resources :messages, only: [:create]
+  end
   resources :musicians do
     resources :bookings, only: [:new, :create]
   end

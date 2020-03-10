@@ -9,7 +9,7 @@ class User < ApplicationRecord
   belongs_to :instrument, optional: true
   has_many :bookings, through: :bands
   has_many :favorites
-  has_one_attached :photo
   has_many :messages, dependent: :destroy
+  has_many_attached :photos
 
 end

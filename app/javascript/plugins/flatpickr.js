@@ -1,5 +1,5 @@
 import flatpickr from "flatpickr"
-import "flatpickr/dist/themes/airbnb.css" // A path to the theme CSS
+// import "app/assets/stylesheets/components/_flatpickr.scss" // A path to the theme CSS
 
 flatpickr(".booking-input", {
   enableTime: false,

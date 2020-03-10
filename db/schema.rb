@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_09_145509) do
+
+ActiveRecord::Schema.define(version: 2020_03_09_161226) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -123,6 +125,8 @@ ActiveRecord::Schema.define(version: 2020_03_09_145509) do
     t.bigint "genre_id"
     t.bigint "instrument_id"
     t.integer "level"
+    t.string "videolink"
+    t.string "soundcloudlink"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["genre_id"], name: "index_users_on_genre_id"
     t.index ["instrument_id"], name: "index_users_on_instrument_id"

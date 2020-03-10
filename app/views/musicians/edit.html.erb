@@ -13,7 +13,9 @@
   <%= f.input :musician %>
   <%= f.association :genre, input_html: { class: "beautiful-dropdown" }, include_hidden: false, class: "form-group"  %>
   <%= f.association :instrument, input_html: { class: "beautiful-dropdown" }, include_hidden: false, class: "form-group"  %>
-  <%= f.input :photo, as: :file %>
+  <%= f.input :videolink, label: "Please add a link to a Youtube-Video. (code from Embed)" %>
+  <%= f.input :soundcloudlink, label: "Please add a link to your Soundcloud-Playlist. (code from Embed)" %>
+  <%= f.input :photos, as: :file, input_html: { multiple: true } %>
   <%= f.button :submit, class: "btn btn-primary" %>
 <% end %>
   <br>

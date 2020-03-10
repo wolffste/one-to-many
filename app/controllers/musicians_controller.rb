@@ -61,7 +61,7 @@ class MusiciansController < ApplicationController
  private
 
   def musician_params
-    params.require(:user).permit(:username, :description, :fee, :startdate, :enddate, :city, :birthday, :musician, :genre_id, :instrument_id, photos: [])
+    params.require(:user).permit(:username, :description, :fee, :startdate, :enddate, :city, :birthday, :musician, :genre_id, :instrument_id, :videolink, :soundcloudlink, photos: [])
   end
 
 end

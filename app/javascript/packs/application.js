@@ -7,4 +7,3 @@ import {changeBookingStatus} from './change_booking_status';
 changeBookingStatus();
 favorite();
 favorite_index();
-

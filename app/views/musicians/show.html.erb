@@ -58,28 +58,29 @@
           <li><%= @musician.description %></li>
           <% if !current_user %>
             <%= form_for(@favorite) do |f| %>
-            <%= f.text_field :user %>
-            <%= f.text_field :musician %>
+              <%= f.text_field :user %>
+              <%= f.text_field :musician %>
               <%= button_tag( :class => "btn star") do %>
-              <i class="far fa-star show" id="star"></i>
+                <i class="far fa-star show" id="star"></i>
               <% end %>
             <% end %>
           <% else %>
-          <%= form_for(@favorite) do |f| %>
-            <%= f.hidden_field :user_id, value: current_user.id %>
-            <%= f.hidden_field :musician_id, value: @musician.id %>
-          <% if (current_user.favorites.any? {|favorite| favorite.musician == @musician })%>
-            <%= button_tag( :class => "btn star") do %>
-            <i class="far fa-star show purple" id="star"></i>
-             <% end %>
-          <% else %>
-            <%= button_tag( :class => "btn star") do %>
-            <i class="far fa-star show" id="star"></i>
-          <% end %>
-          <% end %>
-          <% end %>
+            <%= form_for(@favorite) do |f| %>
+              <%= f.hidden_field :user_id, value: current_user.id %>
+              <%= f.hidden_field :musician_id, value: @musician.id %>
+              <% if (current_user.favorites.any? {|favorite| favorite.musician == @musician })%>
+                <%= button_tag( :class => "btn star") do %>
+                  <i class="far fa-star show purple" id="star"></i>
+                <% end %>
+              <% else %>
+                <%= button_tag( :class => "btn star") do %>
+                  <i class="far fa-star show" id="star"></i>
+                <% end %>
+              <% end %>
+            <% end %>
           <% end %>
           <li>
+            <%= link_to 'Message', chat_rooms_path, method: :post, class: "btn btn-primary" %>
             <%= link_to 'Book', new_musician_booking_path(@musician), class: "btn btn-primary" %>
             <a class="btn btn-primary-outline" href="#" onclick="history.go(-1)">Go Back</a>
           </li>

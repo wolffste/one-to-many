@@ -94,6 +94,27 @@ ActiveRecord::Schema.define(version: 2020_03_10_110154) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.text "content"
+    t.bigint "chat_room_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chat_room_id"], name: "index_messages_on_chat_room_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "musician_reviews", force: :cascade do |t|
+    t.text "content"
+    t.integer "rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.bigint "band_id"
+    t.index ["band_id"], name: "index_musician_reviews_on_band_id"
+    t.index ["user_id"], name: "index_musician_reviews_on_user_id"
+  end
+
   create_table "reviews", force: :cascade do |t|
     t.bigint "writer_id"
     t.bigint "receiver_id"
@@ -103,16 +124,6 @@ ActiveRecord::Schema.define(version: 2020_03_10_110154) do
     t.datetime "updated_at", null: false
     t.index ["receiver_id"], name: "index_reviews_on_receiver_id"
     t.index ["writer_id"], name: "index_reviews_on_writer_id"
-  end
-
-  create_table "messages", force: :cascade do |t|
-    t.text "content"
-    t.bigint "chat_room_id"
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["chat_room_id"], name: "index_messages_on_chat_room_id"
-    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -150,10 +161,12 @@ ActiveRecord::Schema.define(version: 2020_03_10_110154) do
   add_foreign_key "bookings", "users"
   add_foreign_key "favorites", "users"
   add_foreign_key "favorites", "users", column: "musician_id"
-  add_foreign_key "reviews", "users", column: "receiver_id"
-  add_foreign_key "reviews", "users", column: "writer_id"
   add_foreign_key "messages", "chat_rooms"
   add_foreign_key "messages", "users"
+  add_foreign_key "musician_reviews", "bands"
+  add_foreign_key "musician_reviews", "users"
+  add_foreign_key "reviews", "users", column: "receiver_id"
+  add_foreign_key "reviews", "users", column: "writer_id"
   add_foreign_key "users", "genres"
   add_foreign_key "users", "instruments"
 end

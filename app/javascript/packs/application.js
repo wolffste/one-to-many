@@ -2,8 +2,8 @@ import "bootstrap";
 import "../plugins/flatpickr";
 import {favorite_index} from './favorite_index';
 import {favorite} from './favorites';
-import {scrollLastMessageIntoView} from './scroll';
+// import {scrollLastMessageIntoView} from './scroll';
 
 favorite();
 favorite_index();
-scrollLastMessageIntoView();
+// scrollLastMessageIntoView();

@@ -3,9 +3,12 @@
     <div class="col-sm-6 col-sm-offset-3">
       <div class="chat-header"><h4> <%= @chat_room.name %></h4></div>
       <div class="messages">
-        <%= @chat_room.messages.each do |message| %>
-
-        <%= render @messages, message: message, user_is_messages_author: true %>
+        <% @chat_room.messages.each do |message| %>
+          <% if message.user == current_user %>
+            <%= render 'messages/message', message: message, user_is_messages_author: true %>
+          <% else %>
+            <%= render 'messages/message', message: message, user_is_messages_author: false %>
+          <% end %>
         <% end %>
       </div>
       <div class="create-message">

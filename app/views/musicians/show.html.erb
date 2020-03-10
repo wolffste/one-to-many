@@ -54,12 +54,14 @@
           <li><strong>City:</strong> <%= @musician.city %></li>
           <li><strong>Description: </strong></li>
           <li><%= @musician.description %></li>
+          <!-- Favorite Star -->
+          <div class="show">
           <% if !current_user %>
             <%= form_for(@favorite) do |f| %>
               <%= f.text_field :user %>
               <%= f.text_field :musician %>
               <%= button_tag( :class => "btn star") do %>
-                <i class="far fa-star show" id="star"></i>
+                <i class="far fa-star" id="star"></i>
               <% end %>
             <% end %>
           <% else %>
@@ -68,15 +70,17 @@
               <%= f.hidden_field :musician_id, value: @musician.id %>
               <% if (current_user.favorites.any? {|favorite| favorite.musician == @musician })%>
                 <%= button_tag( :class => "btn star") do %>
-                  <i class="far fa-star show purple" id="star"></i>
+                  <i class="far fa-star purple" id="star"></i>
                 <% end %>
               <% else %>
                 <%= button_tag( :class => "btn star") do %>
-                  <i class="far fa-star show" id="star"></i>
+                  <i class="far fa-star" id="star"></i>
                 <% end %>
               <% end %>
             <% end %>
           <% end %>
+          </div>
+          <!-- Favorite Star -->
           <li>
             <%= link_to 'Message', chat_rooms_path, method: :post, class: "btn btn-primary" %>
             <%= link_to 'Book', new_musician_booking_path(@musician), class: "btn btn-primary" %>

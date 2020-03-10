@@ -4,9 +4,12 @@ class ChatRoomsController < ApplicationController
   end
 
   def show
-    @messages = Message.all
-    # @chat_room = ChatRoom.includes(messages: :user).find(params[:id])
+    @messages = Message.where(chat_room_id: params[:chat_room_id])
+    @chat_room = ChatRoom.includes(messages: :user).find(params[:id])
   end
+
+
+
 
   def speak
   end

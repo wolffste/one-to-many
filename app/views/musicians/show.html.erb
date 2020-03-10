@@ -9,33 +9,32 @@
     <div class="row">
       <div class="col-xs-6 col-md-4 portfolio-item">
         <div class="card-otm left h-100">
-
           <% if @musician.photos.attached? %>
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-              <ol class="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-              </ol>
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <div class="musician-featured-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @musician.photos[0].key, height: 400, crop: :fill %>')"></div>
-                </div>
-                <% @musician.photos[1..-1].each do |pic| %>
-                  <div class="carousel-item">
-                    <div class="musician-featured-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path pic.key, height: 400, crop: :fill %>')"></div>
-                  </div>
-                <% end %>
-                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Next</span>
-                </a>
+          <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="musician-featured-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @musician.photos[0].key, height: 400, crop: :fill %>')"></div>
               </div>
+              <% @musician.photos[1..-1].each do |pic| %>
+              <div class="carousel-item">
+                <div class="musician-featured-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path pic.key, height: 400, crop: :fill %>')"></div>
+              </div>
+              <% end %>
+              <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
             </div>
+          </div>
           <% else %>
           <div class="musician-featured-image" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.3)), url('<%= cl_image_path("a6fac407-95ce-4d45-b360-8330205ce210_l_svdjab", :height=>400, :gravity=>"west", :crop=>"fill") %>')"></div>
           <% end %>
@@ -57,24 +56,24 @@
             <li><strong>Description: </strong></li>
             <li><%= @musician.description %></li>
             <% if !current_user %>
-              <%= form_for(@favorite) do |f| %>
-              <%= f.text_field :user %>
-              <%= f.text_field :musician %>
-                <%= button_tag( :class => "btn star") do %>
-                <i class="far fa-star show" id="star"></i>
-                <% end %>
-              <% end %>
+            <%= form_for(@favorite) do |f| %>
+            <%= f.text_field :user %>
+            <%= f.text_field :musician %>
+            <%= button_tag( :class => "btn star") do %>
+            <i class="far fa-star show" id="star"></i>
+            <% end %>
+            <% end %>
             <% else %>
             <%= form_for(@favorite) do |f| %>
-              <%= f.hidden_field :user_id, value: current_user.id %>
-              <%= f.hidden_field :musician_id, value: @musician.id %>
+            <%= f.hidden_field :user_id, value: current_user.id %>
+            <%= f.hidden_field :musician_id, value: @musician.id %>
             <% if (current_user.favorites.any? {|favorite| favorite.musician == @musician })%>
-              <%= button_tag( :class => "btn star") do %>
-              <i class="far fa-star show purple" id="star"></i>
-               <% end %>
+            <%= button_tag( :class => "btn star") do %>
+            <i class="far fa-star show purple" id="star"></i>
+            <% end %>
             <% else %>
-              <%= button_tag( :class => "btn star") do %>
-              <i class="far fa-star show" id="star"></i>
+            <%= button_tag( :class => "btn star") do %>
+            <i class="far fa-star show" id="star"></i>
             <% end %>
             <% end %>
             <% end %>
@@ -102,6 +101,7 @@
     </div>
   </div>
 
+  <!------------------------- MODAL ----------------------->
 
   <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
@@ -115,22 +115,19 @@
           <div class="row">
             <div class="col-lg-8 mx-auto">
               <div class="modal-body">
-                <!-- Project Details Go Here -->
-
-                  <p>reviews:</p>
-                                <div>
-                <% @reviews = @musician.reviews_received%>
-                <% @reviews.each do |review| %>
-                <div class="container">
-                  <p>content: <%= review.content %></p>
-                  <p>rating: <%= review.rating %></p>
+                <p>reviews:</p>
+                <div>
+                  <% @reviews = @musician.reviews_received%>
+                  <% @reviews.each do |review| %>
+                  <div class="container">
+                    <p>content: <%= review.content %></p>
+                    <p>rating: <%= review.rating %></p>
+                  </div>
+                  <% end %>
                 </div>
-                <% end %>
-              </div>
-
                 <button class="btn btn-primary" data-dismiss="modal" type="button">
                   <i class="fas fa-times"></i>
-                  Back to overview</button>
+                Back to overview</button>
               </div>
             </div>
           </div>

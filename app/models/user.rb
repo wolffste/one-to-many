@@ -10,5 +10,6 @@ class User < ApplicationRecord
   has_many :bookings, through: :bands
   has_many :favorites
   has_many_attached :photos
-
+  has_many :reviews_written, class_name: "Review", foreign_key: :writer_id, dependent: :destroy
+  has_many :reviews_received, class_name: "Review", foreign_key: :receiver_id, dependent: :destroy
 end

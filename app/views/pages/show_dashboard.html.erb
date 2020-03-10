@@ -42,13 +42,11 @@
     </div>
   </div>
   <div id="Bookings" class="tabcontent">
-
     <% if  @bookings.count >= 1 %>
-      <h1 class="mt-4">I booked other musicians ACTIVE</h1>
+    <h1 class="mt-4">I booked other musicians ACTIVE</h1>
     <% end %>
-
-    <% @bookings.each do |booking| %>
-      <div class= "card-otm mb-3 p-3">
+    <% @bookings.each do |booking| %>    <!----------ACTIVE BOOKINGS----------->
+    <div class= "card-otm mb-3 p-3">
       <div class= "row">
         <div class= "col-xs-6 col-md-4" style="list-style-type: none;">
           <% musician = User.find_by(id: booking.user_id) %>
@@ -84,57 +82,88 @@
               <li><%= link_to 'delete', booking, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-warning"%></li>
               <% end %>
               <li><%= link_to 'Delete', booking, method: :delete, data: { confirm: 'Are you sure?' }%></li>
+              <% if Time.now > booking.enddate + 1 %>
+              <a class="btn btn-primary portfolio-link portfolio-item"  data-toggle="modal" href="#portfolioModal1">write a review</a>
             </ul>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+<!------------------------- MODAL ----------------------->
+    <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="close-modal" data-dismiss="modal">
+            <div class="lr">
+              <div class="rl"></div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-8 mx-auto">
+                <div class="modal-body">
+                  <div class="container">
+                    <p> your review for <%= musician.username %></p>
+                    <%= simple_form_for([booking.user, Review.new]) do |f| %>
+                    <%= f.input :content %>
+                    <%= f.input :rating, collection: [0, 1, 2, 3, 4, 5] %>
+                    <%= f.submit "submit", class: "btn btn-primary" %>
+                    <% end %>
+                    <button class="btn btn-primary" data-dismiss="modal" type="button">
+                      <i class="fas fa-times"></i>
+                    Back to overview</button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      </div>
+    </div>
     <%end%>
-    <!-- PASSIVE BOOKINGS -->
     <% if @bookings_passive.count >= 1 %>
-      <h1 class="mt-4">i'am booked by other bands PASSIVE</h1>
+    <h1 class="mt-4">i'am booked by other bands PASSIVE</h1>
     <% end %>
-    <% @bookings_passive.each.with_index do |booking, index| %>
-      <div class= "card-otm mb-3 p-3">
-        <div class= "row">
-          <div class= "col-xs-6 col-md-4" style="list-style-type: none;">.
+    <% @bookings_passive.each.with_index do |booking, index| %><!------------ PASSIVE BOOKINGS ----------------->
+    <div class= "card-otm mb-3 p-3">
+      <div class= "row">
+        <div class= "col-xs-6 col-md-4" style="list-style-type: none;">.
           <% musician = User.find_by(id: booking.user_id) %>
           <% if booking.band.photos.attached? %>
             <div class="musician-pic" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url('<%= cl_image_path booking.band.photos[0].key, height: 230, crop: :fill, :gravity=>"faces" %>')"></div>
           <% else %>
             <div class="musician-pic" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url('<%= cl_image_path("a6fac407-95ce-4d45-b360-8330205ce210_l_svdjab", :height=>230, :gravity=>"faces", :crop=>"fill") %>')"></div>
           <%end%>
-          </div>
-          <div class= "col-xs-12 col-md-8">
+        </div>
+        <div class= "col-xs-12 col-md-8">
           <div class="card-otm">
             <ul id="myList" class="booking-details" style="list-style-type: none;">
               <%if booking.status == 1%>
-                <li class= "mb-3">booking request from: <strong><%=booking.band.name%></strong></li>
+              <li class= "mb-3">booking request from: <strong><%=booking.band.name%></strong></li>
               <% end %>
               <%if booking.status == 2%>
-                <li class= "mb-3">you are booked for: <strong><%=booking.band.name%></strong></li>
+              <li class= "mb-3">you are booked for: <strong><%=booking.band.name%></strong></li>
               <% end %>
               <li>Begin: <strong><%= booking.startdate %></strong></li>
               <li>End: <strong><%= booking.enddate %></strong></li>
-
-
               <p>test index : <%= index %></p>
               <% if booking.status == 1 %>
-                <li id='change-<%= index %>'class="change">confirmation status: Pending</li>
-                <li id='confirm-<%= index %>' class="hideConfirm" data-card-index='<%= index %>' class="hide"><%= link_to 'confirm', booking_path(booking, status: :confirm), method: :patch, remote: true, class: "btn btn-warning"%></li>
-                <li id='decline-<%= index %>' class="hideDecline" data-card-index='<%= index %>' class="hide"><%= link_to 'decline', booking_path(booking, status: :decline), method: :patch, remote: true, class: "btn btn-warning"%></li>
+              <li id='change-<%= index %>'class="change">confirmation status: Pending</li>
+              <li id='confirm-<%= index %>' class="hideConfirm" data-card-index='<%= index %>' class="hide"><%= link_to 'confirm', booking_path(booking, status: :confirm), method: :patch, remote: true, class: "btn btn-warning"%></li>
+              <li id='decline-<%= index %>' class="hideDecline" data-card-index='<%= index %>' class="hide"><%= link_to 'decline', booking_path(booking, status: :decline), method: :patch, remote: true, class: "btn btn-warning"%></li>
 
               <% elsif booking.status == 2 %>
-                <li class="hide">Comfirmation-status: booked</li>
+              <li class="hide">Comfirmation-status: booked</li>
               <% elsif booking.status == 3 %>
-                <li>Comfirmation-status: declined</li>
+              <li>Comfirmation-status: declined</li>
               <%end%>
               <li><%= link_to 'Delete', booking, method: :delete, data: { confirm: 'Are you sure?' }%></li>
             </ul>
           </div>
-          </div>
         </div>
       </div>
+    </div>
     <%end%>
   </div>
   <div id="Bands" class="tabcontent">
@@ -163,3 +192,4 @@
     <%end%>
   </div>
 </div>
+

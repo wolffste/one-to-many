@@ -4,12 +4,10 @@
     </div>
   </div>
   <br>
-
 <div class="container">
   <div class="row">
     <div class="col-xs-6 col-md-4 portfolio-item">
       <div class="card-otm left h-100">
-
         <% if @musician.photos.attached? %>
           <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
@@ -84,6 +82,7 @@
             <%= link_to 'Book', new_musician_booking_path(@musician), class: "btn btn-primary" %>
             <a class="btn btn-primary-outline" href="#" onclick="history.go(-1)">Go Back</a>
           </li>
+          <a class="btn btn-primary portfolio-link portfolio-item"  data-toggle="modal" href="#portfolioModal1">reviews</a>
         </ul>
       </div>
     </div>
@@ -110,7 +109,43 @@
       </div>
     </div>
   </div>
+
+  <!------------------------- MODAL ----------------------->
+
+  <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+          <div class="lr">
+            <div class="rl"></div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <div class="modal-body">
+                <p>reviews:</p>
+                <div>
+                  <% @reviews = @musician.reviews_received%>
+                  <% @reviews.each do |review| %>
+                  <div class="container">
+                    <p>content: <%= review.content %></p>
+                    <p>rating: <%= review.rating %></p>
+                  </div>
+                  <% end %>
+                </div>
+                <button class="btn btn-primary" data-dismiss="modal" type="button">
+                  <i class="fas fa-times"></i>
+                Back to overview</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
 
 
 

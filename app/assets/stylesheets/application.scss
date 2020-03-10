@@ -34,5 +34,8 @@ h1 {
   font-weight: 700;
   }
 
+.form-control[readonly] {
+  background-color: white;
+}
 
 

@@ -1,0 +1,37 @@
+<div class="start-banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://images.unsplash.com/photo-1508854710579-5cecc3a9ff17?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80)">
+  <div class="text-center">
+    <h1> <span class="banner-Headline higlighted">My Favorites </span> </h1>
+  </div>
+</div>
+<br>
+<div class="container">
+  <% @favorites.each do |favorite| %>
+  <div class="row favorite">
+    <div class="col-xs-12 col-md-4">
+      <div class="card-product favorite">
+        <% if favorite.musician.photos.attached? %>
+          <%= cl_image_tag favorite.musician.photos[0].key, height: 230 %>
+        <% else %>
+          <%= cl_image_tag("a6fac407-95ce-4d45-b360-8330205ce210_l_svdjab") %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-8 favorite">
+      <div class="card-product-infos">
+        <% @musician = User.find(favorite.musician_id) %>
+        <p><strong>Name: </strong><%= @musician.username %></p>
+        <% if @musician.birthday.present? %>
+        <% age = Date.today.year - @musician.birthday.year %>
+        <p><strong>Age: </strong> <%= age %></p>
+        <% else %>
+        <p><strong>Age: </strong> 99 </p>
+        <% end %>
+        <p><strong>Description: </strong><%= @musician.description %></p>
+        <p><strong>City: </strong><%= @musician.city %></p>
+        <%= link_to "Back to overview", musicians_path, class: "btn btn-primary" %>
+        <%= link_to " 🗑 Delete from favorites", favorite_path(favorite), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-primary-outline" %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>

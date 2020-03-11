@@ -3,7 +3,11 @@
   height: 250px;
   background: white;
   align-items: center;
-  &.show{
+
+}
+
+
+.show-musician-star{
     position: absolute;
     left: -86px;
     top: 15px;
@@ -23,7 +27,6 @@
       outline: 0px !important;
       box-shadow: none !important;
     }
-  }
 }
 
 .card-product img {

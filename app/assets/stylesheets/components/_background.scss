@@ -1,15 +1,16 @@
 .bg-image {
+  background-size: 100% 800px;
+  background-repeat: no-repeat;
+  background-position: top;
 
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+
   margin-bottom: 20px;
 
   h1 {
     padding: 20px 0;
     color: white;
     font-weight: bold;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
   }
 
     .text-center {

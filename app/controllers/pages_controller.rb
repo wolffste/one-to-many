@@ -10,5 +10,7 @@ class PagesController < ApplicationController
     @bookings = Booking.joins(:band).where(bands: {user_id: @user.id}).order(created_at: :desc)
     @bookings_passive = Booking.where(user_id: @user.id).order(created_at: :desc)
     @musicians = User.where(musician: true)
+    @favorites = current_user.favorites
+
   end
 end

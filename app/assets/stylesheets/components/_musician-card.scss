@@ -1,22 +1,71 @@
+.back {
+  position: absolute;
+  bottom: 400px;
+  left: -388px;
+  width: 107px;
+  border: 0;
+  font-size: 17px;
+  textarea:hover,
+  input:hover,
+  textarea:active,
+  input:active,
+  textarea:focus,
+  input:focus,
+  button:focus,
+  button:active,
+  button:hover,
+  label:focus,
+  .btn:active,
+  .btn.active {
+    outline: 0px !important;
+    box-shadow: none !important;
+  }
+
+
+ }
+
+.media-h1{
+margin: 26px 0;
+}
+
+.button-musician-show{
+position: end;
+}
+
+
 .cards {
   margin-top: 20px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 25px;
 }
+.starindex{
+  position: absolute;
+      bottom: 86px;
+      right: 19px;
+      width: 40px;
+    textarea:hover,
+    input:hover,
+    textarea:active,
+    input:active,
+    textarea:focus,
+    input:focus,
+    button:focus,
+    button:active,
+    button:hover,
+    label:focus,
+    .btn:active,
+    .btn.active {
+      outline: 0px !important;
+      box-shadow: none !important;
+    }
+}
 
 .far.fa-star {
   font-size: 30px;
-  color: #5762d5;
+  color: #3342de;
 
 
-  &.show{
-  position: absolute;
-  left: -86px;
-  top: 15px;
-  width: 40px;
-
-  }
 
   &.starindex{
      position: absolute;
@@ -24,16 +73,15 @@
      right: 10px;
      width: 40px;
   }
-}
-
+  }
 
 #star{
-  color: #5762d5;
+  color: #3342de;
   font-size: 30px;
 }
 
 .purple {
-  color: #5762d5;
+  color: #3342de;
   font-weight:bold;
 }
 
@@ -109,23 +157,36 @@ li.musician-name{
   position: relative;
   width: 100%;
   min-height: 373px;
-  border-radius: 4px;
   margin-bottom: 25px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  box-shadow: 0 0 4px rgba(0,0,0,0.2);
   background: white;
 }
 
+.musician-hover {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: all ease 0.2s;
+  opacity: 0;
+  background: rgb(247,179,43);
+  &:hover{
+    opacity: 0.9;
+    z-index: 100;
+
+  }
+}
+
 .card-field {
-  color: #5762d5;
+  color: #3342de;
   font-weight: bolder;
 }
 
 .musician-pic {
+  position: relative;
   height: 230px;
   width: 100%;
   display: block;
   margin-bottom: 20px;
-  border-radius:  4px 4px 0 0;
   background-size: cover;
   background-position: center;
 }
@@ -155,7 +216,6 @@ li.musician-name{
 }
 
 .musician-featured-image{
-  border-radius: 4px 0 0 4px;
   height: 400px;
   width: 100%;
   display: block;

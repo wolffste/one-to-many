@@ -4,12 +4,10 @@
     </div>
   </div>
   <br>
-
 <div class="container">
-  <div class="row">
-    <div class="col-xs-6 col-md-4 portfolio-item">
+  <div class="row h-100">
+    <div class="col-xs-6 col-md-4">
       <div class="card-otm left h-100">
-
         <% if @musician.photos.attached? %>
           <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
@@ -42,7 +40,7 @@
       </div>
     </div>
     <div class="col-xs-12 col-md-8 musician">
-      <div class="card-otm right h-100">
+      <div class="card-otm right h-100 d-flex flex-column justify-content-between">
         <ul style="list-style-type: none;">
           <li class="musician-name"><strong><%= @musician.username %></strong>
             <% if @musician.birthday.present? %>
@@ -51,17 +49,28 @@
             <% else %>
           (99) </li>
           <% end %>
+          <div>      <!---average rating counter--->
+            <% @reviews = @musician.reviews_received %>
+            <% @sum = 0.0 %>
+            <% @reviews.each do |review| %>
+              <% @sum += review.rating %>
+            <% end %>
+            <% @delta = @sum / @reviews.length %>
+          </div>      <!---average rating counter--->
+          <p> has <strong><%= @reviews.count %></strong> reviews, average Rating: <strong> <%= @delta.round(1) %> </strong></p>
           <li><strong>Genre:</strong> <%= @musician.genre.name %></li>
           <li><strong>Instrument:</strong> <%= @musician.instrument.name %></li>
           <li><strong>City:</strong> <%= @musician.city %></li>
           <li><strong>Description: </strong></li>
           <li><%= @musician.description %></li>
+          <!-- Favorite Star -->
+          <div class="show">
           <% if !current_user %>
             <%= form_for(@favorite) do |f| %>
               <%= f.text_field :user %>
               <%= f.text_field :musician %>
               <%= button_tag( :class => "btn star") do %>
-                <i class="far fa-star show" id="star"></i>
+                <i class="far fa-star" id="star"></i>
               <% end %>
             <% end %>
           <% else %>
@@ -70,26 +79,39 @@
               <%= f.hidden_field :musician_id, value: @musician.id %>
               <% if (current_user.favorites.any? {|favorite| favorite.musician == @musician })%>
                 <%= button_tag( :class => "btn star") do %>
-                  <i class="far fa-star show purple" id="star"></i>
+                  <i class="far fa-star purple" id="star"></i>
                 <% end %>
               <% else %>
                 <%= button_tag( :class => "btn star") do %>
-                  <i class="far fa-star show" id="star"></i>
+                  <i class="far fa-star" id="star"></i>
                 <% end %>
               <% end %>
             <% end %>
           <% end %>
-          <li>
-            <%= link_to 'Message', chat_rooms_path, method: :post, class: "btn btn-primary" %>
+          </div>
+          <!-- Favorite Star -->
+        </ul>
+        <ul style="list-style-type: none;">
+          <li class="button-musician-show">
+            <%#= link_to 'Message', chat_rooms_path, method: :post, class: "btn btn-primary" %>
             <%= link_to 'Book', new_musician_booking_path(@musician), class: "btn btn-primary" %>
-            <a class="btn btn-primary-outline" href="#" onclick="history.go(-1)">Go Back</a>
+            <a class="btn btn-primary-outline back" href="#" onclick="history.go(-1)"> < BACK</a>
+          <a class="btn btn-primary-outline portfolio-link"  data-toggle="modal" href="#portfolioModal1">Show Reviews</a>
           </li>
+
+          <!-- <a class="btn btn-primary portfolio-link portfolio-item"  data-toggle="modal" data-target="#reviewsModal">reviews</a> -->
+
         </ul>
       </div>
     </div>
   </div>
+
+   <!-- Media Part -->
+  <h1 class="media-h1">MEDIA</h1>
   <div class="row mt-4">
-    <div class="col-xs-12 col-md-6 portfolio-item">
+
+    <div class="col-xs-12 col-md-6">
+
       <div class="card-otm left h-100 d-flex justify-content-between p-0">
         <% if @musician.soundcloudlink.present? %>
           <% soundcloud_match_data = @musician.soundcloudlink.match(/playlists.\d+/) %>
@@ -110,7 +132,64 @@
       </div>
     </div>
   </div>
+   <!-- End of Media Part -->
+
+  <!------------------------- MODAL ----------------------->
+
+ <!--  <div class="portfolio-modal modal fade" id="reviewsModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+          <div class="lr">
+            <div class="rl"></div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <div class="modal-body">
+                <p>reviews:</p>
+                <div>
+                  <% @reviews = @musician.reviews_received%>
+                  <% @reviews.each do |review| %>
+                  <div class="container">
+                    <p>content: <%= review.content %></p>
+                    <p>rating: <%= review.rating %></p>
+                  </div>
+                  <% end %>
+                </div>
+                <button class="btn btn-primary" data-dismiss="modal" type="button">
+                  <i class="fas fa-times"></i>
+                Back to overview</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <div>
+    <p><strong> reviews:</strong></p>
+    <% @reviews = @musician.reviews_received %>
+    <% @sum = 0.0 %>
+    <% @reviews.each do |review| %>
+      <div class="card">
+        <div class="row">
+          <div class="col-10">
+            <p><%= review.content %></p>
+          </div>
+          <div class="col-2">
+            <p>rating: <%= review.rating %></p>
+            <% @sum += review.rating %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <% @delta = @sum / @reviews.length %>
+  </div>
 </div>
+
 
 
 

@@ -75,7 +75,7 @@
           <li><strong>Description: </strong></li>
           <li><%= @musician.description %></li>
           <!-- Favorite Star -->
-          <div class="show">
+          <div class="show-musician-star">
           <% if !current_user %>
             <%= form_for(@favorite) do |f| %>
               <%= f.text_field :user %>

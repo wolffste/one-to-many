@@ -49,7 +49,7 @@
       <div class="musician-card">
          <%= link_to musician_path(musician), :action => 'go' do %>
 
-        <%= link_to "edit", edit_musician_path(musician) %>
+        <%#= link_to "edit", edit_musician_path(musician) %>
         <% if musician.photos.attached? %>
         <%= link_to musician_path(musician), :action => 'go' do %>
         <div class="musician-pic" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url('<%= cl_image_path musician.photos[0].key, height: 230, crop: :fill %>')">

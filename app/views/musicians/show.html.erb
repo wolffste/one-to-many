@@ -5,8 +5,8 @@
   </div>
   <br>
 <div class="container">
-  <div class="row">
-    <div class="col-xs-6 col-md-4 portfolio-item">
+  <div class="row h-100">
+    <div class="col-xs-6 col-md-4">
       <div class="card-otm left h-100">
         <% if @musician.photos.attached? %>
           <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -40,7 +40,7 @@
       </div>
     </div>
     <div class="col-xs-12 col-md-8 musician">
-      <div class="card-otm right h-100">
+      <div class="card-otm right h-100 d-flex flex-column justify-content-between">
         <ul style="list-style-type: none;">
           <li class="musician-name"><strong><%= @musician.username %></strong>
             <% if @musician.birthday.present? %>
@@ -90,19 +90,28 @@
           <% end %>
           </div>
           <!-- Favorite Star -->
-          <li>
-            <%= link_to 'Message', chat_rooms_path, method: :post, class: "btn btn-primary" %>
+        </ul>
+        <ul style="list-style-type: none;">
+          <li class="button-musician-show">
+            <%#= link_to 'Message', chat_rooms_path, method: :post, class: "btn btn-primary" %>
             <%= link_to 'Book', new_musician_booking_path(@musician), class: "btn btn-primary" %>
-            <a class="btn btn-primary-outline" href="#" onclick="history.go(-1)">Go Back</a>
+            <a class="btn btn-primary-outline back" href="#" onclick="history.go(-1)"> < BACK</a>
+          <a class="btn btn-primary-outline portfolio-link"  data-toggle="modal" href="#portfolioModal1">Show Reviews</a>
           </li>
+
           <!-- <a class="btn btn-primary portfolio-link portfolio-item"  data-toggle="modal" data-target="#reviewsModal">reviews</a> -->
+
         </ul>
       </div>
     </div>
   </div>
 
+   <!-- Media Part -->
+  <h1 class="media-h1">MEDIA</h1>
   <div class="row mt-4">
-    <div class="col-xs-12 col-md-6 portfolio-item">
+
+    <div class="col-xs-12 col-md-6">
+
       <div class="card-otm left h-100 d-flex justify-content-between p-0">
         <% if @musician.soundcloudlink.present? %>
           <% soundcloud_match_data = @musician.soundcloudlink.match(/playlists.\d+/) %>
@@ -123,6 +132,7 @@
       </div>
     </div>
   </div>
+   <!-- End of Media Part -->
 
   <!------------------------- MODAL ----------------------->
 

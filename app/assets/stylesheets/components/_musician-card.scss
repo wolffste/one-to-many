@@ -1,3 +1,38 @@
+.back {
+  position: absolute;
+  bottom: 400px;
+  left: -388px;
+  width: 107px;
+  border: 0;
+  font-size: 17px;
+  textarea:hover,
+  input:hover,
+  textarea:active,
+  input:active,
+  textarea:focus,
+  input:focus,
+  button:focus,
+  button:active,
+  button:hover,
+  label:focus,
+  .btn:active,
+  .btn.active {
+    outline: 0px !important;
+    box-shadow: none !important;
+  }
+
+
+ }
+
+.media-h1{
+margin: 26px 0;
+}
+
+.button-musician-show{
+position: end;
+}
+
+
 .cards {
   margin-top: 20px;
   display: grid;
@@ -152,7 +187,6 @@ li.musician-name{
   width: 100%;
   display: block;
   margin-bottom: 20px;
-  border-radius:  4px 4px 0 0;
   background-size: cover;
   background-position: center;
 }
@@ -182,7 +216,6 @@ li.musician-name{
 }
 
 .musician-featured-image{
-  border-radius: 4px 0 0 4px;
   height: 400px;
   width: 100%;
   display: block;

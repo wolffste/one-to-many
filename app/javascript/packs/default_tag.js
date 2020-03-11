@@ -4,6 +4,7 @@ const defaultTag = () => {
   const def = document.getElementById('bookings');
   const defBtn = document.getElementById('bookings-btn');
 
+    if (def) {
       let i;
       const tabcontent = document.getElementsByClassName("tabcontent");
       for (i = 0; i < tabcontent.length; i++) {
@@ -16,6 +17,7 @@ const defaultTag = () => {
 
       def.style.display = "block";
       defBtn.className += " active";
+    };
 };
 
 export {defaultTag};

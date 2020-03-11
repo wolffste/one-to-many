@@ -16,10 +16,12 @@
     <div class="site">
       <%= render 'shared/navbar' %>
       <%= render 'shared/flashes' %>
-        <div class="main">
-          <%= yield %>
+        <div class="otm-bg" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url('<%= cl_image_path("index-bg_flfv00", :opacity=>20, :height=>800, :crop=>"fill") %>')">
+          <div class="main">
+            <%= yield %>
+          </div>
         </div>
-      </div>
+    </div>
     <%= render 'shared/footer' %>
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>

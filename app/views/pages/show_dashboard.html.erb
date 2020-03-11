@@ -13,6 +13,7 @@
         <button id="bands-btn" class="tablinks col-sm-3">Bands</button>
       </div>
     </div>
+    <br>
     <div id="bookings" class="tabcontent">
       <% if  @bookings.count >= 1 %>
       <h3 class="mt-4">musicians I booked</h3>
@@ -137,7 +138,6 @@
 
 
     <div id="favorites" class="tabcontent">
-      <h1>favorites</h1>
           <%= render partial: 'favorites/index', favorites: @favorites %><%# reviews are visible %>
     </div>
     <div id="profile" class="tabcontent">

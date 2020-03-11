@@ -61,7 +61,7 @@
           <% if @reviews.count == 0 %>
             <p>has <strong>0</strong> reviews</p>
           <% elsif  @reviews.count == 1 %>
-            <p>has <strong>1</strong> review, rating: <strong> <%= review.rating%> </strong> </p>
+            <p>has <strong>1</strong> review, rating: <strong> <%= @delta.round(1) %> </strong> </p>
           <% elsif %>
             <p>has <strong><%= @reviews.count %></strong> reviews, average Rating: <strong> <%= @delta.round(1) %> </strong></p>
           <% else %>

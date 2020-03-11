@@ -63,7 +63,7 @@
       </div>
       <% if Time.now > booking.enddate + 1 %>
         <div class="container">
-          <p> your review for <%= musician.username %></p>
+          <p> write a review for <%= musician.username %>:</p>
           <%= simple_form_for([booking.user, Review.new]) do |f| %>
             <div class="row">
               <div class="col-9">

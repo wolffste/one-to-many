@@ -41,82 +41,132 @@
       </div>
     </div>
     <div class="col-xs-12 col-md-8 musician">
-      <div class="card-otm right h-100 d-flex flex-column justify-content-between">
-        <ul style="list-style-type: none;">
-          <li class="musician-name"><strong><%= @musician.username %></strong>
-            <% if @musician.birthday.present? %>
-            <% age = Date.today.year - @musician.birthday.year %>
-            (<%= age %>)
-            <% else %>
-          (99) </li>
-          <% end %>
-          <div>      <!---average rating counter--->
-            <% @reviews = @musician.reviews_received %>
-            <% @sum = 0.0 %>
-            <% @reviews.each do |review| %>
-              <% @sum += review.rating %>
-            <% end %>
-            <% @delta = @sum / @reviews.length %>
-          </div>      <!---average rating counter--->
-          <% if @reviews.count == 0 %>
-            <p>has <strong>0</strong> reviews</p>
-          <% elsif  @reviews.count == 1 %>
-            <p>has <strong>1</strong> review, rating: <strong> <%= @delta.round(1) %> </strong> </p>
-          <% elsif %>
-            <p>has <strong><%= @reviews.count %></strong> reviews, average Rating: <strong> <%= @delta.round(1) %> </strong></p>
-          <% else %>
-            <p>nothing to commit</p>
-          <% end %>
-
-
-          <li><strong>Genre:</strong> <%= @musician.genre.name %></li>
-          <li><strong>Instrument:</strong> <%= @musician.instrument.name %></li>
-          <li><strong>City:</strong> <%= @musician.city %></li>
-          <li><strong>Description: </strong></li>
-          <li><%= @musician.description %></li>
-          <!-- Favorite Star -->
-          <div class="show">
-          <% if !current_user %>
-            <%= form_for(@favorite) do |f| %>
-              <%= f.text_field :user %>
-              <%= f.text_field :musician %>
-              <%= button_tag( :class => "btn star") do %>
-                <i class="far fa-star" id="star"></i>
+      <div class="card-otm right h-100 d-flex flex-column justify-content-between align-rating-star">
+        <div class="row">
+          <div class="col-8">
+            <ul style="list-style-type: none;">
+              <li class="musician-name"><strong><%= @musician.username %></strong>
+                <% if @musician.birthday.present? %>
+                <% age = Date.today.year - @musician.birthday.year %>
+                (<%= age %>)
+                <% else %>
+              (99) </li>
               <% end %>
-            <% end %>
-          <% else %>
-            <%= form_for(@favorite) do |f| %>
-              <%= f.hidden_field :user_id, value: current_user.id %>
-              <%= f.hidden_field :musician_id, value: @musician.id %>
-              <% if (current_user.favorites.any? {|favorite| favorite.musician == @musician })%>
-                <%= button_tag( :class => "btn star") do %>
-                  <i class="far fa-star purple" id="star"></i>
+              <div>      <!---average rating counter--->
+                <% @reviews = @musician.reviews_received %>
+                <% @sum = 0.0 %>
+                <% @reviews.each do |review| %>
+                  <% @sum += review.rating %>
+                <% end %>
+                <% @delta = @sum / @reviews.length %>
+              </div>      <!---average rating counter--->
+
+              <li><strong>Genre:</strong> <%= @musician.genre.name %></li>
+              <li><strong>Instrument:</strong> <%= @musician.instrument.name %></li>
+              <li><strong>City:</strong> <%= @musician.city %></li>
+              <li><strong>Description: </strong></li>
+              <li><%= @musician.description %></li>
+              <!-- Favorite Star -->
+              <div class="show">
+              <% if !current_user %>
+                <%= form_for(@favorite) do |f| %>
+                  <%= f.text_field :user %>
+                  <%= f.text_field :musician %>
+                  <%= button_tag( :class => "btn star") do %>
+                    <i class="far fa-star" id="star"></i>
+                  <% end %>
                 <% end %>
               <% else %>
-                <%= button_tag( :class => "btn star") do %>
-                  <i class="far fa-star" id="star"></i>
+                <%= form_for(@favorite) do |f| %>
+                  <%= f.hidden_field :user_id, value: current_user.id %>
+                  <%= f.hidden_field :musician_id, value: @musician.id %>
+                  <% if (current_user.favorites.any? {|favorite| favorite.musician == @musician })%>
+                    <%= button_tag( :class => "btn star") do %>
+                      <i class="far fa-star purple" id="star"></i>
+                    <% end %>
+                  <% else %>
+                    <%= button_tag( :class => "btn star") do %>
+                      <i class="far fa-star" id="star"></i>
+                    <% end %>
+                  <% end %>
                 <% end %>
               <% end %>
-            <% end %>
-          <% end %>
+              </div>
+              <!-- Favorite Star -->
+            </ul>
+            <ul style="list-style-type: none;">
+              <li class="button-musician-show">
+                <%#= link_to 'Message', chat_rooms_path, method: :post, class: "btn btn-primary" %>
+                <%= link_to 'Book', new_musician_booking_path(@musician), class: "btn btn-primary" %>
+                <a class="btn btn-primary-outline back" href="#" onclick="history.go(-1)"> < BACK</a>
+              <a class="btn btn-primary-outline portfolio-link"  data-toggle="modal" href="#portfolioModal1">Show Reviews</a>
+              </li>
+              <!-- <a class="btn btn-primary portfolio-link portfolio-item"  data-toggle="modal" data-target="#reviewsModal">reviews</a> -->
+            </ul>
           </div>
-          <!-- Favorite Star -->
-        </ul>
-        <ul style="list-style-type: none;">
-          <li class="button-musician-show">
-            <%#= link_to 'Message', chat_rooms_path, method: :post, class: "btn btn-primary" %>
-            <%= link_to 'Book', new_musician_booking_path(@musician), class: "btn btn-primary" %>
-            <a class="btn btn-primary-outline back" href="#" onclick="history.go(-1)"> < BACK</a>
-          <a class="btn btn-primary-outline portfolio-link"  data-toggle="modal" href="#portfolioModal1">Show Reviews</a>
-          </li>
+          <div class="col-3">
+            <div class="rating-stars-class py-2">
+              <%if  @delta.round(0) == 0 %>
+                <i class="far fa-star" id="rating-star"></i>
+                <i class="far fa-star" id="rating-star"></i>
+                <i class="far fa-star" id="rating-star"></i>
+                <i class="far fa-star" id="rating-star"></i>
+                <i class="far fa-star" id="rating-star"></i>
+              <% end %>
+              <%if  @delta.round(0) == 1 %>
+                <i class="far fa-star purple" id="rating-star"></i>
+                <i class="far fa-star" id="rating-star"></i>
+                <i class="far fa-star" id="rating-star"></i>
+                <i class="far fa-star" id="rating-star"></i>
+                <i class="far fa-star" id="rating-star"></i>
+              <% end %>
+              <%if  @delta.round(0) == 2 %>
+                <i class="far fa-star purple" id="rating-star"></i>
+                <i class="far fa-star purple" id="rating-star"></i>
+                <i class="far fa-star" id="rating-star"></i>
+                <i class="far fa-star" id="rating-star"></i>
+                <i class="far fa-star" id="rating-star"></i>
+              <% end %>
+              <%if  @delta.round(0) == 3 %>
+                <i class="far fa-star purple" id="rating-star"></i>
+                <i class="far fa-star purple" id="rating-star"></i>
+                <i class="far fa-star purple" id="rating-star"></i>
+                <i class="far fa-star" id="rating-star"></i>
+                <i class="far fa-star" id="rating-star"></i>
+              <% end %>
+              <%if  @delta.round(0) == 4 %>
+                <i class="far fa-star purple" id="rating-star"></i>
+                <i class="far fa-star purple" id="rating-star"></i>
+                <i class="far fa-star purple" id="rating-star"></i>
+                <i class="far fa-star purple" id="rating-star"></i>
+                <i class="far fa-star" id="rating-star"></i>
+              <% end %>
+              <%if  @delta.round(0) == 5 %>
+                <i class="far fa-star purple" id="rating-star"></i>
+                <i class="far fa-star purple" id="rating-star"></i>
+                <i class="far fa-star purple" id="rating-star"></i>
+                <i class="far fa-star purple" id="rating-star"></i>
+                <i class="far fa-star purple" id="rating-star"></i>
+              <% end %>
+            </div>
 
-          <!-- <a class="btn btn-primary portfolio-link portfolio-item"  data-toggle="modal" data-target="#reviewsModal">reviews</a> -->
+            <div class="">
+              <% if @reviews.count == 0 %>
+                <p>has <strong>0</strong> reviews</p>
+              <% elsif  @reviews.count == 1 %>
+                <p>has <strong>1</strong> review</p>
+              <% elsif %>
+                <p>has <strong><%= @reviews.count %></strong> reviews</p>
+              <% else %>
+                <p>nothing to commit</p>
+              <% end %>
+            </div>
+          </div>
+        </div>
 
-        </ul>
       </div>
     </div>
   </div>
-
    <!-- Media Part -->
   <h1 class="media-h1">MEDIA</h1>
   <div class="row mt-4">

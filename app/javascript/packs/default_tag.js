@@ -1,6 +1,5 @@
 const defaultTag = () => {
 
-  //const defaultOpen = document.getElementById('defaultOpen');
   const def = document.getElementById('bookings');
   const defBtn = document.getElementById('bookings-btn');
 

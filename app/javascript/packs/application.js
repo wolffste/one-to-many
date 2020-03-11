@@ -12,4 +12,6 @@ favorite();
 favorite_index();
 openTag();
 defaultTag();
+hideReviewForm();
+
 

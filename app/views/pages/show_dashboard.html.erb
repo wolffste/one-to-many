@@ -6,11 +6,17 @@
 
 <div Class="container">
   <div class="tab">
-    <button class="tablinks" onclick="openTag(event, 'Profile')">Profile</button>
-    <button class="tablinks" onclick="openTag(event, 'Bookings')" id="defaultOpen">Bookings</button>
-    <button class="tablinks" onclick="openTag(event, 'Bands')">Bands</button>
+    <button id="profile-btn" class="tablinks">Profile</button>
+    <button id="bookings-btn" class="tablinks" >Bookings</button>
+    <button id="bands-btn" class="tablinks">Bands</button>
+    <button id="favorites-btn" class="tablinks">Favorites</button>
+<!--<button id="profile" class="tablinks" onclick="openTag(event, 'Profile')">Profile</button>
+    <button id="bookings" class="tablinks" onclick="openTag(event, 'Bookings')" id="defaultOpen">Bookings</button>
+    <button id="bands" class="tablinks" onclick="openTag(event, 'Bands')">Bands</button>
+    <button id="favorites" class="tablinks" onclick="openTag(event, 'Favorites')">Favorites</button>
+ -->
   </div>
-  <div id="Profile" class="tabcontent">
+  <div id="profile" class="tabcontent">
     <div class="row">
       <div class="col-xs-12 col-md-4">
         <div class="card-otm">
@@ -41,7 +47,7 @@
       </div>
     </div>
   </div>
-  <div id="Bookings" class="tabcontent">
+  <div id="bookings" class="tabcontent">
     <% if  @bookings.count >= 1 %>
     <h1 class="mt-4">I booked other musicians ACTIVE</h1>
     <% end %>
@@ -167,7 +173,7 @@
       </div>
     <%end%>
   </div>
-  <div id="Bands" class="tabcontent">
+  <div id="bands" class="tabcontent">
     <% @bands.each do |band| %>
     <div class= "card-otm mt-3 p-3">
       <div class= "row">
@@ -191,6 +197,11 @@
       </div>
     </div>
     <%end%>
+  </div>
+  <div id="favorites" class="tabcontent">
+    <h1>favorites</h1>
+        <%= render partial: 'favorites/index', favorites: @favorites %><%# reviews are visible %>
+
   </div>
 </div>
 

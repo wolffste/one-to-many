@@ -6,8 +6,8 @@
 }
 .starindex{
     position: absolute;
-    top: 30px;
-    right: 22px;
+    bottom: 65px;
+    right: 19px;
     width: 40px;
     textarea:hover,
     input:hover,
@@ -122,9 +122,8 @@ li.musician-name{
   position: relative;
   width: 100%;
   min-height: 373px;
-  border-radius: 4px;
   margin-bottom: 25px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  box-shadow: 0 0 4px rgba(0,0,0,0.2);
   background: white;
 }
 

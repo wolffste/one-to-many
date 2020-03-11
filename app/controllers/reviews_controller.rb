@@ -1,5 +1,8 @@
 class ReviewsController < ApplicationController
 
+
+
+
   def create
     @writer = current_user
     @reciever = User.find(params[:user_id])

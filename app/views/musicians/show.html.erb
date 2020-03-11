@@ -49,6 +49,15 @@
             <% else %>
           (99) </li>
           <% end %>
+          <div>      <!---average rating counter--->
+            <% @reviews = @musician.reviews_received %>
+            <% @sum = 0.0 %>
+            <% @reviews.each do |review| %>
+              <% @sum += review.rating %>
+            <% end %>
+            <% @delta = @sum / @reviews.length %>
+          </div>      <!---average rating counter--->
+          <p> has <strong><%= @reviews.count %></strong> reviews, average Rating: <strong> <%= @delta.round(1) %> </strong></p>
           <li><strong>Genre:</strong> <%= @musician.genre.name %></li>
           <li><strong>Instrument:</strong> <%= @musician.instrument.name %></li>
           <li><strong>City:</strong> <%= @musician.city %></li>
@@ -86,11 +95,12 @@
             <%= link_to 'Book', new_musician_booking_path(@musician), class: "btn btn-primary" %>
             <a class="btn btn-primary-outline" href="#" onclick="history.go(-1)">Go Back</a>
           </li>
-          <a class="btn btn-primary portfolio-link portfolio-item"  data-toggle="modal" data-target="#reviewsModal">reviews</a>
+          <!-- <a class="btn btn-primary portfolio-link portfolio-item"  data-toggle="modal" data-target="#reviewsModal">reviews</a> -->
         </ul>
       </div>
     </div>
   </div>
+
   <div class="row mt-4">
     <div class="col-xs-12 col-md-6 portfolio-item">
       <div class="card-otm left h-100 d-flex justify-content-between p-0">
@@ -116,7 +126,7 @@
 
   <!------------------------- MODAL ----------------------->
 
-  <div class="portfolio-modal modal fade" id="reviewsModal" tabindex="-1" role="dialog" aria-hidden="true">
+ <!--  <div class="portfolio-modal modal fade" id="reviewsModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="close-modal" data-dismiss="modal">
@@ -147,6 +157,26 @@
         </div>
       </div>
     </div>
+  </div> -->
+
+  <div>
+    <p><strong> reviews:</strong></p>
+    <% @reviews = @musician.reviews_received %>
+    <% @sum = 0.0 %>
+    <% @reviews.each do |review| %>
+      <div class="card">
+        <div class="row">
+          <div class="col-10">
+            <p><%= review.content %></p>
+          </div>
+          <div class="col-2">
+            <p>rating: <%= review.rating %></p>
+            <% @sum += review.rating %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <% @delta = @sum / @reviews.length %>
   </div>
 </div>
 

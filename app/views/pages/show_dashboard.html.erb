@@ -14,10 +14,10 @@
   </div>
   <div id="bookings" class="tabcontent">
     <% if  @bookings.count >= 1 %>
-    <h1 class="mt-4">I booked other musicians ACTIVE</h1>
+    <h3 class="mt-4">musicians I booked</h3>
     <% end %>
     <% @bookings.each do |booking| %>    <!----------ACTIVE BOOKINGS----------->
-      <div class= "card-otm mb-3 p-3">
+      <div class= "card mb-3 p-3">
         <div class= "row">
           <div class= "col-xs-6 col-md-4" style="list-style-type: none;">
             <% musician = User.find_by(id: booking.user_id) %>
@@ -51,17 +51,37 @@
                 <% elsif booking.status == 3 %>
                 <li>Comfirmation-status: declined</li>
                 <li><%= link_to 'delete', booking, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-warning"%></li>
-                <% end %>
+
                 <li><%= link_to 'Delete', booking, method: :delete, data: { confirm: 'Are you sure?' }%></li>
-                <% if Time.now > booking.enddate + 1 %>
-                <a class="btn btn-primary portfolio-link portfolio-item"  data-toggle="modal" href="#portfolioModal1">write a review</a>
+
+                <!-- <a class="btn btn-primary portfolio-link portfolio-item"  data-toggle="modal" href="#portfolioModal1">write a review</a> -->
                 <% end %>
               </ul>
             </div>
           </div>
         </div>
       </div>
-      <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+      <% if Time.now > booking.enddate + 1 %>
+        <div class="container">
+          <p> your review for <%= musician.username %></p>
+          <%= simple_form_for([booking.user, Review.new]) do |f| %>
+            <div class="row">
+              <div class="col-9">
+                <%= f.input :content %>
+              </div>
+              <div class="col">
+                <%= f.input :rating, collection: [0, 1, 2, 3, 4, 5] %>
+              </div>
+              <div class="col">
+                <%= f.submit "submit", class: "btn btn-primary" %>
+              </div>
+            </div>
+
+          <% end %>
+        </div>
+      <% end %>
+
+<!--       <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
@@ -89,16 +109,16 @@
               </div>
             </div>
           </div>
-        </div><!------------------------- MODAL ----------------------->
-      </div>
+        </div>
+      </div> -->
     <%end%>
 
 
     <% if @bookings_passive.count >= 1 %>
-    <h1 class="mt-4">i'am booked by other bands PASSIVE</h1>
+    <h3 class="mt-4">These Bands booked me:</h3>
     <% end %>
     <% @bookings_passive.each.with_index do |booking, index| %><!------------ PASSIVE BOOKINGS ----------------->
-      <div class= "card-otm mb-3 p-3">
+      <div class= "card card-otm mb-3 p-3">
         <div class= "row">
           <div class= "col-xs-6 col-md-4" style="list-style-type: none;">.
             <% musician = User.find_by(id: booking.user_id) %>

@@ -1,5 +1,14 @@
 body
 
+.card-review {
+  // overflow: hidden;
+  height: 120px;
+  background: white;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  //display: flex;
+  padding: 15px;
+  // align-items: center;
+}
 
 /* Style the tab */
 .tab {

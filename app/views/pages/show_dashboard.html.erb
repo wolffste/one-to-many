@@ -61,10 +61,8 @@
           </div>
         </div>
       </div>
-      <% if Time.now > booking.enddate + 1  && (current_user.reviews_written.where(receiver_id: booking.user_id).empty?)
-%>
-
-          <div id="hide-review-form">
+      <% if Time.now > booking.enddate + 1  && (current_user.reviews_written.where(receiver_id: booking.user_id).empty?)%>
+          <div>
             <p> write a review for <%= musician.username %>:</p>
             <%= simple_form_for([booking.user, Review.new]) do |f| %>
               <div class="row">
@@ -75,19 +73,13 @@
                   <%= f.input :rating, collection: [0, 1, 2, 3, 4, 5] %>
                 </div>
                 <div class="col">
-                 <p id="hide-review-btn"><%= f.submit "submit",  class: "btn btn-primary" %></p>
+                 <%= f.submit "submit",  class: "btn btn-primary" %>
                 </div>
               </div>
-
             <% end %>
           </div>
-
       <% end %>
-
-
     <%end%>
-
-
     <% if @bookings_passive.count >= 1 %>
     <h3 class="mt-4">These Bands booked me:</h3>
     <% end %>

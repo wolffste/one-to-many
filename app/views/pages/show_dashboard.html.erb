@@ -3,48 +3,13 @@
     <h1>Overview</h1>
   </div>
 </div>
-
 <div Class="container">
   <div class="tab">
-    <button id="profile-btn" class="tablinks">Profile</button>
-    <button id="bookings-btn" class="tablinks" >Bookings</button>
-    <button id="bands-btn" class="tablinks">Bands</button>
-    <button id="favorites-btn" class="tablinks">Favorites</button>
-<!--<button id="profile" class="tablinks" onclick="openTag(event, 'Profile')">Profile</button>
-    <button id="bookings" class="tablinks" onclick="openTag(event, 'Bookings')" id="defaultOpen">Bookings</button>
-    <button id="bands" class="tablinks" onclick="openTag(event, 'Bands')">Bands</button>
-    <button id="favorites" class="tablinks" onclick="openTag(event, 'Favorites')">Favorites</button>
- -->
-  </div>
-  <div id="profile" class="tabcontent">
-    <div class="row">
-      <div class="col-xs-12 col-md-4">
-        <div class="card-otm">
-          <% if current_user.photos.attached? %>
-            <div class="musician-featured-image" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url('<%= cl_image_path current_user.photos[0].key, height: 400, crop: :fill, :gravity=>"faces" %>')"></div>
-          <% else %>
-            <div class="musician-featured-image" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url('<%= cl_image_path("a6fac407-95ce-4d45-b360-8330205ce210_l_svdjab", height: 400, crop: :fill, :gravity=>"faces") %>')"></div>
-          <% end %>
-        </div>
-      </div>
-      <div class="col-xs-12 col-md-8">
-        <div class="card-otm h-100">
-          <ul style="list-style-type: none;">
-            <li>username: <strong><%= @user.username %></strong></li>
-            <li>e-mail: <strong><%= @user.email %></strong></li>
-            <li>city: <strong><%= @user.city %></strong></li>
-            <li>date of birth: <strong><%= @user.birthday %></strong></li>
-            <li>description: <strong><%= @user.description %></strong></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="row mt-4">
-      <div class="col-12">
-        <div class="card-otm">
-          <h1>dsfggd</h1>
-        </div>
-      </div>
+    <div class="raw">
+      <button id="bookings-btn" class="tablinks col-sm-3" >Bookings</button>
+      <button id="favorites-btn" class="tablinks col-sm-3">Favorites</button>
+      <button id="profile-btn" class="tablinks col-sm-3">Profile</button>
+      <button id="bands-btn" class="tablinks col-sm-3">Bands</button>
     </div>
   </div>
   <div id="bookings" class="tabcontent">
@@ -173,6 +138,41 @@
       </div>
     <%end%>
   </div>
+  <div id="favorites" class="tabcontent">
+    <h1>favorites</h1>
+        <%= render partial: 'favorites/index', favorites: @favorites %><%# reviews are visible %>
+  </div>
+  <div id="profile" class="tabcontent">
+    <div class="row">
+      <div class="col-xs-12 col-md-4">
+        <div class="card-otm">
+          <% if current_user.photos.attached? %>
+            <div class="musician-featured-image" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url('<%= cl_image_path current_user.photos[0].key, height: 400, crop: :fill, :gravity=>"faces" %>')"></div>
+          <% else %>
+            <div class="musician-featured-image" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url('<%= cl_image_path("a6fac407-95ce-4d45-b360-8330205ce210_l_svdjab", height: 400, crop: :fill, :gravity=>"faces") %>')"></div>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-8">
+        <div class="card-otm h-100">
+          <ul style="list-style-type: none;">
+            <li>username: <strong><%= @user.username %></strong></li>
+            <li>e-mail: <strong><%= @user.email %></strong></li>
+            <li>city: <strong><%= @user.city %></strong></li>
+            <li>date of birth: <strong><%= @user.birthday %></strong></li>
+            <li>description: <strong><%= @user.description %></strong></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-12">
+        <div class="card-otm">
+          <h1>dsfggd</h1>
+        </div>
+      </div>
+    </div>
+  </div>
   <div id="bands" class="tabcontent">
     <% @bands.each do |band| %>
     <div class= "card-otm mt-3 p-3">
@@ -197,11 +197,6 @@
       </div>
     </div>
     <%end%>
-  </div>
-  <div id="favorites" class="tabcontent">
-    <h1>favorites</h1>
-        <%= render partial: 'favorites/index', favorites: @favorites %><%# reviews are visible %>
-
   </div>
 </div>
 

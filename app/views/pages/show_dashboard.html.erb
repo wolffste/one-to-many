@@ -61,56 +61,30 @@
           </div>
         </div>
       </div>
-      <% if Time.now > booking.enddate + 1 %>
-        <div class="container">
-          <p> your review for <%= musician.username %></p>
-          <%= simple_form_for([booking.user, Review.new]) do |f| %>
-            <div class="row">
-              <div class="col-9">
-                <%= f.input :content %>
-              </div>
-              <div class="col">
-                <%= f.input :rating, collection: [0, 1, 2, 3, 4, 5] %>
-              </div>
-              <div class="col">
-                <%= f.submit "submit", class: "btn btn-primary" %>
-              </div>
-            </div>
+      <% if Time.now > booking.enddate + 1  && (current_user.reviews_written.where(receiver_id: booking.user_id).empty?)
+%>
 
-          <% end %>
-        </div>
-      <% end %>
-
-<!--       <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-              <div class="lr">
-                <div class="rl"></div>
-              </div>
-            </div>
-            <div class="container">
+          <div id="hide-review-form">
+            <p> write a review for <%= musician.username %>:</p>
+            <%= simple_form_for([booking.user, Review.new]) do |f| %>
               <div class="row">
-                <div class="col-lg-8 mx-auto">
-                  <div class="modal-body">
-                    <div class="container">
-                      <p> your review for <%= musician.username %></p>
-                      <%= simple_form_for([booking.user, Review.new]) do |f| %>
-                      <%= f.input :content %>
-                      <%= f.input :rating, collection: [0, 1, 2, 3, 4, 5] %>
-                      <%= f.submit "submit", class: "btn btn-primary" %>
-                      <% end %>
-                      <button class="btn btn-primary" data-dismiss="modal" type="button">
-                        <i class="fas fa-times"></i>
-                      Back to overview</button>
-                    </div>
-                  </div>
+                <div class="col-9">
+                  <%= f.input :content %>
+                </div>
+                <div class="col">
+                  <%= f.input :rating, collection: [0, 1, 2, 3, 4, 5] %>
+                </div>
+                <div class="col">
+                 <p id="hide-review-btn"><%= f.submit "submit",  class: "btn btn-primary" %></p>
                 </div>
               </div>
-            </div>
+
+            <% end %>
           </div>
-        </div>
-      </div> -->
+
+      <% end %>
+
+
     <%end%>
 
 
@@ -158,6 +132,8 @@
       </div>
     <%end%>
   </div>
+
+
   <div id="favorites" class="tabcontent">
     <h1>favorites</h1>
         <%= render partial: 'favorites/index', favorites: @favorites %><%# reviews are visible %>

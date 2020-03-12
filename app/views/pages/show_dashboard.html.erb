@@ -105,9 +105,9 @@
                 <li class= "mb-3"><strong>Booking Request From:</strong> <%=booking.band.name%></li>
                 <% end %>
                 <%if booking.status == 2%>
-                <li class= "mb-3">you are booked for: <strong><%=booking.band.name%></strong></li>
+                <li class= "mb-3">Booked for <strong><%=booking.band.name%></strong></li>
                 <% end %>
-                <li><strong>Tour Dates:</strong> <%= booking.startdate.day %>.<%= booking.startdate.month %>.<%= booking.startdate.year %> ― <%= booking.enddate.day %>.<%= booking.enddate.month %>.<%= booking.enddate.year %></li>
+                <li><strong><i class="fas fa-bus mr-2"></i></strong> <%= booking.startdate.day %>.<%= booking.startdate.month %>.<%= booking.startdate.year %> ― <%= booking.enddate.day %>.<%= booking.enddate.month %>.<%= booking.enddate.year %></li>
                 <% if booking.status == 1 %>
                   <li id='change-<%= index %>'class="change">Confirmation Status <i class="fas fa-circle yellow"></i> Pending</li>
                   <ul class="nav-bok">

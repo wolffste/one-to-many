@@ -7,9 +7,9 @@
 
   <div class="text-center">
     <% if params[:search].present? == false || params[:search][:genre] == "" && params[:search][:instrument] == "" %>
-    <h1>Check out these <span class="higlighted"> <%= @musicians.count %> </span> musicians</h1>
+      <h1>Check out these 1.286 artists!</h1>
     <% else %>
-    <h1>We found some cool artists for you!</h1>
+      <h1>Check out these <span class="higlighted"> <%= @musicians.count %> </span> artists!</h1>
     <% end %>
   </div>
 

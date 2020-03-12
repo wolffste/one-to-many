@@ -65,42 +65,42 @@
                 <% @delta = @sum / @reviews.length %>
               </div>
               <div class="rating-stars-class py-2">
-                <%if  @delta.round(0) == 0 %>
+                <%if  @delta.nan? || @delta.round(0).zero?  %>
                   <i class="far fa-star" id="rating-star"></i>
                   <i class="far fa-star" id="rating-star"></i>
                   <i class="far fa-star" id="rating-star"></i>
                   <i class="far fa-star" id="rating-star"></i>
                   <i class="far fa-star" id="rating-star"></i>
-                <% end %>
-                <%if  @delta.round(0) == 1 %>
+
+                <%elsif  @delta.round(0) == 1 %>
                   <i class="fa fa-star" id="rating-star"></i>
                   <i class="far fa-star" id="rating-star"></i>
                   <i class="far fa-star" id="rating-star"></i>
                   <i class="far fa-star" id="rating-star"></i>
                   <i class="far fa-star" id="rating-star"></i>
-                <% end %>
-                <%if  @delta.round(0) == 2 %>
+
+                <%elsif  @delta.round(0) == 2 %>
                   <i class="fa fa-star" id="rating-star"></i>
                   <i class="fa fa-star" id="rating-star"></i>
                   <i class="far fa-star" id="rating-star"></i>
                   <i class="far fa-star" id="rating-star"></i>
                   <i class="far fa-star" id="rating-star"></i>
-                <% end %>
-                <%if  @delta.round(0) == 3 %>
+
+                <%elsif  @delta.round(0) == 3 %>
                   <i class="fa fa-star" id="rating-star"></i>
                   <i class="fa fa-star" id="rating-star"></i>
                   <i class="fa fa-star" id="rating-star"></i>
                   <i class="far fa-star" id="rating-star"></i>
                   <i class="far fa-star" id="rating-star"></i>
-                <% end %>
-                <%if  @delta.round(0) == 4 %>
+
+                <%elsif  @delta.round(0) == 4 %>
                   <i class="fa fa-star" id="rating-star"></i>
                   <i class="fa fa-star" id="rating-star"></i>
                   <i class="fa fa-star" id="rating-star"></i>
                   <i class="fa fa-star" id="rating-star"></i>
                   <i class="far fa-star" id="rating-star"></i>
-                <% end %>
-                <%if  @delta.round(0) == 5 %>
+
+                <%else%>
                   <i class="fa fa-star" id="rating-star"></i>
                   <i class="fa fa-star" id="rating-star"></i>
                   <i class="fa fa-star" id="rating-star"></i>
@@ -166,8 +166,6 @@
               <a class="btn btn-primary-outline back" href="#" onclick="history.go(-1)"> < BACK</a>
             <a class="btn btn-primary-outline portfolio-link"  data-toggle="modal" href="#portfolioModal1">Show Reviews</a>
             </li>
-
-            <!-- <a class="btn btn-primary portfolio-link portfolio-item"  data-toggle="modal" data-target="#reviewsModal">reviews</a> -->
           </ul>
         </div>
       </div>
@@ -202,25 +200,48 @@
      <!-- End of Media Part -->
 
 
-
-    <div class="findDelta">
-      <p><strong> reviews:</strong></p>
-      <% @reviews = @musician.reviews_received %>
-      <% @sum = 0.0 %>
-      <% @reviews.each do |review| %>
-        <div class="card-review m-2">
-          <div class="row">
-            <div class="col-10">
-              <p><%= review.content %></p>
+<div class="container">
+  <div class="row">
+    <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="close-modal" data-dismiss="modal">
+            <div class="lr">
+              <div class="rl"></div>
             </div>
-            <div class="col-2">
-              <p>rating: <%= review.rating %></p>
-              <% @sum += review.rating %>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-8 mx-auto">
+                <div class="modal-body">
+                    <p><strong> reviews:</strong></p>
+                    <% @reviews = @musician.reviews_received %>
+                    <% @sum = 0.0 %>
+                    <% @reviews.each do |review| %>
+                      <div class="card-review mb-2">
+                        <div class="row">
+                          <div class="col-10">
+                            <p><%= review.content %></p>
+                          </div>
+                          <div class="col-2">
+                            <p>rating: <%= review.rating %></p>
+                            <% @sum += review.rating %>
+                          </div>
+                        </div>
+                      </div>
+                    <% end %>
+                    <% @delta = @sum / @reviews.length %>
+
+                  <button class="btn btn-primary" data-dismiss="modal" type="button">
+                    <i class="fas fa-times"></i>
+                    Back to overview</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      <% end %>
-      <% @delta = @sum / @reviews.length %>
+      </div>
     </div>
   </div>
 </div>
+

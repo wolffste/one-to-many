@@ -195,8 +195,8 @@
             <div class="card-otm">
               <ul style="list-style-type: none;">
                 <li><h3><strong><%= band.name %></strong></h3></li>
+                <li><i class="fas fa-music mr-3 "></i> <%= band.genre.name %></li>
                 <li><strong><%= band.description %></strong></li>
-                <li><strong><%= band.genre.name %></strong></li>
                 <%= link_to "Edit", edit_band_path(band), class: "btn btn-primary" %>
                 <%= link_to 'Delete', band, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary-outline"%>
               </ul>

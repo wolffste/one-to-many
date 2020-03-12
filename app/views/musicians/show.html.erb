@@ -46,12 +46,6 @@
             <div class="col-8">
               <ul style="list-style-type: none;">
                 <li class="musician-name"><strong><%= @musician.username %></strong>
-                  <% if @musician.birthday.present? %>
-                  <% age = Date.today.year - @musician.birthday.year %>
-                  (<%= age %>)
-                  <% else %>
-                  (99)
-                  <% end %>
                 </li>
               </ul>
             </div>

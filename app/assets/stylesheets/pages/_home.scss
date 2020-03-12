@@ -82,7 +82,7 @@ header.masthead .intro-text .intro-heading {
   text-transform: none;
 }
 
-.portfolio-item {
+#portfolio .portfolio-item {
   right: 0;
   margin: 0 0 15px;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
@@ -105,6 +105,7 @@ header.masthead .intro-text .intro-heading {
   background: rgba(247,179,43, 0.9);
 }
 
+
 #portfolio .portfolio-item .portfolio-link .portfolio-hover:hover {
   opacity: 1;
 }
@@ -119,6 +120,7 @@ header.masthead .intro-text .intro-heading {
   text-align: center;
   color: white;
 }
+
 
 #portfolio .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content i {
   margin-top: -12px;
@@ -153,7 +155,6 @@ header.masthead .intro-text .intro-heading {
 
 #portfolio * {
   z-index: 2;
-  background-color: white;
 }
 
 @media (min-width: 767px) {
@@ -164,8 +165,7 @@ header.masthead .intro-text .intro-heading {
 
 .portfolio-modal .modal-dialog {
   margin: 1rem;
-  max-width: 70vw;
-  align-items: center;
+  max-width: 100vw;
 }
 
 .portfolio-modal .modal-content {

@@ -48,7 +48,14 @@
           <div class="row">
             <div class="col-8">
               <ul style="list-style-type: none;">
-                <li class="musician-name"><strong><%= @musician.username %></strong></li>
+                <li class="musician-name"><strong><%= @musician.username %></strong>
+                  <% if @musician.birthday.present? %>
+                  <% age = Date.today.year - @musician.birthday.year %>
+                  (<%= age %>)
+                  <% else %>
+                  (99)
+                  <% end %>
+                </li>
               </ul>
             </div>
             <div class="col-4">
@@ -122,12 +129,10 @@
 
           <ul style="list-style-type: none;">
 
-            <div class="flexbox">
-              <li><i class="fas fa-music"></i> <%= @musician.instrument.name.capitalize %> (<%= @musician.genre.name.capitalize %>)</li>
-              <li><i class="fas fa-map-marker-alt"></i> <%= @musician.city %></li>
-              <li><i class="fas fa-euro-sign"></i>  <%= @musician.fee %> per day</li>
-            s</div>
-            <br>
+            <li><strong>Genre</strong> <%= @musician.genre.name %></li>
+            <li><strong>Instrument</strong> <%= @musician.instrument.name %></li>
+            <li><strong>City</strong> <%= @musician.city %></li>
+            <li><strong>Fee per day</strong> <%= @musician.fee %></li>
             <li><strong>Description </strong></li>
             <li><%= @musician.description %></li>
             <!-- Favorite Star -->
@@ -222,7 +227,7 @@
                           <div class="col-10">
                             <p><%= review.content %></p>
                           </div>
-                          <div class="col-2">
+                          <div class="col-2 px-2">
                             <p>rating: <%= review.rating %></p>
                             <% @sum += review.rating %>
                           </div>

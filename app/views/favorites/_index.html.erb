@@ -18,14 +18,9 @@
       <div class="card-product-infos">
         <% @musician = User.find(favorite.musician_id) %>
         <h3><%= @musician.username %></h3>
-        <% if @musician.birthday.present? %>
-        <% age = Date.today.year - @musician.birthday.year %>
-        <p><strong>Age: </strong> <%= age %></p>
-        <% else %>
-        <p><strong>Age: </strong> 99 </p>
-        <% end %>
+        <p><strong><i class="fas fa-map-marker-alt mr-3"></i></strong><%= @musician.city %></p>
+        <p><strong><i class="fas fa-euro-sign mr-3"></i></strong><%= @musician.fee %> per day</p>
         <p><strong>Description: </strong><%= @musician.description %></p>
-        <p><strong>City: </strong><%= @musician.city %></p>
         <%= link_to "Back to overview", musicians_path, class: "btn btn-primary" %>
         <%= link_to " 🗑 Delete from favorites", favorite_path(favorite), method: :delete, class: "btn btn-primary-outline" %>
       </div>

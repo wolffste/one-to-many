@@ -1,4 +1,7 @@
 <div class="main bg-image" style="background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.43), rgba(255, 255, 255, 0.96), rgb(255, 255, 255)), url('<%= cl_image_path("banner-otm_tuakfl", :height=>800, :width=>1440) %>');">
+              <a href="#" onclick="history.go(-1)">
+                <i class="fas fa-arrow-circle-left"></i>
+              </a>
     <div class="text-center">
       <h1>Let's introduce the great musician <span class="higlighted"> <%= @musician.username %> </span> </h1>
     </div>
@@ -159,7 +162,7 @@
             <li class="button-musician-show">
               <%#= link_to 'Message', chat_rooms_path, method: :post, class: "btn btn-primary" %>
               <%= link_to 'Book', new_musician_booking_path(@musician), class: "btn btn-primary" %>
-              <a class="btn btn-primary-outline back" href="#" onclick="history.go(-1)"> < BACK</a>
+
             <a class="btn btn-primary-outline portfolio-link"  data-toggle="modal" href="#portfolioModal1">Show Reviews</a>
             </li>
           </ul>

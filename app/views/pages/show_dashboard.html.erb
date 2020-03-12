@@ -44,17 +44,17 @@
                   <% if booking.status == 2 %>
                   <li class= "mb-3"><h3><%=musician.username%></h3></li>
                   <% end %>
-                  <li><strong>For band:</strong> <%= booking.band.name %></li>
-                  <li><strong>Tour Dates:</strong> <%= booking.startdate.day %>.<%= booking.startdate.month %>.<%= booking.startdate.year %> - <%= booking.enddate.day %>.<%= booking.enddate.month %>.<%= booking.enddate.year %></li>
+                  <li><strong>For band</strong> <%= booking.band.name %></li>
+                  <li><strong><i class="fas fa-bus mr-2"></i></strong> <%= booking.startdate.day %>.<%= booking.startdate.month %>.<%= booking.startdate.year %> - <%= booking.enddate.day %>.<%= booking.enddate.month %>.<%= booking.enddate.year %></li>
                   <% if booking.status == 1 %>
-                  <li>Comfirmation-status: <i class="fas fa-circle yellow"></i> pending</li>
+                  <li><i class="fas fa-circle yellow mr-2"></i>Confirmation Status pending</li>
                   <li><%= link_to 'delete', booking, method: :delete, data: { confirm: 'Are you sure?' }%></li>
                   <li><%#= link_to 'cancel', booking, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-warning"%></li>
                   <% elsif booking.status == 2 %>
-                  <li>Comfirmation-status: <i class="fas fa-circle green"></i> booked</li>
+                  <li><i class="fas fa-circle green mr-2"></i>Confirmation Status booked</li>
                   <li><%= link_to 'delete', booking, method: :delete, data: { confirm: 'Are you sure?' }%></li>
                   <% elsif booking.status == 3 %>
-                  <li>Confirmation Status: <i class="fas fa-circle red"></i> declined</li>
+                  <li><i class="fas fa-circle red mr-2"></i>Confirmation Status declined</li>
                   <li><%= link_to 'delete', booking, method: :delete, class: "btn btn-outline-warning"%></li>
 
 
@@ -109,16 +109,16 @@
                 <% end %>
                 <li><strong>Tour Dates:</strong> <%= booking.startdate.day %>.<%= booking.startdate.month %>.<%= booking.startdate.year %> - <%= booking.enddate.day %>.<%= booking.enddate.month %>.<%= booking.enddate.year %></li>
                 <% if booking.status == 1 %>
-                  <li id='change-<%= index %>'class="change">Confirmation status: <i class="fas fa-circle yellow"></i> Pending</li>
+                  <li id='change-<%= index %>'class="change">Confirmation Status <i class="fas fa-circle yellow"></i> Pending</li>
                   <ul class="nav-bok">
                     <li id='confirm-<%= index %>' class="hideConfirm" data-card-index='<%= index %>' class="hide"><%= link_to 'confirm', booking_path(booking, status: :confirm), method: :patch, remote: true, class: "btn btn-primary"%></li>
                     <li id ='decline-<%= index %>' class="hideDecline" data-card-index='<%= index %>' class="hide"><%= link_to 'decline', booking_path(booking, status: :decline), method: :patch, remote: true, class: "btn btn-primary-outline px-3"%></li>
                   </ul>
 
                   <% elsif booking.status == 2 %>
-                    <li class="hide">Confirmation Status: <i class="fas fa-circle green"></i> Booked</li>
+                    <li class="hide">Confirmation Status <i class="fas fa-circle green"></i> Booked</li>
                   <% elsif booking.status == 3 %>
-                    <li>Confirmation-status: <i class="fas fa-circle red"></i> Declined</li>
+                    <li>Confirmation Status <i class="fas fa-circle red"></i> Declined</li>
                   <%end%>
                   <li><%= link_to 'Delete', booking, method: :delete%></li>
                 </ul>
@@ -157,9 +157,9 @@
           <div class="card-otm h-100">
             <ul style="list-style-type: none;">
               <li><h3 ><%= @user.username %></h3></li>
-              <li><strong>Email: </strong><%= @user.email %></li>
-              <li><strong>City: </strong><%= @user.city %></li>
-              <li><strong>Date of birth: </strong><%= @user.birthday %></li>
+              <li><strong><i class="far fa-envelope mr-3"></i></strong><%= @user.email %></li>
+              <li><strong><i class="fas fa-map-marker-alt mr-3"></i></strong><%= @user.city %></li>
+              <li><strong><i class="fas fa-birthday-cake mr-3"></i></strong><%= @user.birthday %></li>
               <li><strong>Description: </strong><%= @user.description %></li>
             </ul>
           </div>

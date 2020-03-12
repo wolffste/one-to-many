@@ -5,7 +5,7 @@
   <div class="row favorite">
     <div class="col-xs-12 col-md-4">
       <%= link_to musician_path(favorite.musician.id), :action => 'go' do %>
-        <div class="card-product favorite">
+        <div class="card-product favorite favorite-shaddow">
           <% if favorite.musician.photos.attached? %>
             <%= cl_image_tag favorite.musician.photos[0].key, height: 230 %>
           <% else %>
@@ -14,7 +14,7 @@
         </div>
       <% end %>
     </div>
-    <div class="col-xs-12 col-md-8 favorite">
+    <div class="col-xs-12 col-md-8 favorite favorite-shaddow">
       <div class="card-product-infos">
         <% @musician = User.find(favorite.musician_id) %>
         <h3><%= @musician.username %></h3>

@@ -46,9 +46,11 @@
                   <li>End: <strong><%= booking.enddate %></strong></li>
                   <% if booking.status == 1 %>
                   <li>Comfirmation-status: pending</li>
+                  <li><%= link_to 'delete', booking, method: :delete, data: { confirm: 'Are you sure?' }%></li>
                   <li><%#= link_to 'cancel', booking, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-warning"%></li>
                   <% elsif booking.status == 2 %>
                   <li>Comfirmation-status: booked</li>
+                  <li><%= link_to 'delete', booking, method: :delete, data: { confirm: 'Are you sure?' }%></li>
                   <% elsif booking.status == 3 %>
                   <li>Comfirmation-status: declined</li>
                   <li><%= link_to 'delete', booking, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-warning"%></li>

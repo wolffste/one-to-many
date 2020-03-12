@@ -76,7 +76,7 @@
                     <%= f.input :rating, collection: [0, 1, 2, 3, 4, 5] %>
                   </div>
                   <div class="col">
-                   <%= f.submit "submit",  class: "btn btn-primary" %>
+                   <%= f.submit "submit", class: "btn btn-primary" %>
                   </div>
                 </div>
               <% end %>
@@ -111,15 +111,15 @@
                 <li>End: <strong><%= booking.enddate %></strong></li>
                 <p>test index : <%= index %></p>
                 <% if booking.status == 1 %>
-                <li id='change-<%= index %>'class="change">confirmation status: Pending</li>
-                <li id='confirm-<%= index %>' class="hideConfirm" data-card-index='<%= index %>' class="hide"><%= link_to 'confirm', booking_path(booking, status: :confirm), method: :patch, remote: true, class: "btn btn-warning"%></li>
-                <li id='decline-<%= index %>' class="hideDecline" data-card-index='<%= index %>' class="hide"><%= link_to 'decline', booking_path(booking, status: :decline), method: :patch, remote: true, class: "btn btn-warning"%></li>
+                  <li id='change-<%= index %>'class="change">confirmation status: Pending</li>
+                  <li id='confirm-<%= index %>' class="hideConfirm" data-card-index='<%= index %>' class="hide"><%= link_to 'confirm', booking_path(booking, status: :confirm), method: :patch, remote: true, class: "btn btn-warning"%></li>
+                  <li id='decline-<%= index %>' class="hideDecline" data-card-index='<%= index %>' class="hide"><%= link_to 'decline', booking_path(booking, status: :decline), method: :patch, remote: true, class: "btn btn-warning"%></li>
 
 
                   <% elsif booking.status == 2 %>
-                  <li class="hide">Comfirmation-status: booked</li>
+                    <li class="hide">Comfirmation-status: booked</li>
                   <% elsif booking.status == 3 %>
-                  <li>Comfirmation-status: declined</li>
+                    <li>Comfirmation-status: declined</li>
                   <%end%>
                   <li><%= link_to 'Delete', booking, method: :delete, data: { confirm: 'Are you sure?' }%></li>
                 </ul>

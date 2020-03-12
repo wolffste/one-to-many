@@ -74,7 +74,7 @@
                   <div class="d-flex justify-content-center align-items-center">
                       <%= f.input :content, label: false, wrapper_html: { class: "w-75 mb-0" } %>
                       <%= f.input :rating, label: false, required: false, prompt: "Rating", collection: [0, 1, 2, 3, 4, 5], wrapper_html: { class: "w-25 mb-0 mx-3" } %>
-                     <%= f.submit "submit",  class: "w-25 btn btn-primary" %>
+                     <%= f.submit "submit", data: { confirm: 'Your review has been submitted.' }, class: "w-25 btn btn-primary" %>
                   </div>
                 </div>
               <% end %>
@@ -127,7 +127,7 @@
           </div>
         </div>
       <%end%>
-</div>
+      </div>
     </div>
 <!----------END BOOKINGS----------->
 

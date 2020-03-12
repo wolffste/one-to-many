@@ -73,39 +73,39 @@ rgba(255,255,255,0.4), rgba(255,255,255,1), rgba(255,255,255,1)), url('<%= cl_im
                   <i class="far fa-star" id="rating-star"></i>
                 <% end %>
                 <%if  @delta.round(0) == 1 %>
-                  <i class="far fa-star" id="rating-star"></i>
+                  <i class="fa fa-star" id="rating-star"></i>
                   <i class="far fa-star" id="rating-star"></i>
                   <i class="far fa-star" id="rating-star"></i>
                   <i class="far fa-star" id="rating-star"></i>
                   <i class="far fa-star" id="rating-star"></i>
                 <% end %>
                 <%if  @delta.round(0) == 2 %>
-                  <i class="far fa-star" id="rating-star"></i>
-                  <i class="far fa-star" id="rating-star"></i>
+                  <i class="fa fa-star" id="rating-star"></i>
+                  <i class="fa fa-star" id="rating-star"></i>
                   <i class="far fa-star" id="rating-star"></i>
                   <i class="far fa-star" id="rating-star"></i>
                   <i class="far fa-star" id="rating-star"></i>
                 <% end %>
                 <%if  @delta.round(0) == 3 %>
-                  <i class="far fa-star" id="rating-star"></i>
-                  <i class="far fa-star" id="rating-star"></i>
-                  <i class="far fa-star" id="rating-star"></i>
+                  <i class="fa fa-star" id="rating-star"></i>
+                  <i class="fa fa-star" id="rating-star"></i>
+                  <i class="fa fa-star" id="rating-star"></i>
                   <i class="far fa-star" id="rating-star"></i>
                   <i class="far fa-star" id="rating-star"></i>
                 <% end %>
                 <%if  @delta.round(0) == 4 %>
-                  <i class="far fa-star" id="rating-star"></i>
-                  <i class="far fa-star" id="rating-star"></i>
-                  <i class="far fa-star" id="rating-star"></i>
-                  <i class="far fa-star" id="rating-star"></i>
+                  <i class="fa fa-star" id="rating-star"></i>
+                  <i class="fa fa-star" id="rating-star"></i>
+                  <i class="fa fa-star" id="rating-star"></i>
+                  <i class="fa fa-star" id="rating-star"></i>
                   <i class="far fa-star" id="rating-star"></i>
                 <% end %>
                 <%if  @delta.round(0) == 5 %>
-                  <i class="far fa-star" id="rating-star"></i>
-                  <i class="far fa-star" id="rating-star"></i>
-                  <i class="far fa-star" id="rating-star"></i>
-                  <i class="far fa-star" id="rating-star"></i>
-                  <i class="far fa-star" id="rating-star"></i>
+                  <i class="fa fa-star" id="rating-star"></i>
+                  <i class="fa fa-star" id="rating-star"></i>
+                  <i class="fa fa-star" id="rating-star"></i>
+                  <i class="fa fa-star" id="rating-star"></i>
+                  <i class="fa fa-star" id="rating-star"></i>
                 <% end %>
               </div>
               <div class="">
@@ -125,31 +125,6 @@ rgba(255,255,255,0.4), rgba(255,255,255,1), rgba(255,255,255,1)), url('<%= cl_im
 
 
           <ul style="list-style-type: none;">
-            <li class="musician-name"><strong><%= @musician.username %></strong>
-              <% if @musician.birthday.present? %>
-              <% age = Date.today.year - @musician.birthday.year %>
-              (<%= age %>)
-              <% else %>
-              (99) </li>
-              <% end %>
-            <div>      <!---average rating counter--->
-              <% @reviews = @musician.reviews_received %>
-              <% @sum = 0.0 %>
-              <% @reviews.each do |review| %>
-                <% @sum += review.rating %>
-              <% end %>
-              <% @delta = @sum / @reviews.length %>
-            </div>      <!---average rating counter--->
-            <% if @reviews.count == 0 %>
-              <p>has <strong>0</strong> reviews</p>
-            <% elsif  @reviews.count == 1 %>
-              <p>has <strong>1</strong> review, rating: <strong> <%= @delta.round(1) %> </strong> </p>
-            <% elsif %>
-              <p>has <strong><%= @reviews.count %></strong> reviews, average Rating: <strong> <%= @delta.round(1) %> </strong></p>
-            <% else %>
-              <p>nothing to commit</p>
-            <% end %>
-
 
             <li><strong>Genre:</strong> <%= @musician.genre.name %></li>
             <li><strong>Instrument:</strong> <%= @musician.instrument.name %></li>

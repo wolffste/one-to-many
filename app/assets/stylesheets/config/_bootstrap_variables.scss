@@ -29,10 +29,13 @@ $border-radius-sm: 2px;
     font-size: 60px;
     font-weight: bolder;
     color: #060606;
-    position: absolute;
-    left: 30px;
-    top: 133px;
-}
+    position: fixed;
+    left: 40px;
+    top: 123px;
 
+      &:hover {
+     text-decoration: none;
+  }
+}
 
 

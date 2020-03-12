@@ -1,10 +1,10 @@
 <div class="main bg-image" style="background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.43), rgba(255, 255, 255, 0.96), rgb(255, 255, 255)), url('<%= cl_image_path("banner-otm_tuakfl", :height=>800, :width=>1440) %>');">
-              <a href="#" onclick="history.go(-1)">
-                <i class="fas fa-arrow-circle-left"></i>
-              </a>
-    <div class="text-center">
-      <h1>Let's introduce the great musician <span class="higlighted"> <%= @musician.username %> </span> </h1>
-    </div>
+  <a href="#" onclick="history.go(-1)">
+    <i class="fas fa-arrow-circle-left"></i>
+  </a>
+  <div class="text-center">
+    <h1>Let's introduce the great musician <span class="higlighted"> <%= @musician.username %> </span> </h1>
+  </div>
 
 
   <br>
@@ -43,7 +43,7 @@
           <% end %>
         </div>
       </div>
-      <div class="col-xs-12 col-md-8 musician favorite-shaddow">
+      <div class="col-xs-12 col-md-8 musician favorite-shaddow top">
         <div class="card-otm right h-100 d-flex flex-column justify-content-between">
           <div class="row">
             <div class="col-8">
@@ -108,7 +108,7 @@
               <div class="">
                 <% if @reviews.count == 0 %>
                   <p>has <strong>0</strong> reviews</p>
-                <% elsif  @reviews.count == 1 %>
+                <% elsif @reviews.count == 1 %>
                   <p>has <strong>1</strong> review</p>
                 <% elsif %>
                   <p>has <strong><%= @reviews.count %></strong> reviews</p>
@@ -164,7 +164,7 @@
           <ul style="list-style-type: none;">
             <li class="button-musician-show">
               <%#= link_to 'Message', chat_rooms_path, method: :post, class: "btn btn-primary" %>
-              <%= link_to 'Book', new_musician_booking_path(@musician), class: "btn btn-primary" %>
+              <%= link_to 'Book', new_musician_booking_path(@musician), class: "btn btn-primary book-btn" %>
 
             <a class="btn btn-primary-outline portfolio-link"  data-toggle="modal" href="#portfolioModal1">Show Reviews</a>
             </li>

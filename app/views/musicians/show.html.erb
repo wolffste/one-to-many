@@ -126,12 +126,14 @@
 
           <ul style="list-style-type: none;">
 
+
             <div class="flexbox list-musician">
               <li><i class="fas fa-music mr-3 "></i> <%= @musician.instrument.name.capitalize %> (<%= @musician.genre.name.capitalize %>)</li>
               <li><i class="fas fa-map-marker-alt mr-3"></i> <%= @musician.city %></li>
               <li><i class="fas fa-euro-sign mr-3"></i>  <%= @musician.fee %> per day</li>
             </div>
             <br>
+
             <li><strong>Description </strong></li>
             <li><%= @musician.description %></li>
             <!-- Favorite Star -->

@@ -72,23 +72,16 @@
               <div class="mb-4">
                 <%= simple_form_for([booking.user, Review.new]) do |f| %>
                   <div class="d-flex justify-content-center align-items-center">
-
                       <%= f.input :content, label: false, wrapper_html: { class: "w-75 mb-0" } %>
-
-
                       <%= f.input :rating, label: false, required: false, prompt: "Rating", collection: [0, 1, 2, 3, 4, 5], wrapper_html: { class: "w-25 mb-0 mx-3" } %>
-
-
                      <%= f.submit "submit",  class: "w-25 btn btn-primary" %>
-
-
                   </div>
                 </div>
               <% end %>
             </div>
             <hr>
           <% end %>
-      <% end %>
+        <% end %>
     <%end%>
         <!------------ PASSIVE BOOKINGS ----------------->
     <% if @bookings_passive.count >= 1 %>
@@ -117,9 +110,10 @@
                 <li><strong>Tour Dates:</strong> <%= booking.startdate.day %>.<%= booking.startdate.month %>.<%= booking.startdate.year %> - <%= booking.enddate.day %>.<%= booking.enddate.month %>.<%= booking.enddate.year %></li>
                 <% if booking.status == 1 %>
                   <li id='change-<%= index %>'class="change">Confirmation status: <i class="fas fa-circle yellow"></i> Pending</li>
-                  <li id='confirm-<%= index %>' class="hideConfirm" data-card-index='<%= index %>' class="hide"><%= link_to 'confirm', booking_path(booking, status: :confirm), method: :patch, remote: true, class: "btn btn-primary"%></li>
-                  <li id ='decline-<%= index %>' class="hideDecline" data-card-index='<%= index %>' class="hide"><%= link_to 'decline', booking_path(booking, status: :decline), method: :patch, remote: true, class: "btn btn-primary-outline"%></li>
-
+                  <ul class="nav-bok">
+                    <li id='confirm-<%= index %>' class="hideConfirm" data-card-index='<%= index %>' class="hide"><%= link_to 'confirm', booking_path(booking, status: :confirm), method: :patch, remote: true, class: "btn btn-primary"%></li>
+                    <li id ='decline-<%= index %>' class="hideDecline" data-card-index='<%= index %>' class="hide"><%= link_to 'decline', booking_path(booking, status: :decline), method: :patch, remote: true, class: "btn btn-primary-outline px-3"%></li>
+                  </ul>
 
                   <% elsif booking.status == 2 %>
                     <li class="hide">Confirmation Status: <i class="fas fa-circle green"></i> Booked</li>

@@ -42,14 +42,34 @@
     </div>
     <div class="col-xs-12 col-md-8 musician">
       <div class="card-otm right h-100 d-flex flex-column justify-content-between">
+        <div>
+          <div class="col-8">
+            <ul style="list-style-type: none;">
+              <li class="musician-name"><strong><%= @musician.username %></strong>
+                <% if @musician.birthday.present? %>
+                <% age = Date.today.year - @musician.birthday.year %>
+                (<%= age %>)
+                <% else %>
+                (99)
+                <% end %>
+              </li>
+            </ul>
+          </div>
+          <div class="col-4">
+            <!-- stars -->
+          </div>
+        </div>
+
+
+
         <ul style="list-style-type: none;">
           <li class="musician-name"><strong><%= @musician.username %></strong>
             <% if @musician.birthday.present? %>
             <% age = Date.today.year - @musician.birthday.year %>
             (<%= age %>)
             <% else %>
-          (99) </li>
-          <% end %>
+            (99) </li>
+            <% end %>
           <div>      <!---average rating counter--->
             <% @reviews = @musician.reviews_received %>
             <% @sum = 0.0 %>
@@ -111,7 +131,6 @@
           </li>
 
           <!-- <a class="btn btn-primary portfolio-link portfolio-item"  data-toggle="modal" data-target="#reviewsModal">reviews</a> -->
-
         </ul>
       </div>
     </div>

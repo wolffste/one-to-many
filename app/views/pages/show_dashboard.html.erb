@@ -43,7 +43,7 @@
                   <li class= "mb-3"><h3><%=musician.username%></h3></li>
                   <% end %>
                   <% if booking.status == 2 %>
-                  <li class= "mb-3">booked Artist: <strong><%=musician.username%></strong></li>
+                  <li class= "mb-3"><h3><%=musician.username%></h3></li>
                   <% end %>
                   <li><strong>For band:</strong> <%= booking.band.name %></li>
                   <li><strong>Tour Dates:</strong> <%= booking.startdate.day %>.<%= booking.startdate.month %>.<%= booking.startdate.year %> - <%= booking.enddate.day %>.<%= booking.enddate.month %>.<%= booking.enddate.year %></li>
@@ -54,9 +54,9 @@
                   <li>Confirmation Status: <i class="fas fa-circle green"></i> booked</li>
                   <% elsif booking.status == 3 %>
                   <li>Confirmation Status: <i class="fas fa-circle red"></i> declined</li>
-                  <li><%= link_to 'delete', booking, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-warning"%></li>
+                  <li><%= link_to 'delete', booking, method: :delete, class: "btn btn-outline-warning"%></li>
 
-                  <li><%= link_to 'Delete', booking, method: :delete, data: { confirm: 'Are you sure?' }%></li>
+                  <li><%= link_to 'Delete', booking, method: :delete %></li>
 
                   <!-- <a class="btn btn-primary portfolio-link portfolio-item"  data-toggle="modal" href="#portfolioModal1">write a review</a> -->
                   <% end %>
@@ -90,12 +90,12 @@
     <%end%>
         <!------------ PASSIVE BOOKINGS ----------------->
     <% if @bookings_passive.count >= 1 %>
-    <h3 class="mt-4">These Bands booked me:</h3>
+    <h3 class="mt-4">Yeah, I was booked!</h3>
     <% end %>
     <% @bookings_passive.each.with_index do |booking, index| %>
-      <div class= "card card-otm mb-3 p-3">
+      <div class= "card dashboard mb-3 p-3">
         <div class= "row">
-          <div class= "col-xs-6 col-md-4" style="list-style-type: none;">.
+          <div class= "col-xs-6 col-md-4" style="list-style-type: none;">
             <% musician = User.find_by(id: booking.user_id) %>
             <% if booking.band.photos.attached? %>
               <div class="musician-pic" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url('<%= cl_image_path booking.band.photos[0].key, height: 230, crop: :fill, :gravity=>"faces" %>')"></div>
@@ -107,26 +107,24 @@
             <div class="card-otm">
               <ul id="myList" class="booking-details" style="list-style-type: none;">
                 <%if booking.status == 1%>
-                <li class= "mb-3">booking request from: <strong><%=booking.band.name%></strong></li>
+                <li class= "mb-3"><strong>Booking Request From:</strong> <%=booking.band.name%></li>
                 <% end %>
                 <%if booking.status == 2%>
                 <li class= "mb-3">you are booked for: <strong><%=booking.band.name%></strong></li>
                 <% end %>
-                <li>Begin: <strong><%= booking.startdate %></strong></li>
-                <li>End: <strong><%= booking.enddate %></strong></li>
-                <p>test index : <%= index %></p>
+                <li><strong>Tour Dates:</strong> <%= booking.startdate.day %>.<%= booking.startdate.month %>.<%= booking.startdate.year %> - <%= booking.enddate.day %>.<%= booking.enddate.month %>.<%= booking.enddate.year %></li>
                 <% if booking.status == 1 %>
-                  <li id='change-<%= index %>'class="change">confirmation status: Pending</li>
-                  <li id='confirm-<%= index %>' class="hideConfirm" data-card-index='<%= index %>' class="hide"><%= link_to 'confirm', booking_path(booking, status: :confirm), method: :patch, remote: true, class: "btn btn-warning"%></li>
-                  <li id='decline-<%= index %>' class="hideDecline" data-card-index='<%= index %>' class="hide"><%= link_to 'decline', booking_path(booking, status: :decline), method: :patch, remote: true, class: "btn btn-warning"%></li>
+                  <li id='change-<%= index %>'class="change">Confirmation status: <i class="fas fa-circle yellow"></i> Pending</li>
+                  <li id='confirm-<%= index %>' class="hideConfirm" data-card-index='<%= index %>' class="hide"><%= link_to 'confirm', booking_path(booking, status: :confirm), method: :patch, remote: true, class: "btn btn-primary"%>
+                  <id = 'decline-<%= index %>' class="hideDecline" data-card-index='<%= index %>' class="hide"><%= link_to 'decline', booking_path(booking, status: :decline), method: :patch, remote: true, class: "btn btn-primary-outline"%></li>
 
 
                   <% elsif booking.status == 2 %>
-                    <li class="hide">Comfirmation-status: booked</li>
+                    <li class="hide">Confirmation Status: <i class="fas fa-circle green"></i> Booked</li>
                   <% elsif booking.status == 3 %>
-                    <li>Comfirmation-status: declined</li>
+                    <li>Confirmation-status: <i class="fas fa-circle red"></i> Declined</li>
                   <%end%>
-                  <li><%= link_to 'Delete', booking, method: :delete, data: { confirm: 'Are you sure?' }%></li>
+                  <li><%= link_to 'Delete', booking, method: :delete%></li>
                 </ul>
               </div>
             </div>

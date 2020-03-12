@@ -25,6 +25,13 @@
 
  }
 
+
+.musician-card-name h3{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+
 .flexbox.list-musician ul{
   margin-bottom: 10px;
 }
@@ -46,7 +53,7 @@ position: end;
 }
 .starindex{
   position: absolute;
-  bottom: 92px;
+  bottom: 67px;
   right: 19px;
   width: 40px;
     textarea:hover,
@@ -179,7 +186,7 @@ li.musician-name{
 .musician-card {
   position: relative;
   width: 100%;
-  min-height: 373px;
+  min-height: 348px;
   margin-bottom: 25px;
   box-shadow: 0 0 4px rgba(0,0,0,0.2);
   background: white;
@@ -200,7 +207,7 @@ li.musician-name{
 }
 
 .card-field {
-  color: #3342de;
+  color: black;
   font-weight: bolder;
 }
 

@@ -77,16 +77,18 @@
         <% end %>
 
         <div class="card-row">
-          <p><%= musician.username %> (<%= age %>)</p>
+          <div class="musician-card-name">
+          <h3><%= musician.username %></h3>
+          </div>
         </div>
         <hr class="no-margin">
         <div class="card-row">
-          <p class="card-field">From:</p>
+          <p class="card-field"><i class="fas fa-map-marker-alt mr-3"></i></p>
           <p><%= musician.city %></p>
         </div>
         <hr class="no-margin">
         <div class="card-row">
-          <p class="card-field">Instruments:</p>
+          <p class="card-field"><i class="fas fa-music mr-3 "></i></p>
           <p><%= musician.instrument.name.capitalize %></p>
         </div>
 

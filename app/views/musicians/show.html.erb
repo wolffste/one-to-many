@@ -45,7 +45,14 @@
           <div class="row">
             <div class="col-8">
               <ul style="list-style-type: none;">
-                <li class="musician-name"><strong><%= @musician.username %></strong></li>
+                <li class="musician-name"><strong><%= @musician.username %></strong>
+                  <% if @musician.birthday.present? %>
+                  <% age = Date.today.year - @musician.birthday.year %>
+                  (<%= age %>)
+                  <% else %>
+                  (99)
+                  <% end %>
+                </li>
               </ul>
             </div>
             <div class="col-4">
@@ -219,7 +226,7 @@
                           <div class="col-10">
                             <p><%= review.content %></p>
                           </div>
-                          <div class="col-2">
+                          <div class="col-2 px-2">
                             <p>rating: <%= review.rating %></p>
                             <% @sum += review.rating %>
                           </div>

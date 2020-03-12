@@ -67,7 +67,6 @@ position: end;
   color: #3342de;
 
 
-
   &.starindex{
      position: absolute;
      top: 37px;
@@ -83,6 +82,21 @@ position: end;
 
 .purple {
   color: #3342de;
+  font-weight:bold;
+}
+
+.yellow {
+  color: rgb(247,179,43);
+  font-weight:bold;
+}
+
+.green {
+  color: green;
+  font-weight:bold;
+}
+
+.red {
+  color: red;
   font-weight:bold;
 }
 
@@ -154,6 +168,10 @@ li.musician-name{
   padding: 0;
 }
 
+.col-xs-12.col-md-4.dashboard{
+  padding-left: 0;
+}
+
 .musician-card {
   position: relative;
   width: 100%;
@@ -222,5 +240,6 @@ li.musician-name{
   display: block;
   background-size: cover;
   background-position: center;
+  padding-left: 0;
 }
 

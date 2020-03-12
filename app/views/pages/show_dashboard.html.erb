@@ -1,5 +1,4 @@
-<div class="main bg-image" style="background-image: linear-gradient(to bottom, rgba(255,255,255,0),
-  rgba(255,255,255,0.4), rgba(255,255,255,1), rgba(255,255,255,1)), url('<%= cl_image_path("index-bg_flfv00", :height=>800, :width=>1440) %>');">
+<div class="main bg-image" style="background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.43), rgba(255, 255, 255, 0.96), rgb(255, 255, 255)), url('<%= cl_image_path("banner-otm_tuakfl", :height=>800, :width=>1440) %>');">
   <div class="text-center">
     <h1>Overview</h1>
   </div>
@@ -7,20 +6,24 @@
   <div Class="container">
     <div class="tab">
       <div class="raw">
-        <button id="bookings-btn" class="tablinks col-sm-3" >Bookings</button>
-        <button id="favorites-btn" class="tablinks col-sm-3">Favorites</button>
-        <button id="profile-btn" class="tablinks col-sm-3">Profile</button>
-        <button id="bands-btn" class="tablinks col-sm-3">Bands</button>
+        <button id="bookings-btn" class="tablinks col-sm-3" >BOOKINGS</button>
+        <button id="favorites-btn" class="tablinks col-sm-3">FAVORITES</button>
+        <button id="profile-btn" class="tablinks col-sm-3">PROFILE</button>
+        <button id="bands-btn" class="tablinks col-sm-3">BANDS</button>
       </div>
     </div>
+
+
+<!----------BOOKINGS----------->
     <div id="bookings" class="tabcontent">
+      <div class="container">
       <% if  @bookings.count >= 1 %>
-      <h3 class="mt-4">musicians I booked</h3>
+      <h3 class="mt-4">My Booked Musicians</h3>
       <% end %>
       <% @bookings.each do |booking| %>    <!----------ACTIVE BOOKINGS----------->
-        <div class= "card mb-3 p-3">
+        <div class= "card dashboard mb-3 p-3">
           <div class= "row">
-            <div class= "col-xs-6 col-md-4" style="list-style-type: none;">
+            <div class= "dashboard-picture col-xs-6 col-md-4" style="list-style-type: none;">
               <% musician = User.find_by(id: booking.user_id) %>
               <% if musician.photos.attached? %>
                 <%= link_to musician_path(musician), :action => 'go' do %>
@@ -36,14 +39,13 @@
               <div class="card-otm">
                 <ul style="list-style-type: none;">
                   <% if booking.status == 1 %>
-                  <li class= "mb-3">booking request for: <strong><%=musician.username%></strong></li>
+                  <li class= "mb-3"><h3><%=musician.username%></h3></li>
                   <% end %>
                   <% if booking.status == 2 %>
-                  <li class= "mb-3">booked Artist: <strong><%=musician.username%></strong></li>
+                  <li class= "mb-3"><h3><%=musician.username%></h3></li>
                   <% end %>
-                  <li>For band: <strong><%= booking.band.name %></strong></li>
-                  <li>Begin: <strong><%= booking.startdate %></strong></li>
-                  <li>End: <strong><%= booking.enddate %></strong></li>
+                  <li><strong>For band:</strong> <%= booking.band.name %></li>
+                  <li><strong>Tour Dates:</strong> <%= booking.startdate.day %>.<%= booking.startdate.month %>.<%= booking.startdate.year %> - <%= booking.enddate.day %>.<%= booking.enddate.month %>.<%= booking.enddate.year %></li>
                   <% if booking.status == 1 %>
                   <li>Comfirmation-status: pending</li>
                   <li><%= link_to 'delete', booking, method: :delete, data: { confirm: 'Are you sure?' }%></li>
@@ -52,10 +54,9 @@
                   <li>Comfirmation-status: booked</li>
                   <li><%= link_to 'delete', booking, method: :delete, data: { confirm: 'Are you sure?' }%></li>
                   <% elsif booking.status == 3 %>
-                  <li>Comfirmation-status: declined</li>
-                  <li><%= link_to 'delete', booking, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-warning"%></li>
-
-                  <li><%= link_to 'Delete', booking, method: :delete, data: { confirm: 'Are you sure?' }%></li>
+                  <li>Confirmation Status: <i class="fas fa-circle red"></i> declined</li>
+                  <li><%= link_to 'delete', booking, method: :delete, class: "btn btn-outline-warning"%></li>
+                  
 
                   <!-- <a class="btn btn-primary portfolio-link portfolio-item"  data-toggle="modal" href="#portfolioModal1">write a review</a> -->
                   <% end %>
@@ -64,34 +65,37 @@
             </div>
           </div>
         </div>
+
         <% if booking.present? %>
           <% if Time.now > booking.enddate + 1  && (current_user.reviews_written.where(receiver_id: booking.user_id).empty?)%>
             <div>
-              <p> write a review for <%= musician.username %>:</p>
+              <p> <strong>How did you like playing with <%= musician.username %>? Write a review!<strong></p>
               <%= simple_form_for([booking.user, Review.new]) do |f| %>
-                <div class="row">
-                  <div class="col-9">
-                    <%= f.input :content %>
-                  </div>
-                  <div class="col">
-                    <%= f.input :rating, collection: [0, 1, 2, 3, 4, 5] %>
-                  </div>
-                  <div class="col">
-                   <%= f.submit "submit", class: "btn btn-primary" %>
-                  </div>
+                <div class="d-flex justify-content-center align-items-center">
+
+                    <%= f.input :content, label: false, wrapper_html: { class: "w-100 mb-0" } %>
+
+
+                    <%= f.input :rating, label: false, prompt: "Rating", collection: [0, 1, 2, 3, 4, 5], wrapper_html: { class: "mb-0 mx-3" } %>
+
+
+                   <%= f.submit "submit",  class: "btn btn-primary" %>
+
+
                 </div>
               <% end %>
             </div>
           <% end %>
       <% end %>
     <%end%>
+        <!------------ PASSIVE BOOKINGS ----------------->
     <% if @bookings_passive.count >= 1 %>
-    <h3 class="mt-4">These Bands booked me:</h3>
+    <h3 class="mt-4">Yeah, I was booked!</h3>
     <% end %>
-    <% @bookings_passive.each.with_index do |booking, index| %><!------------ PASSIVE BOOKINGS ----------------->
-      <div class= "card card-otm mb-3 p-3">
+    <% @bookings_passive.each.with_index do |booking, index| %>
+      <div class= "card dashboard mb-3 p-3">
         <div class= "row">
-          <div class= "col-xs-6 col-md-4" style="list-style-type: none;">.
+          <div class= "col-xs-6 col-md-4" style="list-style-type: none;">
             <% musician = User.find_by(id: booking.user_id) %>
             <% if booking.band.photos.attached? %>
               <div class="musician-pic" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url('<%= cl_image_path booking.band.photos[0].key, height: 230, crop: :fill, :gravity=>"faces" %>')"></div>
@@ -103,41 +107,48 @@
             <div class="card-otm">
               <ul id="myList" class="booking-details" style="list-style-type: none;">
                 <%if booking.status == 1%>
-                <li class= "mb-3">booking request from: <strong><%=booking.band.name%></strong></li>
+                <li class= "mb-3"><strong>Booking Request From:</strong> <%=booking.band.name%></li>
                 <% end %>
                 <%if booking.status == 2%>
                 <li class= "mb-3">you are booked for: <strong><%=booking.band.name%></strong></li>
                 <% end %>
-                <li>Begin: <strong><%= booking.startdate %></strong></li>
-                <li>End: <strong><%= booking.enddate %></strong></li>
-                <p>test index : <%= index %></p>
+                <li><strong>Tour Dates:</strong> <%= booking.startdate.day %>.<%= booking.startdate.month %>.<%= booking.startdate.year %> - <%= booking.enddate.day %>.<%= booking.enddate.month %>.<%= booking.enddate.year %></li>
                 <% if booking.status == 1 %>
-                  <li id='change-<%= index %>'class="change">confirmation status: Pending</li>
-                  <li id='confirm-<%= index %>' class="hideConfirm" data-card-index='<%= index %>' class="hide"><%= link_to 'confirm', booking_path(booking, status: :confirm), method: :patch, remote: true, class: "btn btn-warning"%></li>
-                  <li id='decline-<%= index %>' class="hideDecline" data-card-index='<%= index %>' class="hide"><%= link_to 'decline', booking_path(booking, status: :decline), method: :patch, remote: true, class: "btn btn-warning"%></li>
+                  <li id='change-<%= index %>'class="change">Confirmation status: <i class="fas fa-circle yellow"></i> Pending</li>
+                  <li id='confirm-<%= index %>' class="hideConfirm" data-card-index='<%= index %>' class="hide"><%= link_to 'confirm', booking_path(booking, status: :confirm), method: :patch, remote: true, class: "btn btn-primary"%>
+                  <id = 'decline-<%= index %>' class="hideDecline" data-card-index='<%= index %>' class="hide"><%= link_to 'decline', booking_path(booking, status: :decline), method: :patch, remote: true, class: "btn btn-primary-outline"%></li>
 
 
                   <% elsif booking.status == 2 %>
-                    <li class="hide">Comfirmation-status: booked</li>
+                    <li class="hide">Confirmation Status: <i class="fas fa-circle green"></i> Booked</li>
                   <% elsif booking.status == 3 %>
-                    <li>Comfirmation-status: declined</li>
+                    <li>Confirmation-status: <i class="fas fa-circle red"></i> Declined</li>
                   <%end%>
-                  <li><%= link_to 'Delete', booking, method: :delete, data: { confirm: 'Are you sure?' }%></li>
+                  <li><%= link_to 'Delete', booking, method: :delete%></li>
                 </ul>
               </div>
             </div>
           </div>
         </div>
       <%end%>
+</div>
     </div>
+<!----------END BOOKINGS----------->
 
-
+<!----------FAVORITES----------->
     <div id="favorites" class="tabcontent">
           <%= render partial: 'favorites/index', favorites: @favorites %><%# reviews are visible %>
     </div>
+<!----------END FAVORITES----------->
+
+<!----------PROFILE----------->
     <div id="profile" class="tabcontent">
+    <div class="container">
+        <h3 class="mt-4">Details about me</h3>
+       <div class= "card dashboard mb-3 p-3">
+
       <div class="row">
-        <div class="col-xs-12 col-md-4">
+        <div class="col-xs-12 col-md-4 dashboard">
           <div class="card-otm">
             <% if current_user.photos.attached? %>
               <div class="musician-featured-image" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url('<%= cl_image_path current_user.photos[0].key, height: 400, crop: :fill, :gravity=>"faces" %>')"></div>
@@ -149,11 +160,11 @@
         <div class="col-xs-12 col-md-8">
           <div class="card-otm h-100">
             <ul style="list-style-type: none;">
-              <li>username: <strong><%= @user.username %></strong></li>
-              <li>e-mail: <strong><%= @user.email %></strong></li>
-              <li>city: <strong><%= @user.city %></strong></li>
-              <li>date of birth: <strong><%= @user.birthday %></strong></li>
-              <li>description: <strong><%= @user.description %></strong></li>
+              <li><h3 ><%= @user.username %></h3></li>
+              <li><strong>Email: </strong><%= @user.email %></li>
+              <li><strong>City: </strong><%= @user.city %></li>
+              <li><strong>Date of birth: </strong><%= @user.birthday %></li>
+              <li><strong>Description: </strong><%= @user.description %></li>
             </ul>
           </div>
         </div>
@@ -161,11 +172,18 @@
       <div class="row mt-4">
         <div class="col-12">
           <div class="card-otm">
-            <h1>dsfggd</h1>
+            <h1 class="dashboard-media">MEDIA</h1>
           </div>
         </div>
+         </div>
+      </div>
       </div>
     </div>
+<!----------END PROFILE----------->
+
+<!----------BANDS----------->
+
+
     <div id="bands" class="tabcontent">
       <% @bands.each do |band| %>
       <div class= "card-otm mt-3 p-3">
@@ -194,4 +212,5 @@
     </div>
   </div>
 </div>
+<!----------END BANDS----------->
 

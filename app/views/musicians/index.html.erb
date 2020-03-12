@@ -1,5 +1,4 @@
-<div class="main bg-image" style="background-image: linear-gradient(to bottom, rgba(255,255,255,0),
-  rgba(255,255,255,0), rgba(255,255,255,0), rgba(255,255,255,1)), url('<%= cl_image_path("instruments_iiguax", :height=>800, :width=>1440) %>');">
+<div class="main bg-image" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(255, 255, 255, 0.36), rgba(255, 255, 255, 0.82), rgb(255, 255, 255)), url('<%= cl_image_path("instruments_iiguax", :height=>800, :width=>1440) %>');">
 
 
 
@@ -8,7 +7,7 @@
 
   <div class="text-center">
     <% if params[:search].present? == false || params[:search][:genre] == "" && params[:search][:instrument] == "" %>
-    <h1>Hi, check out <span class="higlighted"> <%= @musicians.count %> </span> musicians for you!</h1>
+    <h1>Check out these <span class="higlighted"> <%= @musicians.count %> </span> musicians</h1>
     <% else %>
     <h1>We found some cool artists for you!</h1>
     <% end %>
@@ -90,11 +89,7 @@
           <p class="card-field">Instruments:</p>
           <p><%= musician.instrument.name.capitalize %></p>
         </div>
-        <hr class="no-margin">
-        <div class="card-row">
-          <p class="card-field">Genre:</p>
-          <p><%= musician.genre.name %></p>
-        </div>
+
         <%#= link_to "edit", edit_musician_path(musician) %>
 
     <!-- Favorite Star -->

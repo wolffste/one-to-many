@@ -10,6 +10,15 @@ body
   // align-items: center;
 }
 
+.dashboard-media {
+  color: black !important;
+}
+
+
+.card.dashboard{
+  border: 0;
+}
+
 /* Style the tab */
 .tab {
   overflow: hidden;
@@ -50,6 +59,7 @@ body
 
 /* Style the tab content */
 .tabcontent {
+  background-color: white;
   display: none;
   padding: 6px 12px;
   border: 1px solid #ccc;
@@ -62,6 +72,10 @@ body
   float: right;
   cursor: pointer;
   font-size: 28px;
+}
+
+.dashboard-picture{
+  padding-left: 0;
 }
 
 .topright:hover {color: red;}
@@ -84,6 +98,7 @@ body
 
 
 .dashboard-pic {
+  padding-left:0;
 
   height: 300px;
   width: 100%;

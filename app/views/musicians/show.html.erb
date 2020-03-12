@@ -1,8 +1,8 @@
-<div class="main bg-image" style="background-image: linear-gradient(to bottom, rgba(255,255,255,0),
-rgba(255,255,255,0.4), rgba(255,255,255,1), rgba(255,255,255,1)), url('<%= cl_image_path("index-bg_flfv00", :height=>800, :width=>1440) %>');">
-  <div class="text-center">
-    <h1>Let's introduce the great musician <span class="higlighted"> <%= @musician.username %> </span> </h1>
-  </div>
+<div class="main bg-image" style="background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.43), rgba(255, 255, 255, 0.96), rgb(255, 255, 255)), url('<%= cl_image_path("banner-otm_tuakfl", :height=>800, :width=>1440) %>');">
+    <div class="text-center">
+      <h1>Let's introduce the great musician <span class="higlighted"> <%= @musician.username %> </span> </h1>
+    </div>
+
 
   <br>
   <div class="container">
@@ -132,7 +132,7 @@ rgba(255,255,255,0.4), rgba(255,255,255,1), rgba(255,255,255,1)), url('<%= cl_im
             <li><strong>Description: </strong></li>
             <li><%= @musician.description %></li>
             <!-- Favorite Star -->
-            <div class="show">
+            <div class="show-musician-star">
             <% if !current_user %>
               <%= form_for(@favorite) do |f| %>
                 <%= f.text_field :user %>
@@ -243,5 +243,6 @@ rgba(255,255,255,0.4), rgba(255,255,255,1), rgba(255,255,255,1)), url('<%= cl_im
       </div>
     </div>
   </div>
+</div>
 </div>
 

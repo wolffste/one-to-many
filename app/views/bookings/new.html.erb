@@ -21,7 +21,7 @@
           <div class="form-wrapper form-login" style="width: 400px; margin: 0 auto;">
             <%= simple_form_for [@musician, @booking], url: {action: "create"} do |f| %>
               <%= f.input :startdate, label:"When do you need #{@musician.username}?", as: :string, required: true, input_html: {class: "booking-input"}  %>
-              <%= f.association :band, label:"For which band?", collection: @bands%>
+              <%= f.association :band, label:"Choose your band!", collection: @bands%>
               <%= f.submit class: "btn btn-primary"%>
             <% end %>
           </div>

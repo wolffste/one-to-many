@@ -47,15 +47,16 @@
                   <li><strong>For band:</strong> <%= booking.band.name %></li>
                   <li><strong>Tour Dates:</strong> <%= booking.startdate.day %>.<%= booking.startdate.month %>.<%= booking.startdate.year %> - <%= booking.enddate.day %>.<%= booking.enddate.month %>.<%= booking.enddate.year %></li>
                   <% if booking.status == 1 %>
-                  <li>Confirmation Status: <i class="fas fa-circle yellow"></i> pending</li>
+                  <li>Comfirmation-status: pending</li>
+                  <li><%= link_to 'delete', booking, method: :delete, data: { confirm: 'Are you sure?' }%></li>
                   <li><%#= link_to 'cancel', booking, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-warning"%></li>
                   <% elsif booking.status == 2 %>
-                  <li>Confirmation Status: <i class="fas fa-circle green"></i> booked</li>
+                  <li>Comfirmation-status: booked</li>
+                  <li><%= link_to 'delete', booking, method: :delete, data: { confirm: 'Are you sure?' }%></li>
                   <% elsif booking.status == 3 %>
                   <li>Confirmation Status: <i class="fas fa-circle red"></i> declined</li>
                   <li><%= link_to 'delete', booking, method: :delete, class: "btn btn-outline-warning"%></li>
-
-                  <li><%= link_to 'Delete', booking, method: :delete %></li>
+                  
 
                   <!-- <a class="btn btn-primary portfolio-link portfolio-item"  data-toggle="modal" href="#portfolioModal1">write a review</a> -->
                   <% end %>

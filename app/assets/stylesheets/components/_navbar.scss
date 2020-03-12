@@ -1,6 +1,13 @@
 .uvp {
-  font-family: Galada;
-  margin-bottom: 0;
+    font-family: Nunito;
+    margin-bottom: 0;
+    font-size: 26px;
+}
+
+.navbar-brand {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
 }
 
 .navbar-lewagon {

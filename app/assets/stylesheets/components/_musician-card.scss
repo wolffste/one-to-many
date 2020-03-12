@@ -86,6 +86,21 @@ position: end;
   font-weight:bold;
 }
 
+.yellow {
+  color: rgb(247,179,43);
+  font-weight:bold;
+}
+
+.green {
+  color: green;
+  font-weight:bold;
+}
+
+.red {
+  color: red;
+  font-weight:bold;
+}
+
 .card-otm {
   &.left {
     position: relative;

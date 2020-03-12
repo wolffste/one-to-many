@@ -45,14 +45,7 @@
           <div class="row">
             <div class="col-8">
               <ul style="list-style-type: none;">
-                <li class="musician-name"><strong><%= @musician.username %></strong>
-                  <% if @musician.birthday.present? %>
-                  <% age = Date.today.year - @musician.birthday.year %>
-                  (<%= age %>)
-                  <% else %>
-                  (99)
-                  <% end %>
-                </li>
+                <li class="musician-name"><strong><%= @musician.username %></strong></li>
               </ul>
             </div>
             <div class="col-4">
@@ -126,10 +119,12 @@
 
           <ul style="list-style-type: none;">
 
-            <li><strong>Genre</strong> <%= @musician.genre.name %></li>
-            <li><strong>Instrument</strong> <%= @musician.instrument.name %></li>
-            <li><strong>City</strong> <%= @musician.city %></li>
-            <li><strong>Fee per day</strong> <%= @musician.fee %></li>
+            <div class="flexbox">
+              <li><i class="fas fa-music"></i> <%= @musician.instrument.name.capitalize %> (<%= @musician.genre.name.capitalize %>)</li>
+              <li><i class="fas fa-map-marker-alt"></i> <%= @musician.city %></li>
+              <li><i class="fas fa-euro-sign"></i>  <%= @musician.fee %> per day</li>
+            s</div>
+            <br>
             <li><strong>Description </strong></li>
             <li><%= @musician.description %></li>
             <!-- Favorite Star -->

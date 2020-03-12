@@ -42,7 +42,7 @@
     </div>
     <div class="col-xs-12 col-md-8 musician">
       <div class="card-otm right h-100 d-flex flex-column justify-content-between">
-        <div>
+        <div class="row">
           <div class="col-8">
             <ul style="list-style-type: none;">
               <li class="musician-name"><strong><%= @musician.username %></strong>
@@ -56,7 +56,69 @@
             </ul>
           </div>
           <div class="col-4">
-            <!-- stars -->
+            <div class="findDelta">
+              <% @reviews = @musician.reviews_received %>
+              <% @sum = 0.0 %>
+              <% @reviews.each do |review| %>
+                <% @sum += review.rating %>
+              <% end %>
+              <% @delta = @sum / @reviews.length %>
+            </div>
+            <div class="rating-stars-class py-2">
+              <%if  @delta.round(0) == 0 %>
+                <i class="far fa-star" id="rating-star"></i>
+                <i class="far fa-star" id="rating-star"></i>
+                <i class="far fa-star" id="rating-star"></i>
+                <i class="far fa-star" id="rating-star"></i>
+                <i class="far fa-star" id="rating-star"></i>
+              <% end %>
+              <%if  @delta.round(0) == 1 %>
+                <i class="far fa-star" id="rating-star"></i>
+                <i class="far fa-star" id="rating-star"></i>
+                <i class="far fa-star" id="rating-star"></i>
+                <i class="far fa-star" id="rating-star"></i>
+                <i class="far fa-star" id="rating-star"></i>
+              <% end %>
+              <%if  @delta.round(0) == 2 %>
+                <i class="far fa-star" id="rating-star"></i>
+                <i class="far fa-star" id="rating-star"></i>
+                <i class="far fa-star" id="rating-star"></i>
+                <i class="far fa-star" id="rating-star"></i>
+                <i class="far fa-star" id="rating-star"></i>
+              <% end %>
+              <%if  @delta.round(0) == 3 %>
+                <i class="far fa-star" id="rating-star"></i>
+                <i class="far fa-star" id="rating-star"></i>
+                <i class="far fa-star" id="rating-star"></i>
+                <i class="far fa-star" id="rating-star"></i>
+                <i class="far fa-star" id="rating-star"></i>
+              <% end %>
+              <%if  @delta.round(0) == 4 %>
+                <i class="far fa-star" id="rating-star"></i>
+                <i class="far fa-star" id="rating-star"></i>
+                <i class="far fa-star" id="rating-star"></i>
+                <i class="far fa-star" id="rating-star"></i>
+                <i class="far fa-star" id="rating-star"></i>
+              <% end %>
+              <%if  @delta.round(0) == 5 %>
+                <i class="far fa-star" id="rating-star"></i>
+                <i class="far fa-star" id="rating-star"></i>
+                <i class="far fa-star" id="rating-star"></i>
+                <i class="far fa-star" id="rating-star"></i>
+                <i class="far fa-star" id="rating-star"></i>
+              <% end %>
+            </div>
+            <div class="">
+              <% if @reviews.count == 0 %>
+                <p>has <strong>0</strong> reviews</p>
+              <% elsif  @reviews.count == 1 %>
+                <p>has <strong>1</strong> review</p>
+              <% elsif %>
+                <p>has <strong><%= @reviews.count %></strong> reviews</p>
+              <% else %>
+                <p>nothing to commit</p>
+              <% end %>
+            </div>
           </div>
         </div>
 
@@ -166,7 +228,7 @@
 
 
 
-  <div>
+  <div class="findDelta">
     <p><strong> reviews:</strong></p>
     <% @reviews = @musician.reviews_received %>
     <% @sum = 0.0 %>

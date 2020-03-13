@@ -27,7 +27,7 @@
           <p><strong><i class="fas fa-map-marker-alt mr-3"></i></strong><%= @musician.city %></p>
           <p><strong><i class="fas fa-euro-sign mr-3"></i></strong><%= @musician.fee %> per day</p>
           <p><strong>Description: </strong><%= @musician.description %></p>
-          <%= link_to " 🗑 Delete from favorites", favorite_path(favorite), method: :delete, class: "btn btn-primary-outline mt-3" %>
+          <%= link_to " 🗑 Delete from favorites", favorite_path(favorite), method: :delete, class: "btn btn-primary-outline mt-3 delete-fav" %>
         </div>
       </div>
     </div>

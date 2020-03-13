@@ -58,11 +58,10 @@ body
   }
 
 /* Style the tab content */
-.tabcontent {
+  .tabcontent {
   background-color: white;
   display: none;
   padding: 6px 12px;
-  border: 1px solid #ccc;
   border-top: none;
   z-index: 100;
 }

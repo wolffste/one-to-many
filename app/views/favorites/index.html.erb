@@ -1,4 +1,6 @@
 <div class="main bg-image" style="background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.43), rgba(255, 255, 255, 0.96), rgb(255, 255, 255)), url('<%= cl_image_path("banner-otm_tuakfl", :height=>800, :width=>1440) %>');">
+  <%= link_to "", musicians_path, class: "fas fa-arrow-circle-left" %>
+
   <div class="text-center">
     <h1> <span class="banner-Headline higlighted">My Favorites </span> </h1>
   </div>
@@ -9,7 +11,7 @@
     <div class="row favorite">
       <div class="col-xs-12 col-md-4">
         <%= link_to musician_path(favorite.musician.id), :action => 'go' do %>
-          <div class="card-product favorite">
+          <div class="card-product favorite favorite-shaddow">
             <% if favorite.musician.photos.attached? %>
               <%= cl_image_tag favorite.musician.photos[0].key, height: 230 %>
             <% else %>
@@ -18,20 +20,14 @@
           </div>
         <% end %>
       </div>
-      <div class="col-xs-12 col-md-8 favorite">
+      <div class="col-xs-12 col-md-8 favorite favorite-shaddow">
         <div class="card-product-infos">
           <% @musician = User.find(favorite.musician_id) %>
-          <p><strong>Name: </strong><%= @musician.username %></p>
-          <% if @musician.birthday.present? %>
-            <% age = Date.today.year - @musician.birthday.year %>
-            <p><strong>Age: </strong> <%= age %></p>
-          <% else %>
-            <p><strong>Age: </strong> 99 </p>
-            <% end %>
-            <p><strong>Description: </strong><%= @musician.description %></p>
-            <p><strong>City: </strong><%= @musician.city %></p>
-          <%= link_to "Back to overview", musicians_path, class: "btn btn-primary" %>
-          <%= link_to " 🗑 Delete from favorites", favorite_path(favorite), method: :delete, class: "btn btn-primary-outline delete-fav" %>
+          <h3><%= @musician.username %></h3>
+          <p><strong><i class="fas fa-map-marker-alt mr-3"></i></strong><%= @musician.city %></p>
+          <p><strong><i class="fas fa-euro-sign mr-3"></i></strong><%= @musician.fee %> per day</p>
+          <p><strong>Description: </strong><%= @musician.description %></p>
+          <%= link_to " 🗑 Delete from favorites", favorite_path(favorite), method: :delete, class: "btn btn-primary-outline mt-3" %>
         </div>
       </div>
     </div>

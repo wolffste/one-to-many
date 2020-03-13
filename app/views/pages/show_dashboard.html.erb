@@ -1,9 +1,10 @@
 <div class="main bg-image" style="background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.43), rgba(255, 255, 255, 0.96), rgb(255, 255, 255)), url('<%= cl_image_path("banner-otm_tuakfl", :height=>800, :width=>1440) %>');">
+  <%= link_to "", musicians_path, class: "fas fa-arrow-circle-left" %>
   <div class="text-center">
     <h1>Overview</h1>
   </div>
 
-  <div Class="container">
+  <div Class="container favorite-shaddow">
     <div class="tab">
       <div class="raw">
         <button id="bookings-btn" class="tablinks col-sm-3" >BOOKINGS</button>
@@ -74,7 +75,7 @@
                   <div class="d-flex justify-content-center align-items-center">
                       <%= f.input :content, label: false, wrapper_html: { class: "w-75 mb-0" } %>
                       <%= f.input :rating, label: false, required: false, prompt: "Rating", collection: [0, 1, 2, 3, 4, 5], wrapper_html: { class: "w-25 mb-0 mx-3" } %>
-                     <%= f.submit "submit", data: { confirm: 'Your review has been submitted.' }, class: "w-25 btn btn-primary" %>
+                     <%= f.submit "submit", class: "w-25 btn btn-primary" %>
                   </div>
                 </div>
               <% end %>

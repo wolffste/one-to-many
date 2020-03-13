@@ -31,7 +31,7 @@
             <p><strong>Description: </strong><%= @musician.description %></p>
             <p><strong>City: </strong><%= @musician.city %></p>
           <%= link_to "Back to overview", musicians_path, class: "btn btn-primary" %>
-          <%= link_to " 🗑 Delete from favorites", favorite_path(favorite), method: :delete, class: "btn btn-primary-outline" %>
+          <%= link_to " 🗑 Delete from favorites", favorite_path(favorite), method: :delete, class: "btn btn-primary-outline delete-fav" %>
         </div>
       </div>
     </div>

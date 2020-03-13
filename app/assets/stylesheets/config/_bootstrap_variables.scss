@@ -29,9 +29,9 @@ $border-radius-sm: 2px;
     font-size: 60px;
     font-weight: bolder;
     color: #060606;
-    position: fixed;
-    left: 40px;
-    top: 123px;
+    position: relative;
+    left: 25px;
+    top: 25px;
 
       &:hover {
      text-decoration: none;

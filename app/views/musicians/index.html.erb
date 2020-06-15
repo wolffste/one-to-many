@@ -1,4 +1,4 @@
-<div class="main bg-image" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(255, 255, 255, 0.36), rgba(255, 255, 255, 0.82), rgb(255, 255, 255)), url('<%= cl_image_path("instruments_iiguax", :height=>800, :width=>1440) %>');">
+<div class="main bg-image">
 
 
 
@@ -20,24 +20,24 @@
     <div class="filter">
     <%= simple_form_for :search, url: musicians_path, method: 'get' do |f| %>
     <div class="row row d-flex align-items-end">
-      <div class="col-3 form-group mb-0">
+      <div class="col-lg-3 col-sm-6 form-group mb-0">
         <% if params[:search].present? == false || params[:search][:genre] == "" %>
         <%= f.input :genre, collection: Genre.all, label: false,input_html: { class: "beautiful-dropdown" }, prompt: "all genres", required: false, include_hidden: false, class: "form-control"  %>
         <% else %>
         <%= f.input :genre, collection: Genre.all,label: false, input_html: { class: "beautiful-dropdown" }, selected: "#{params[:search][:genre]}", prompt: Genre.find(params[:search][:genre]).name, required: false, include_hidden: false,  class: "form-control"  %>
         <% end %>
       </div>
-      <div class="col-3 form-group mb-0">
+      <div class="col-lg-3 col-sm-6 form-group mb-0">
         <% if params[:search].present? == false || params[:search][:instrument] == "" %>
         <%= f.input :instrument, collection: Instrument.all, label: false, input_html: { class: "beautiful-dropdown"}, prompt: "all instruments", required: false, include_hidden: false, class: "form-control"  %>
         <% else %>
         <%= f.input :instrument, collection: Instrument.all, input_html: { class: "beautiful-dropdown"}, selected: "#{params[:search][:instrument]}", prompt: Instrument.find(params[:search][:instrument]).name, label: false,required: false, include_hidden: false, class: "form-control"  %>
         <% end %>
       </div>
-      <div class="col-3 form-group mb-0">
+      <div class="col-lg-3 col-sm-6 form-group mb-0">
         <%= f.input :startdate, label: false, placeholder: "Select Timeperiod", as: :string, required: false, input_html: {class: "booking-input"}  %>
       </div>
-      <div class="col-2 form-group">
+      <div class="col-lg-3 col-sm-6 form-group">
         <%= f.button :submit, "Go!", class: "btn btn-primary w-100" %>
       </div>
     </div>

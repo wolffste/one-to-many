@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_10_110154) do
+ActiveRecord::Schema.define(version: 2020_11_23_213107) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(version: 2020_03_10_110154) do
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
 
-  create_table "chat_rooms", force: :cascade do |t|
+  create_table "chatrooms", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -95,12 +95,12 @@ ActiveRecord::Schema.define(version: 2020_03_10_110154) do
   end
 
   create_table "messages", force: :cascade do |t|
-    t.text "content"
-    t.bigint "chat_room_id"
+    t.string "content"
+    t.bigint "chatroom_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["chat_room_id"], name: "index_messages_on_chat_room_id"
+    t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
@@ -150,7 +150,7 @@ ActiveRecord::Schema.define(version: 2020_03_10_110154) do
   add_foreign_key "bookings", "users"
   add_foreign_key "favorites", "users"
   add_foreign_key "favorites", "users", column: "musician_id"
-  add_foreign_key "messages", "chat_rooms"
+  add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
   add_foreign_key "reviews", "users", column: "receiver_id"
   add_foreign_key "reviews", "users", column: "writer_id"

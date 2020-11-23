@@ -1,0 +1,213 @@
+<div class="main bg-image" style="background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.43), rgba(255, 255, 255, 0.96), rgb(255, 255, 255)), url('<%= cl_image_path("banner-otm_tuakfl", :height=>800, :width=>1440) %>');">
+  <%= link_to "", musicians_path, class: "fas fa-arrow-circle-left" %>
+  <div class="text-center">
+    <h1>Overview</h1>
+  </div>
+
+  <div Class="container favorite-shaddow">
+    <div class="tab">
+      <div class="raw">
+        <button id="bookings-btn" class="tablinks col-sm-3" >BOOKINGS</button>
+        <button id="favorites-btn" class="tablinks col-sm-3">FAVORITES</button>
+        <button id="profile-btn" class="tablinks col-sm-3">PROFILE</button>
+        <button id="bands-btn" class="tablinks col-sm-3">BANDS</button>
+      </div>
+    </div>
+
+
+<!----------BOOKINGS----------->
+    <div id="bookings" class="tabcontent">
+      <div class="container">
+      <% if  @bookings.count >= 1 %>
+      <h3 class="mt-4">My Booked Musicians</h3>
+      <% end %>
+      <% @bookings.each do |booking| %>    <!----------ACTIVE BOOKINGS----------->
+        <div class= "card dashboard mb-3 p-3">
+          <div class= "row">
+            <div class= "dashboard-picture col-xs-6 col-md-4" style="list-style-type: none;">
+              <% musician = User.find_by(id: booking.user_id) %>
+              <% if musician.photos.attached? %>
+                <%= link_to musician_path(musician), :action => 'go' do %>
+                  <div class="musician-pic" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url('<%= cl_image_path musician.photos[0].key, height: 230, crop: :fill, :gravity=>"faces" %>')"></div>
+                <% end %>
+              <% else %>
+                <%= link_to musician_path(musician), :action => 'go' do %>
+                  <div class="musician-pic" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url('<%= cl_image_path("a6fac407-95ce-4d45-b360-8330205ce210_l_svdjab", :height=>230, :gravity=>"faces", :crop=>"fill") %>')"></div>
+                <% end %>
+              <% end %>
+            </div>
+            <div class= "col-xs-12 col-md-8">
+              <div class="card-otm">
+                <ul style="list-style-type: none;">
+                  <% if booking.status == 1 %>
+                  <li class= "mb-3"><h3><%=musician.username%></h3></li>
+                  <% end %>
+                  <% if booking.status == 2 %>
+                  <li class= "mb-3"><h3><%=musician.username%></h3></li>
+                  <% end %>
+                  <li><strong>For band</strong> <%= booking.band.name %></li>
+                  <li><strong><i class="fas fa-bus mr-2"></i></strong> <%= booking.startdate.day %>.<%= booking.startdate.month %>.<%= booking.startdate.year %> ― <%= booking.enddate.day %>.<%= booking.enddate.month %>.<%= booking.enddate.year %></li>
+                  <% if booking.status == 1 %>
+                  <li><i class="fas fa-circle yellow mr-2"></i>Confirmation Status pending</li>
+                  <li><%= link_to 'delete', booking, method: :delete, data: { confirm: 'Are you sure?' }%></li>
+                  <li><%#= link_to 'cancel', booking, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-warning"%></li>
+                  <% elsif booking.status == 2 %>
+                  <li><i class="fas fa-circle green mr-2"></i>Confirmation Status booked</li>
+                  <li><%= link_to 'delete', booking, method: :delete, data: { confirm: 'Are you sure?' }%></li>
+                  <% elsif booking.status == 3 %>
+                  <li><i class="fas fa-circle red mr-2"></i>Confirmation Status declined</li>
+                  <li><%= link_to 'delete', booking, method: :delete, class: "btn btn-outline-warning"%></li>
+
+
+                  <!-- <a class="btn btn-primary portfolio-link portfolio-item"  data-toggle="modal" href="#portfolioModal1">write a review</a> -->
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% if booking.present? %>
+          <% if Time.now > booking.enddate + 1 %>
+            <div>
+              <p style="margin-bottom: 10px"> <strong>How did you like playing with <%= musician.username %>? Write a review!</strong></p>
+              <div class="mb-4">
+                <%= simple_form_for([booking.user, Review.new]) do |f| %>
+                  <div class="d-flex justify-content-center align-items-center">
+                      <%= f.input :content, label: false, wrapper_html: { class: "w-75 mb-0" } %>
+                      <%= f.input :rating, label: false, required: false, prompt: "Rating", collection: [0, 1, 2, 3, 4, 5], wrapper_html: { class: "w-25 mb-0 mx-3" } %>
+                     <%= f.submit "submit", class: "w-25 btn btn-primary" %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+            <hr>
+          <% end %>
+        <% end %>
+    <%end%>
+        <!------------ PASSIVE BOOKINGS ----------------->
+    <% if @bookings_passive.count >= 1 %>
+    <h3 class="mt-4">Yeah, I was booked!</h3>
+    <% end %>
+    <% @bookings_passive.each.with_index do |booking, index| %>
+      <div class= "card dashboard mb-3 p-3">
+        <div class= "row">
+          <div class= "col-xs-6 col-md-4" style="list-style-type: none;">
+            <% musician = User.find_by(id: booking.user_id) %>
+            <% if booking.band.photos.attached? %>
+              <div class="musician-pic" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url('<%= cl_image_path booking.band.photos[0].key, height: 230, crop: :fill, :gravity=>"faces" %>')"></div>
+            <% else %>
+              <div class="musician-pic" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url('<%= cl_image_path("a6fac407-95ce-4d45-b360-8330205ce210_l_svdjab", :height=>230, :gravity=>"faces", :crop=>"fill") %>')"></div>
+            <%end%>
+          </div>
+          <div class= "col-xs-12 col-md-8">
+            <div class="card-otm">
+              <ul id="myList" class="booking-details" style="list-style-type: none;">
+                <%if booking.status == 1%>
+                <li class= "mb-3"><strong>Booking Request From:</strong> <%=booking.band.name%></li>
+                <% end %>
+                <%if booking.status == 2%>
+                <li class= "mb-3">Booked for <strong><%=booking.band.name%></strong></li>
+                <% end %>
+                <li><strong><i class="fas fa-bus mr-2"></i></strong> <%= booking.startdate.day %>.<%= booking.startdate.month %>.<%= booking.startdate.year %> ― <%= booking.enddate.day %>.<%= booking.enddate.month %>.<%= booking.enddate.year %></li>
+                <% if booking.status == 1 %>
+                  <li id='change-<%= index %>'class="change">Confirmation Status <i class="fas fa-circle yellow"></i> Pending</li>
+                  <ul class="nav-bok">
+                    <li id='confirm-<%= index %>' class="hideConfirm" data-card-index='<%= index %>' class="hide"><%= link_to 'confirm', booking_path(booking, status: :confirm), method: :patch, remote: true, class: "btn btn-primary"%></li>
+                    <li id ='decline-<%= index %>' class="hideDecline" data-card-index='<%= index %>' class="hide"><%= link_to 'decline', booking_path(booking, status: :decline), method: :patch, remote: true, class: "btn btn-primary-outline px-3"%></li>
+                  </ul>
+
+                  <% elsif booking.status == 2 %>
+                    <li class="hide">Confirmation Status <i class="fas fa-circle green"></i> Booked</li>
+                  <% elsif booking.status == 3 %>
+                    <li>Confirmation Status <i class="fas fa-circle red"></i> Declined</li>
+                  <%end%>
+                  <li><%= link_to 'Delete', booking, method: :delete%></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      <%end%>
+      </div>
+    </div>
+<!----------END BOOKINGS----------->
+
+<!----------FAVORITES----------->
+    <div id="favorites" class="tabcontent">
+          <%= render partial: 'favorites/index', favorites: @favorites %><%# reviews are visible %>
+    </div>
+<!----------END FAVORITES----------->
+
+<!----------PROFILE----------->
+    <div id="profile" class="tabcontent">
+    <div class="container">
+        <h3 class="mt-4">Details about me</h3>
+       <div class= "card dashboard mb-3 p-3">
+
+      <div class="row">
+        <div class="col-xs-12 col-md-4 dashboard">
+          <div class="card-otm">
+            <% if current_user.photos.attached? %>
+              <div class="musician-featured-image" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url('<%= cl_image_path current_user.photos[0].key, height: 400, crop: :fill, :gravity=>"faces" %>')"></div>
+            <% else %>
+              <div class="musician-featured-image" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url('<%= cl_image_path("a6fac407-95ce-4d45-b360-8330205ce210_l_svdjab", height: 400, crop: :fill, :gravity=>"faces") %>')"></div>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-8">
+          <div class="card-otm h-100">
+            <ul style="list-style-type: none;">
+              <li><h3 ><%= @user.username %></h3></li>
+              <li><strong><i class="far fa-envelope mr-3"></i></strong><%= @user.email %></li>
+              <li><strong><i class="fas fa-map-marker-alt mr-3"></i></strong><%= @user.city %></li>
+              <li><strong><i class="fas fa-birthday-cake mr-3"></i></strong><%= @user.birthday %></li>
+              <li><strong>Description: </strong><%= @user.description %></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-12">
+          <div class="card-otm">
+            <h1 class="dashboard-media">MEDIA</h1>
+          </div>
+        </div>
+         </div>
+      </div>
+      </div>
+    </div>
+<!----------END PROFILE----------->
+
+<!----------BANDS----------->
+
+
+    <div id="bands" class="tabcontent">
+      <% @bands.each do |band| %>
+      <div class= "card-otm mt-3 p-3">
+        <div class= "row">
+          <div class= "col-xs-6 col-md-4" style="list-style-type: none;">
+            <%if band.photos.attached? %>
+            <div class="musician-pic" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url('<%= cl_image_path band.photos[0].key, height: 230, crop: :fill, :gravity=>"faces" %>')"></div>
+            <%else%>
+            <div class="musician-pic" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url('<%= cl_image_path("a6fac407-95ce-4d45-b360-8330205ce210_l_svdjab", :height=>230, :gravity=>"faces", :crop=>"fill") %>')"></div>
+            <%end%>
+          </div>
+          <div class= "col-xs-12 col-md-8">
+            <div class="card-otm">
+              <ul style="list-style-type: none;">
+                <li><h3><strong><%= band.name %></strong></h3></li>
+                <li><i class="fas fa-music mr-3 "></i> <%= band.genre.name %></li>
+                <li><strong><%= band.description %></strong></li>
+                <%= link_to "Edit", edit_band_path(band), class: "btn btn-primary" %>
+                <%= link_to 'Delete', band, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary-outline"%>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <%end%>
+    </div>
+  </div>
+</div>
+<!----------END BANDS----------->
+

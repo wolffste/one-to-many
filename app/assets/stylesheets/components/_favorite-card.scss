@@ -1,0 +1,75 @@
+.card-product {
+  overflow: hidden;
+  height: 250px;
+  background: white;
+  align-items: center;
+
+}
+
+.delete-fav{
+  position: absolute;
+  top: 14px;
+  right: 33px;
+}
+
+
+.show-musician-star{
+    position: absolute;
+    left: -86px;
+    top: 15px;
+    width: 40px;
+    textarea:hover,
+    input:hover,
+    textarea:active,
+    input:active,
+    textarea:focus,
+    input:focus,
+    button:focus,
+    button:active,
+    button:hover,
+    label:focus,
+    .btn:active,
+    .btn.active {
+      outline: 0px !important;
+      box-shadow: none !important;
+    }
+}
+
+.card-product img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-product h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-product p {
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+
+.card-product-infos {
+  margin: 20px;
+}
+
+.col-xs-12.col-md-8 {
+  background-color: white;
+}
+
+.row.favorite{
+  margin-bottom: 30px;
+}
+
+
+
+.favorite-shaddow {
+  box-shadow: 0 0 4px rgba(0,0,0,0.2);
+  padding: 0;
+}

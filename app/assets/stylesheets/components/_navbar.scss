@@ -1,0 +1,27 @@
+.uvp {
+    font-family: Nunito;
+    margin-bottom: 0;
+    font-size: 26px;
+    margin-left: 6px;
+}
+
+.navbar-brand {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.navbar-lewagon {
+  justify-content: space-between;
+  background: #060606;
+}
+
+.navbar-lewagon .navbar-collapse {
+  flex-grow: 0;
+}
+
+.navbar-lewagon .navbar-brand img {
+  width: 40px;
+}
+
+

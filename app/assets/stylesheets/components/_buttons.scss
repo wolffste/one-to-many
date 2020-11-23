@@ -1,0 +1,42 @@
+.btn {
+  font-weight: 500;
+}
+
+.btn-xl {
+  font-size: 18px;
+  padding: 20px 40px;
+}
+
+.btn-primary {
+  background-color: #3342de;
+  border-color: #3342de;
+  &:active,
+  &:focus,
+  &:hover {
+    background-color: darken(#3342de, 7.5%) !important;
+    border-color: darken(#3342de, 7.5%) !important;
+    color: white;
+  }
+  &:active,
+  &:focus {
+    box-shadow: 0 0 0 0.2rem #3342de!important;
+  }
+
+  .outline{
+    background-color: white;
+    color: #3342de;
+  }
+
+}
+
+ .btn-primary-outline{
+    background-color: white;
+    color: #3342de;
+    border-color: darken(#3342de, 7.5%) !important;
+    &:hover{
+       color: darken(#3342de, 12%) !important;
+    }
+
+  }
+
+

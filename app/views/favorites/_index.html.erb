@@ -1,0 +1,30 @@
+<div class="container">
+  <h3 class="mt-4">Musicians I dream of ...</h3>
+<br>
+  <% @favorites.each do |favorite| %>
+  <div class="row favorite">
+    <div class="col-xs-12 col-md-4">
+      <%= link_to musician_path(favorite.musician.id), :action => 'go' do %>
+        <div class="card-product favorite favorite-shaddow">
+          <% if favorite.musician.photos.attached? %>
+            <%= cl_image_tag favorite.musician.photos[0].key, height: 230 %>
+          <% else %>
+            <%= cl_image_tag("a6fac407-95ce-4d45-b360-8330205ce210_l_svdjab") %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-xs-12 col-md-8 favorite favorite-shaddow">
+      <div class="card-product-infos">
+        <% @musician = User.find(favorite.musician_id) %>
+        <h3><%= @musician.username %></h3>
+        <p><strong><i class="fas fa-map-marker-alt mr-3"></i></strong><%= @musician.city %></p>
+        <p><strong><i class="fas fa-euro-sign mr-3"></i></strong><%= @musician.fee %> per day</p>
+        <p><strong>Description: </strong><%= @musician.description %></p>
+        <%= link_to "Back to overview", musicians_path, class: "btn btn-primary" %>
+        <%= link_to " 🗑 Delete from favorites", favorite_path(favorite), method: :delete, class: "btn btn-primary-outline" %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
